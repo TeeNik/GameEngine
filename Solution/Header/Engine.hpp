@@ -1,5 +1,5 @@
-class SDL_Window;
-class SDL_Renderer;
+struct SDL_Window;
+struct SDL_Renderer;
 
 class Engine {
 
@@ -16,8 +16,8 @@ public:
 	bool running();
 
 private:
-	bool isRunning;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
+	bool isRunning;
 
 };

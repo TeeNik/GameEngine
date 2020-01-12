@@ -2,16 +2,17 @@
 
 int main(int argc, char* argv[])
 {
-	Engine engine;
-	engine.init();
+	Engine* engine = new Engine;
+	engine->init();
 
-	while (engine.running()) {
-		engine.handleEvents();
-		engine.update();
-		engine.render();
+	while (engine->running()) {
+		engine->handleEvents();
+		engine->update();
+		engine->render();
 	}
 
-	engine.clean();
+	engine->clean();
+	delete engine;
 
 	return 0;
 }

@@ -12,7 +12,8 @@ Engine::~Engine()
 
 void Engine::init()
 {
-	bool fullscreen = true;
+	std::cout << sizeof(Engine) << std::endl;
+	bool fullscreen = false;
 	int flags = fullscreen ? SDL_WINDOW_FULLSCREEN : 0;
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
@@ -25,7 +26,7 @@ void Engine::init()
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		if (renderer) {
 			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-			std::cout << "Window Created.\n";
+			std::cout << "Renderer Created.\n";
 		}
 		isRunning = true;
 	}
