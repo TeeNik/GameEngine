@@ -1,6 +1,10 @@
 #include "../Header/Engine.hpp"
 #include "SDL.h"
+#include "SDL_image.h"
 #include <iostream>
+
+SDL_Texture* playerTex;
+SDL_Rect srcR, destR;
 
 Engine::Engine()
 {
@@ -12,7 +16,6 @@ Engine::~Engine()
 
 void Engine::init()
 {
-	std::cout << sizeof(Engine) << std::endl;
 	bool fullscreen = false;
 	int flags = fullscreen ? SDL_WINDOW_FULLSCREEN : 0;
 
@@ -33,6 +36,10 @@ void Engine::init()
 	else {
 		isRunning = false;
 	}
+
+	SDL_Surface* tmpSurface = IMG_Load("../Solution/Assets/player.png");
+	playerTex = SDL_CreateTextureFromSurface(renderer, tmpSurface);
+	SDL_FreeSurface(tmpSurface);
 }
 
 void Engine::handleEvents()
@@ -50,11 +57,19 @@ void Engine::handleEvents()
 
 void Engine::update()
 {
+	++frameCounter;
+
+	destR.h = 109;
+	destR.w = 64;
+	destR.x = frameCounter / 100;
 }
 
 void Engine::render()
 {
 	SDL_RenderClear(renderer);
+
+	SDL_RenderCopy(renderer, playerTex, NULL, &destR);
+
 	SDL_RenderPresent(renderer);
 }
 
