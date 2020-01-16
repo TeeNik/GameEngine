@@ -13,6 +13,7 @@ public:
 	void render();
 	void clean();
 
+	void run();
 	bool running();
 
 private:

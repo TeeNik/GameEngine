@@ -59,6 +59,8 @@ void Engine::update()
 {
 	++frameCounter;
 
+
+
 	destR.h = 109;
 	destR.w = 64;
 	destR.x = frameCounter / 100;
@@ -79,6 +81,12 @@ void Engine::clean()
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 	std::cout << "Window Cleaned.\n";
+}
+
+void Engine::run()
+{
+	while
+
 }
 
 bool Engine::running()
