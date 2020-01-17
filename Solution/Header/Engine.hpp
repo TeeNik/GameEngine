@@ -1,5 +1,6 @@
 struct SDL_Window;
 struct SDL_Renderer;
+class TextureManager;
 
 class Engine {
 
@@ -17,6 +18,7 @@ public:
 	bool running();
 
 private:
+	TextureManager* textureManager;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	bool isRunning;

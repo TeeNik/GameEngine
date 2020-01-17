@@ -2,6 +2,7 @@
 #include "SDL.h"
 #include "SDL_image.h"
 #include <iostream>
+#include "../Header/TextureManager.hpp"
 
 SDL_Texture* playerTex;
 SDL_Rect srcR, destR;
@@ -37,9 +38,8 @@ void Engine::init()
 		isRunning = false;
 	}
 
-	SDL_Surface* tmpSurface = IMG_Load("../Solution/Assets/player.png");
-	playerTex = SDL_CreateTextureFromSurface(renderer, tmpSurface);
-	SDL_FreeSurface(tmpSurface);
+	textureManager = new TextureManager;
+	playerTex = textureManager->LoadTexture("../Solution/Assets/player.png", renderer);
 }
 
 void Engine::handleEvents()
@@ -58,8 +58,6 @@ void Engine::handleEvents()
 void Engine::update()
 {
 	++frameCounter;
-
-
 
 	destR.h = 109;
 	destR.w = 64;
@@ -85,8 +83,7 @@ void Engine::clean()
 
 void Engine::run()
 {
-	while
-
+	
 }
 
 bool Engine::running()
