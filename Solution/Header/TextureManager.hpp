@@ -6,5 +6,5 @@ struct SDL_Renderer;
 class TextureManager {
 
 public:
-	SDL_Texture* LoadTexture(const char* filename, SDL_Renderer* renderer);
+	static SDL_Texture* LoadTexture(const char* filename, SDL_Renderer* renderer);
 };

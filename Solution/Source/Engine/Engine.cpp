@@ -59,17 +59,13 @@ void Engine::update()
 	++frameCounter;
 
 	player->update();
-
-	destR.h = 109;
-	destR.w = 64;
-	destR.x = frameCounter / 100;
 }
 
 void Engine::render()
 {
 	SDL_RenderClear(renderer);
 
-	//player->render();
+	player->render();
 
 	SDL_RenderPresent(renderer);
 }
