@@ -3,9 +3,9 @@
 #include "SDL_image.h"
 #include "TextureManager.hpp"
 #include "Engine/Engine.hpp"
-#include "Engine/Actor.hpp"
+#include "Engine/Object.hpp"
 
-Actor* player;
+Object* player;
 
 Engine::Engine()
 {
@@ -38,7 +38,7 @@ void Engine::init()
 		isRunning = false;
 	}
 
-	player = new Actor("../Solution/Assets/player.png", renderer);
+	player = new Object();
 }
 
 void Engine::handleEvents()
@@ -58,14 +58,14 @@ void Engine::update()
 {
 	++frameCounter;
 
-	player->update();
+	player->Update();
 }
 
 void Engine::render()
 {
 	SDL_RenderClear(renderer);
 
-	player->render();
+	player->Render();
 
 	SDL_RenderPresent(renderer);
 }
