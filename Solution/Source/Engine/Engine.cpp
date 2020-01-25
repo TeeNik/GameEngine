@@ -3,9 +3,9 @@
 #include "SDL_image.h"
 #include "TextureManager.hpp"
 #include "Engine/Engine.hpp"
-#include "Engine/Object.hpp"
+#include "ObjectSystem/Actor.hpp"
 
-Object* player;
+Actor* player;
 
 Engine::Engine()
 {
@@ -38,7 +38,7 @@ void Engine::init()
 		isRunning = false;
 	}
 
-	player = new Object();
+	player = new Actor();
 }
 
 void Engine::handleEvents()

@@ -1,19 +1,19 @@
 #pragma once
 
-class Object;
+class Actor;
 
 class Component
 {
 public:
-	Component(Object* o) : owner(o) {}
-	Object* GetOwner() { return owner; }
+	Component(Actor* o) : owner(o) {}
+	Actor* GetOwner() { return owner; }
 
 	virtual void BeginPlay() {}
 	virtual void Update() {}
 
 	virtual ~Component() {}
 
-private:
-	Object* owner;
+protected:
+	Actor* owner;
 };
 

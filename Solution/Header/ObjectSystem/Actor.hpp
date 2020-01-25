@@ -2,17 +2,18 @@
 #include <vector>
 #include <bitset>
 #include <algorithm>
+#include "BaseStructs/Transform.hpp"
 
 struct SDL_Texture;
 struct SDL_Renderer;
 struct SDL_Rect;
 class Component;
 
-class Object {
+class Actor {
 
 public:
-	Object();
-	~Object();
+	Actor();
+	~Actor();
 
 	virtual void Update();
 	virtual void Render();
@@ -23,12 +24,15 @@ public:
 	template<typename T>
 	T* AddComponent();
 
-private:
+	inline Vector& GetActorLocation() { return Transform.Position; }
+
+protected:
 
 	const static std::size_t maxComponents = 32;
 	std::vector<Component*> components;
 	std::bitset<maxComponents> componentsBitSet;
-	
+	Transform Transform;
+
 	bool isActive = true;
 
 };
