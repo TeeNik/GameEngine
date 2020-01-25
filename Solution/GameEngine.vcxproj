@@ -19,16 +19,24 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Engine\Component.cpp" />
+    <ClCompile Include="Source\BaseStructs\Transform.cpp" />
+    <ClCompile Include="Source\BaseStructs\Vector.cpp" />
+    <ClCompile Include="Source\ObjectSystem\ObjectManager.cpp" />
+    <ClCompile Include="Source\ObjectSystem\Component.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Source\Engine\Object.cpp" />
+    <ClCompile Include="Source\ObjectSystem\Actor.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
+    <ClCompile Include="Source\ObjectSystem\SpriteRendererComponent.cpp" />
     <ClCompile Include="Source\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header\Engine\Component.hpp" />
-    <ClInclude Include="Header\Engine\Object.hpp" />
+    <ClInclude Include="Header\BaseStructs\Transform.hpp" />
+    <ClInclude Include="Header\BaseStructs\Vector.hpp" />
+    <ClInclude Include="Header\ObjectSystem\Component.hpp" />
     <ClInclude Include="Header\Engine\Engine.hpp" />
+    <ClInclude Include="Header\ObjectSystem\Actor.hpp" />
+    <ClInclude Include="Header\ObjectSystem\ObjectManager.hpp" />
+    <ClInclude Include="Header\ObjectSystem\SpriteRendererComponent.hpp" />
     <ClInclude Include="Header\TextureManager.hpp" />
   </ItemGroup>
   <ItemGroup>

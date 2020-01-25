@@ -16,5 +16,5 @@ public:
 
 	virtual void BeginPlay() override;
 	virtual void Update() override;
-
+	void SetTexture(const char* path);
 };

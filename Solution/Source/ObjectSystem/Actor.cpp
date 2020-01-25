@@ -29,14 +29,6 @@ const bool Actor::IsActive()
 	return false;
 }
 
-template<typename T>
-T* Actor::AddComponent()
-{
-	T* component = new T(this);
-	components.push_back(component);
-}
-
-
 void Actor::Destroy()
 {
 	for(auto& c : components)

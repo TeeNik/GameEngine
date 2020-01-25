@@ -4,9 +4,6 @@
 #include <algorithm>
 #include "BaseStructs/Transform.hpp"
 
-struct SDL_Texture;
-struct SDL_Renderer;
-struct SDL_Rect;
 class Component;
 
 class Actor {
@@ -21,8 +18,13 @@ public:
 	const bool IsActive();
 	void Destroy();
 
-	template<typename T>
-	T* AddComponent();
+	template<typename T, typename... TArgs>
+	T* AddComponent(TArgs&&... args)
+	{
+		T* comp = new T(std::forward<TArgs>(args)...);
+		components.push_back(comp);
+		return comp;
+	}
 
 	inline Vector& GetActorLocation() { return Transform.Position; }
 
@@ -36,3 +38,4 @@ protected:
 	bool isActive = true;
 
 };
+

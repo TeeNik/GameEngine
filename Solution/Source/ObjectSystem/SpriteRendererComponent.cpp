@@ -9,6 +9,7 @@ SpriteRendererComponent::SpriteRendererComponent(Actor* o) : Component(o), actor
 
 SpriteRendererComponent::SpriteRendererComponent(const char* path, Actor* o) : Component(o), actorPosition(o->GetActorLocation())
 {
+	texture = TextureManager::LoadTexture(path);
 }
 
 void SpriteRendererComponent::BeginPlay()
@@ -22,5 +23,10 @@ void SpriteRendererComponent::Update()
 {
 	destRect.x = actorPosition.x;
 	destRect.y = actorPosition.y;
-	TextureManager::
+	TextureManager::Draw(texture, srcRect, destRect);
+}
+
+void SpriteRendererComponent::SetTexture(const char* path)
+{
+	texture = TextureManager::LoadTexture(path);
 }

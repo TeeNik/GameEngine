@@ -3,15 +3,15 @@
 int main(int argc, char* argv[])
 {
 	Engine* engine = new Engine;
-	engine->init();
+	engine->Init();
 
-	while (engine->running()) {
-		engine->handleEvents();
-		engine->update();
-		engine->render();
+	while (engine->IsRunning()) {
+		engine->HandleEvents();
+		engine->Update();
+		engine->Render();
 	}
 
-	engine->clean();
+	engine->Clean();
 	delete engine;
 
 	return 0;

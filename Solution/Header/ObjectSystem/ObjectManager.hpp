@@ -12,6 +12,6 @@ public:
 
 	void Update();
 	void Refresh();
-	Actor* AddObject();
+	Actor* CreateActor();
 };
 

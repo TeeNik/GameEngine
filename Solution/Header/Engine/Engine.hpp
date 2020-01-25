@@ -1,6 +1,6 @@
-struct SDL_Window;
-struct SDL_Renderer;
-class TextureManager;
+#pragma once
+#include "SDL.h"
+#include "ObjectSystem/ObjectManager.hpp"
 
 class Engine {
 
@@ -8,17 +8,18 @@ public:
 	Engine();
 	~Engine();
 
-	void init();
-	void handleEvents();
-	void update();
-	void render();
-	void clean();
+	void Init();
+	void HandleEvents();
+	void Update();
+	void Render();
+	void Clean();
 
-	void run();
-	bool running();
+	void Run();
+	bool IsRunning();
 
 private:
-	TextureManager* textureManager;
+	ObjectManager ECS;
+
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	bool isRunning;
@@ -26,5 +27,8 @@ private:
 
 	const int FPS = 60;
 	const int FrameDelay = 1000 / 60;
+
+	//TODO refactor
+	void InitWindow();
 
 };
