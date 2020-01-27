@@ -13,6 +13,13 @@ Actor::~Actor()
 
 }
 
+void Actor::BeginPlay()
+{
+	for (auto comp : components) {
+		comp->BeginPlay();
+	}
+}
+
 void Actor::Update()
 {
 	for (auto& component : components) {
@@ -35,4 +42,5 @@ void Actor::Destroy()
 	{
 		delete c;
 	}
+	isActive = false;
 }

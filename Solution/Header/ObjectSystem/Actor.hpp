@@ -12,6 +12,7 @@ public:
 	Actor();
 	~Actor();
 
+	virtual void BeginPlay();
 	virtual void Update();
 	virtual void Render();
 

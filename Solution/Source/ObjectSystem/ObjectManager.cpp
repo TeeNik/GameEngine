@@ -4,6 +4,13 @@
 
 void ObjectManager::Update()
 {
+	while (!beginPlayList.empty()) {
+		auto actor = beginPlayList.front();
+		actor->BeginPlay();
+		beginPlayList.pop();
+		objects.push_back(actor);
+	}
+
 	for (auto obj : objects) {
 		obj->Update();
 	}
@@ -28,7 +35,7 @@ void ObjectManager::Refresh()
 Actor* ObjectManager::CreateActor()
 {
 	Actor* obj = new Actor;
-	objects.push_back(obj);
+	beginPlayList.push(obj);
 	return obj;
 }
 
