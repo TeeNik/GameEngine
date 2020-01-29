@@ -21,7 +21,50 @@ Vector::Vector(float inX, float inY, float inZ)
 	z = inZ;
 }
 
-Vector&& Vector::operator+(const Vector& v)
+Vector& Vector::operator+(const Vector& v)
 {
-	return Vector(x + v.x, y + v.y, z + v.z);
+	Vector res(x + v.x, y + v.y, z + v.z);
+	return res;
+}
+
+Vector& Vector::operator-(const Vector& v)
+{
+	Vector res(x - v.x, y - v.y, z - v.z);
+	return res;
+}
+
+Vector& Vector::operator*(const Vector& v)
+{
+	Vector res(x * v.x, y * v.y, z * v.z);
+	return res;
+}
+
+Vector& Vector::operator/(const Vector& v)
+{
+	Vector res(x / v.x, y / v.y, z / v.z);
+	return res;
+}
+
+Vector& Vector::operator+=(const Vector& v)
+{
+	Vector res(x + v.x, y + v.y, z + v.z);
+	return res;
+}
+
+Vector& Vector::operator-=(const Vector& v)
+{
+	Vector res(x - v.x, y - v.y, z - v.z);
+	return res;
+}
+
+Vector& Vector::operator*=(const Vector& v)
+{
+	Vector res(x * v.x, y * v.y, z * v.z);
+	return res;
+}
+
+Vector& Vector::operator/=(const Vector& v)
+{
+	Vector res(x / v.x, y / v.y, z / v.z);
+	return res;
 }

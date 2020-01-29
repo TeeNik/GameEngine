@@ -10,5 +10,13 @@ struct Vector {
 	Vector(float inX, float inY);
 	Vector(float inX, float inY, float inZ);
 
-	Vector&& operator + (const Vector& v);
+	Vector& operator + (const Vector& v);
+	Vector& operator - (const Vector& v);
+	Vector& operator * (const Vector& v);
+	Vector& operator / (const Vector& v);
+
+	Vector& operator += (const Vector& v);
+	Vector& operator -= (const Vector& v);
+	Vector& operator *= (const Vector& v);
+	Vector& operator /= (const Vector& v);
 };
