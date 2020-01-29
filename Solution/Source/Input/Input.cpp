@@ -10,8 +10,10 @@ void Input::Update()
 	if (event.type == SDL_KEYDOWN) {
 		switch (event.key.keysym.sym) {
 		case SDLK_w:
-			if (eventsList.find(SDLK_W)) {
-
+			if (eventsList.find(SDLK_w) != eventsList.end()) {
+				for (auto& func : eventsList[SDLK_w]) {
+					func();
+				}
 			}
 		}
 	}
