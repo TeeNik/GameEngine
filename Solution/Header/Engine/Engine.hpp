@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL.h"
-#include "ObjectSystem/ObjectManager.hpp"
+#include "ObjectSystem\ObjectManager.hpp"
+#include "Input\Input.hpp"
 
 class Engine {
 
@@ -19,6 +20,7 @@ public:
 
 private:
 	ObjectManager ECS;
+	Input Input;
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;

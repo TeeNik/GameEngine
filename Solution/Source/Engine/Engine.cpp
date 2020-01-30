@@ -5,6 +5,7 @@
 #include "Engine/Engine.hpp"
 #include "ObjectSystem/Actor.hpp"
 #include "ObjectSystem/SpriteRendererComponent.hpp"
+#include "Input/Input.hpp"
 
 Actor* player;
 
@@ -35,6 +36,7 @@ void Engine::HandleEvents()
 		default:
 			break;
 	}
+	Input.HandleEvents();
 }
 
 void Engine::Update()

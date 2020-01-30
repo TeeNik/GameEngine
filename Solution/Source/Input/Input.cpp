@@ -1,10 +1,13 @@
 #include "Input\Input.hpp"
 
+InputSubscriber* Input::subscriber = nullptr;
+
 Input::Input()
 {
+	subscriber = this;
 }
 
-void Input::Update()
+void Input::HandleEvents()
 {
 	SDL_PollEvent(&event);
 	if (event.type == SDL_KEYDOWN) {
@@ -17,5 +20,8 @@ void Input::Update()
 			}
 		}
 	}
-	
+}
+
+void Input::Subscribe()
+{
 }
