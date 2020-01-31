@@ -13,7 +13,7 @@ public:
 	Input();
 	
 	void HandleEvents();
-	void Subscribe() override;
+	void Subscribe(int keyCode, std::function<void()>& func) override;
 
 	static InputSubscriber* GetInputSubscriber() { return subscriber; };
 

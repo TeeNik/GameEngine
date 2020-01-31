@@ -22,6 +22,6 @@ void Input::HandleEvents()
 	}
 }
 
-void Input::Subscribe()
+void Input::Subscribe(int keyCode, std::function<void()>& func)
 {
 }
