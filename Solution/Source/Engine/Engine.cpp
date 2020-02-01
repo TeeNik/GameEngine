@@ -6,6 +6,7 @@
 #include "ObjectSystem/Actor.hpp"
 #include "ObjectSystem/SpriteRendererComponent.hpp"
 #include "Input/Input.hpp"
+#include "ObjectSystem/InputComponent.hpp"
 
 Actor* player;
 
@@ -22,7 +23,9 @@ void Engine::Init()
 	InitWindow();
 
 	player = ECS.CreateActor();
-	player->AddComponent<SpriteRendererComponent>("../Solution/Assets/player.png", player);
+	player->AddComponent<SpriteRendererComponent>("../Solution/Assets/player.png");
+	auto input = player->AddComponent<InputComponent>();
+	input->BindKey(SDLK_UP, []() {std::cout << "Up\n"; });
 }
 
 void Engine::HandleEvents()

@@ -21,7 +21,6 @@ public:
 private:
 	std::unordered_map<int, std::list<std::function<void()>>> eventsList;
 	SDL_Event event;
-
 	static InputSubscriber* subscriber;
 
 };

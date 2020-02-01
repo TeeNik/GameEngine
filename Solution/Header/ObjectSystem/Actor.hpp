@@ -7,7 +7,6 @@
 class Component;
 
 class Actor {
-
 public:
 	Actor();
 	~Actor();
@@ -22,7 +21,7 @@ public:
 	template<typename T, typename... TArgs>
 	T* AddComponent(TArgs&&... args)
 	{
-		T* comp = new T(std::forward<TArgs>(args)...);
+		T* comp = new T(std::forward<TArgs>(args)..., this);
 		components.push_back(comp);
 		return comp;
 	}
