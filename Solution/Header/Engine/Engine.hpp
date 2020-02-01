@@ -29,6 +29,11 @@ private:
 
 	const int FPS = 60;
 	const int FrameDelay = 1000 / 60;
+	int ticksCount;
+	const float deltaTimeLimit = 0.05f;
+
+	const int width = 1024;
+	const int height = 720;
 
 	//TODO refactor
 	void InitWindow();
