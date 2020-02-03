@@ -2,17 +2,35 @@
 #include "ObjectSystem/Actor.hpp"
 #include <algorithm>
 
-void ObjectManager::Update()
+ObjectManager::ObjectManager(Engine * e)
 {
-	while (!beginPlayList.empty()) {
-		auto actor = beginPlayList.front();
+	engine = e;
+}
+
+ObjectManager::~ObjectManager()
+{
+	while (!pendingList.empty()) {
+		auto actor = pendingList.front();
+		delete actor;
+		pendingList.pop();
+	}
+	for (auto actor : objects) {
+		delete actor;
+	}
+	objects.clear();
+}
+
+void ObjectManager::Update(float deltaTime)
+{
+	while (!pendingList.empty()) {
+		auto actor = pendingList.front();
 		actor->BeginPlay();
-		beginPlayList.pop();
+		pendingList.pop();
 		objects.push_back(actor);
 	}
 
 	for (auto obj : objects) {
-		obj->Update();
+		obj->Update(deltaTime);
 	}
 }
 
@@ -34,8 +52,8 @@ void ObjectManager::Refresh()
  
 Actor* ObjectManager::CreateActor()
 {
-	Actor* obj = new Actor;
-	beginPlayList.push(obj);
+	Actor* obj = new Actor(engine);
+	pendingList.push(obj);
 	return obj;
 }
 

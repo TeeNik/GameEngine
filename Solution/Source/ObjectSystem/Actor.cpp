@@ -2,8 +2,9 @@
 #include "TextureManager.hpp"
 #include "ObjectSystem/Component.hpp"
 #include "SDL.h"
+#include "Engine/Engine.hpp"
 
-Actor::Actor()
+Actor::Actor(Engine* engine)
 {
 
 }
@@ -20,10 +21,10 @@ void Actor::BeginPlay()
 	}
 }
 
-void Actor::Update()
+void Actor::Update(float deltaTime)
 {
 	for (auto& component : components) {
-		component->Update();
+		component->Update(deltaTime);
 	}
 }
 
@@ -44,3 +45,28 @@ void Actor::Destroy()
 	}
 	isActive = false;
 }
+
+/*void Actor::AddComponent(Component * component)
+{
+	int myOrder = component->GetUpdateOrder();
+	auto iter = components.begin();
+	for (;
+		iter != components.end();
+		++iter)
+	{
+		if (myOrder < (*iter)->GetUpdateOrder())
+		{
+			break;
+		}
+	}
+	components.insert(iter, component);
+}
+
+void Actor::RemoveComponent(Component * component)
+{
+	auto iter = std::find(components.begin(), components.end(), component);
+	if (iter != components.end())
+	{
+		components.erase(iter);
+	}
+}*/

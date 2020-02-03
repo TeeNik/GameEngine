@@ -5,6 +5,7 @@ struct Transform {
 
 	Vector Position;
 	Vector Rotation;
+	Vector Scale;
 
 	Transform();
 };

@@ -19,7 +19,7 @@ public:
 	bool IsRunning();
 
 private:
-	ObjectManager ECS;
+	ObjectManager* ECS;
 	Input Input;
 
 	SDL_Window* window;

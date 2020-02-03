@@ -22,7 +22,9 @@ void Engine::Init()
 {
 	InitWindow();
 
-	player = ECS.CreateActor();
+	ECS = new ObjectManager(this);
+
+	player = ECS->CreateActor();
 	player->AddComponent<SpriteRendererComponent>("../Solution/Assets/player.png");
 	auto input = player->AddComponent<InputComponent>();
 	input->BindKey(SDLK_UP, []() {std::cout << "Up\n"; });
@@ -85,7 +87,7 @@ void Engine::Update()
 	ticksCount = SDL_GetTicks();
 	
 	SDL_RenderClear(renderer);
-	ECS.Update();
+	ECS->Update(deltaTime);
 	SDL_RenderPresent(renderer);
 
 }
@@ -96,11 +98,11 @@ void Engine::Render()
 	player->Render();
 
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-	SDL_Rect wall(0,0,width)
 }
 
 void Engine::Clean()
 {
+	delete ECS;
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();

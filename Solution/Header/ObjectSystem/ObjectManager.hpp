@@ -3,16 +3,20 @@
 #include <queue>
 
 class Actor;
+class Engine;
 
 class ObjectManager {
 
 private:
-	std::queue<Actor*> beginPlayList;
+	std::queue<Actor*> pendingList;
 	std::vector<Actor*> objects;
+	Engine* engine;
 
 public:
+	ObjectManager(Engine* e);
+	~ObjectManager();
 
-	void Update();
+	void Update(float deltaTime);
 	void Refresh();
 	Actor* CreateActor();
 };

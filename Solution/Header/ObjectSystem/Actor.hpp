@@ -5,14 +5,16 @@
 #include "BaseStructs/Transform.hpp"
 
 class Component;
+class Engine;
 
 class Actor {
 public:
-	Actor();
-	~Actor();
+	Actor(Engine* engine);
+	virtual ~Actor();
 
 	virtual void BeginPlay();
-	virtual void Update();
+	virtual void Update(float deltaTime);
+
 	virtual void Render();
 
 	const bool IsActive();
@@ -26,16 +28,21 @@ public:
 		return comp;
 	}
 
-	inline Vector& GetActorLocation() { return Transform.Position; }
+	/*void AddComponent(Component* component);
+	void RemoveComponent(Component* component);*/
+	
+	inline Engine* GetEngine() { return engine; }
+	inline const Transform& GetActorTransform() { return Transform; }
+	inline const Vector& GetActorLocation() { return Transform.Position; }
 
 protected:
 
-	const static std::size_t maxComponents = 32;
 	std::vector<Component*> components;
-	std::bitset<maxComponents> componentsBitSet;
 	Transform Transform;
-
 	bool isActive = true;
+	
+private:
+	Engine* engine;
 
 };
 

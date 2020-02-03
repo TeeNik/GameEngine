@@ -19,7 +19,7 @@ void SpriteRendererComponent::BeginPlay()
 	destRect.w = destRect.h = 64;
 }
 
-void SpriteRendererComponent::Update()
+void SpriteRendererComponent::Update(float deltaTime)
 {
 	destRect.x = actorPosition.x;
 	destRect.y = actorPosition.y;
@@ -29,4 +29,11 @@ void SpriteRendererComponent::Update()
 void SpriteRendererComponent::SetTexture(const char* path)
 {
 	texture = TextureManager::LoadTexture(path);
+}
+
+void SpriteRendererComponent::Draw()
+{
+	if (texture) {
+
+	}
 }
