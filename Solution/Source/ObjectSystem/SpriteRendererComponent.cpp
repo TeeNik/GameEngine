@@ -3,11 +3,11 @@
 #include "ObjectSystem/Actor.hpp"
 #include "TextureManager.hpp"
 
-SpriteRendererComponent::SpriteRendererComponent(Actor* o) : Component(o), actorPosition(o->GetActorLocation())
+SpriteRendererComponent::SpriteRendererComponent(Actor* o) : Component(o), actorTransform(o->)
 {
 }
 
-SpriteRendererComponent::SpriteRendererComponent(const char* path, Actor* o) : Component(o), actorPosition(o->GetActorLocation())
+SpriteRendererComponent::SpriteRendererComponent(const char* path, Actor* o) : Component(o), actorTransform(o->GetActorLocation())
 {
 	texture = TextureManager::LoadTexture(path);
 }
@@ -21,8 +21,8 @@ void SpriteRendererComponent::BeginPlay()
 
 void SpriteRendererComponent::Update(float deltaTime)
 {
-	destRect.x = actorPosition.x;
-	destRect.y = actorPosition.y;
+	destRect.x = actorTransform.Position.x;
+	destRect.y = actorPosition.Position.y;
 	TextureManager::Draw(texture, srcRect, destRect);
 }
 
@@ -34,6 +34,6 @@ void SpriteRendererComponent::SetTexture(const char* path)
 void SpriteRendererComponent::Draw()
 {
 	if (texture) {
-
+		destRect.w = this->
 	}
 }
