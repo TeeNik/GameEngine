@@ -1,21 +1,30 @@
 #pragma once
 #include "ObjectSystem/Component.hpp"
 #include "SDL.h"
-#include "BaseStructs/Vector.hpp"
+#include "BaseStructs/Transform.hpp"
 
 class SpriteRendererComponent : public Component {
 	
-private:
-	SDL_Texture* texture;
-	SDL_Rect srcRect, destRect;
-	const Transform& actorTransform;
-
 public:
-	SpriteRendererComponent(Actor* o);
-	SpriteRendererComponent(const char* path, Actor* o);
+	SpriteRendererComponent(Actor* o, int drawOrder = 100);
+	SpriteRendererComponent(const char* path, Actor* o, int drawOrder = 100);
 
 	virtual void BeginPlay() override;
-	virtual void Update(float deltaTime) override;
-	void SetTexture(const char* path);
+	//void SetTexture(const char* path);
+	virtual void SetTexture(SDL_Texture* texture);
 	virtual void Draw();
+
+	inline int GetDrawOrder() const { return drawOrder; };
+
+
+protected:
+	void Init();
+
+	int drawOrder;
+	SDL_Texture* texture;
+	SDL_Rect srcRect, destRect;
+	const Transform*  actorTransform;
+	int texWidth;
+	int texHeight;
+
 };

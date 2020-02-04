@@ -1,7 +1,10 @@
 #pragma once
-#include "SDL.h"
-#include "ObjectSystem\ObjectManager.hpp"
-#include "Input\Input.hpp"
+
+class Input;
+class Graphics2D;
+class ObjectManager;
+struct SDL_Window;
+struct SDL_Renderer;
 
 class Engine {
 
@@ -18,9 +21,13 @@ public:
 	void Run();
 	bool IsRunning();
 
+	//TODO Move systems' getters to interface
+	inline Graphics2D* GetGraphics2D() { return Graphics2DSystem; }
+
 private:
 	ObjectManager* ECS;
-	Input Input;
+	Graphics2D* Graphics2DSystem;
+	Input* InputSystem;
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;

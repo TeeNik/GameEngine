@@ -5,7 +5,9 @@
 #include "Engine/Engine.hpp"
 #include "ObjectSystem/Actor.hpp"
 #include "ObjectSystem/SpriteRendererComponent.hpp"
+#include "ObjectSystem/ObjectManager.hpp"
 #include "Input/Input.hpp"
+#include "Graphics/Graphics2D.hpp"
 #include "ObjectSystem/InputComponent.hpp"
 
 Actor* player;
@@ -23,6 +25,8 @@ void Engine::Init()
 	InitWindow();
 
 	ECS = new ObjectManager(this);
+	Graphics2DSystem = new Graphics2D(renderer);
+	InputSystem = new Input();
 
 	player = ECS->CreateActor();
 	player->AddComponent<SpriteRendererComponent>("../Solution/Assets/player.png");
@@ -71,7 +75,7 @@ void Engine::HandleEvents()
 		if (state[SDL_SCANCODE_ESCAPE]) {
 			isRunning = false;
 		}
-		Input.HandleEvents();
+		InputSystem->HandleEvents();
 	}
 }
 

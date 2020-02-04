@@ -2,12 +2,14 @@
 #include "ObjectSystem/SpriteRendererComponent.hpp"
 #include "ObjectSystem/Actor.hpp"
 #include "TextureManager.hpp"
+#include "Engine/Engine.hpp"
+#include "Graphics/Graphics2D.hpp"
 
-SpriteRendererComponent::SpriteRendererComponent(Actor* o) : Component(o), actorTransform(o->)
+SpriteRendererComponent::SpriteRendererComponent(Actor* o, int drawOrder) : Component(o)
 {
 }
 
-SpriteRendererComponent::SpriteRendererComponent(const char* path, Actor* o) : Component(o), actorTransform(o->GetActorLocation())
+SpriteRendererComponent::SpriteRendererComponent(const char* path, Actor* o, int drawOrder) : Component(o)
 {
 	texture = TextureManager::LoadTexture(path);
 }
@@ -19,16 +21,16 @@ void SpriteRendererComponent::BeginPlay()
 	destRect.w = destRect.h = 64;
 }
 
-void SpriteRendererComponent::Update(float deltaTime)
+void SpriteRendererComponent::Init()
 {
-	destRect.x = actorTransform.Position.x;
-	destRect.y = actorPosition.Position.y;
-	TextureManager::Draw(texture, srcRect, destRect);
+	actorTransform = &owner->GetActorTransform();
+	owner->GetEngine()->GetGraphics2D()->AddSprite(this);
 }
 
-void SpriteRendererComponent::SetTexture(const char* path)
+
+void SpriteRendererComponent::SetTexture(SDL_Texture* tex)
 {
-	texture = TextureManager::LoadTexture(path);
+	texture = tex;
 }
 
 void SpriteRendererComponent::Draw()
