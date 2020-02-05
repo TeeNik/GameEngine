@@ -26,7 +26,7 @@ void Graphics2D::AddSprite(SpriteRendererComponent* sr)
 void Graphics2D::Draw()
 {
 	for (auto sprite : sprites) {
-		sprite->Draw();
+		sprite->Draw(renderer);
 	}
 }
 

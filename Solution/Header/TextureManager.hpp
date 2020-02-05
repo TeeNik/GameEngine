@@ -1,5 +1,8 @@
 #pragma once
-#include "SDL.h"
+
+struct SDL_Texture;
+struct SDL_Renderer;
+struct SDL_Rect;
 
 class TextureManager {
 

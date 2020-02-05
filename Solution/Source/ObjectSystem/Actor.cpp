@@ -4,9 +4,9 @@
 #include "SDL.h"
 #include "Engine/Engine.hpp"
 
-Actor::Actor(Engine* engine)
+Actor::Actor(Engine* e)
 {
-
+	engine = e;
 }
 
 Actor::~Actor()

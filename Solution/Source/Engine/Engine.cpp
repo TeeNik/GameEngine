@@ -90,18 +90,16 @@ void Engine::Update()
 	}
 	ticksCount = SDL_GetTicks();
 	
-	SDL_RenderClear(renderer);
+	
 	ECS->Update(deltaTime);
-	SDL_RenderPresent(renderer);
 
 }
 
 void Engine::Render()
 {
-
-	player->Render();
-
-	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+	SDL_RenderClear(renderer);
+	Graphics2DSystem->Draw();
+	SDL_RenderPresent(renderer);
 }
 
 void Engine::Clean()

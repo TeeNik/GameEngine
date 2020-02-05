@@ -1,5 +1,6 @@
 #pragma once
 #include "TextureManager.hpp"
+#include "SDL.h"
 #include "SDL_image.h"
 
 SDL_Renderer* TextureManager::renderer;

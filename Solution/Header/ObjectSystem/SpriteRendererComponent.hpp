@@ -1,7 +1,12 @@
 #pragma once
 #include "ObjectSystem/Component.hpp"
 #include "SDL.h"
-#include "BaseStructs/Transform.hpp"
+
+class Actor;
+struct SDL_Texture;
+struct SDL_Rect;
+struct Transform;
+class Component;
 
 class SpriteRendererComponent : public Component {
 	
@@ -12,7 +17,7 @@ public:
 	virtual void BeginPlay() override;
 	//void SetTexture(const char* path);
 	virtual void SetTexture(SDL_Texture* texture);
-	virtual void Draw();
+	virtual void Draw(SDL_Renderer* renderer);
 
 	inline int GetDrawOrder() const { return drawOrder; };
 

@@ -3,9 +3,9 @@
 
 struct Transform {
 
-	Vector Position;
-	Vector Rotation;
-	Vector Scale;
+	Vector position;
+	Vector rotation;
+	Vector scale = { 1,1,1 };
 
 	Transform();
 };

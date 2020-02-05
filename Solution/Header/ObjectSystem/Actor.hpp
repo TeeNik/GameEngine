@@ -31,14 +31,14 @@ public:
 	/*void AddComponent(Component* component);
 	void RemoveComponent(Component* component);*/
 	
-	inline Engine* GetEngine() { return engine; }
-	inline const Transform& GetActorTransform() { return Transform; }
-	inline const Vector& GetActorLocation() { return Transform.Position; }
+	inline Engine *const GetEngine() { return engine; }
+	inline const Transform& GetActorTransform() { return transform; }
+	inline const Vector& GetActorLocation() { return transform.position; }
 
 protected:
 
 	std::vector<Component*> components;
-	Transform Transform;
+	Transform transform;
 	bool isActive = true;
 	
 private:
