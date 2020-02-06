@@ -9,6 +9,7 @@ Graphics2D::Graphics2D(SDL_Renderer* r)
 
 Graphics2D::~Graphics2D()
 {
+
 }
 
 void Graphics2D::AddSprite(SpriteRendererComponent* sr)

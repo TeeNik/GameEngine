@@ -3,6 +3,7 @@
 class Input;
 class Graphics2D;
 class ObjectManager;
+class InputSubscriber;
 struct SDL_Window;
 struct SDL_Renderer;
 
@@ -23,6 +24,7 @@ public:
 
 	//TODO Move systems' getters to interface
 	inline Graphics2D* GetGraphics2D() { return Graphics2DSystem; }
+	inline InputSubscriber* GetInput() { return (InputSubscriber*)InputSystem; }
 
 private:
 	ObjectManager* ECS;

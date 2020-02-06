@@ -10,7 +10,6 @@
 #include "Graphics/Graphics2D.hpp"
 #include "ObjectSystem/InputComponent.hpp"
 
-Actor* player;
 
 Engine::Engine()
 {
@@ -18,6 +17,7 @@ Engine::Engine()
 
 Engine::~Engine()
 {
+
 }
 
 void Engine::Init()
@@ -28,9 +28,16 @@ void Engine::Init()
 	Graphics2DSystem = new Graphics2D(renderer);
 	InputSystem = new Input();
 
-	player = ECS->CreateActor();
-	player->AddComponent<SpriteRendererComponent>("../Solution/Assets/player.png");
+	Run();
+}
+
+void Engine::Run()
+{
+	auto player = ECS->CreateActor();
+	auto sprite = player->AddComponent<SpriteRendererComponent>("../Solution/Assets/adventurer.png");
 	auto input = player->AddComponent<InputComponent>();
+	Vector pos(sprite->GetTexWidth() / 2, sprite->GetTexHeight() / 2);
+	player->SetActorLocation(pos);
 	input->BindKey(SDLK_UP, []() {std::cout << "Up\n"; });
 }
 
@@ -104,17 +111,16 @@ void Engine::Render()
 
 void Engine::Clean()
 {
+	delete Graphics2DSystem;
+	delete InputSystem;
 	delete ECS;
+
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 	std::cout << "Window Cleaned.\n";
 }
 
-void Engine::Run()
-{
-	
-}
 
 bool Engine::IsRunning()
 {

@@ -1,10 +1,11 @@
 #include "Input\Input.hpp"
 
-InputSubscriber* Input::subscriber = nullptr;
-
 Input::Input()
 {
-	subscriber = this;
+}
+
+Input::~Input()
+{
 }
 
 void Input::HandleEvents()

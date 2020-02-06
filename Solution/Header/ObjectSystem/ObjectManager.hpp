@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <queue>
+#include <memory>
 
 class Actor;
 class Engine;
@@ -8,8 +9,8 @@ class Engine;
 class ObjectManager {
 
 private:
-	std::queue<Actor*> pendingList;
-	std::vector<Actor*> objects;
+	std::queue<std::shared_ptr<Actor>> pendingList;
+	std::vector<std::shared_ptr<Actor>> objects;
 	Engine* engine;
 
 public:
@@ -18,6 +19,6 @@ public:
 
 	void Update(float deltaTime);
 	void Refresh();
-	Actor* CreateActor();
+	std::shared_ptr<Actor> CreateActor();
 };
 

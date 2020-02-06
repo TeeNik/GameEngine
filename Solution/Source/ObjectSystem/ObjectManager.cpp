@@ -9,15 +9,6 @@ ObjectManager::ObjectManager(Engine * e)
 
 ObjectManager::~ObjectManager()
 {
-	while (!pendingList.empty()) {
-		auto actor = pendingList.front();
-		delete actor;
-		pendingList.pop();
-	}
-	for (auto actor : objects) {
-		delete actor;
-	}
-	objects.clear();
 }
 
 void ObjectManager::Update(float deltaTime)
@@ -36,23 +27,16 @@ void ObjectManager::Update(float deltaTime)
 
 void ObjectManager::Refresh()
 {
-	for (auto& obj : objects) {
-		if (!obj->IsActive()) {
-			delete obj;
-			obj = nullptr;
-		}
-	}
-
 	objects.erase(std::remove_if(std::begin(objects), std::end(objects), 
-		[](Actor* &object)
+		[](std::shared_ptr<Actor> &object)
 	{
-		return object == nullptr;
+		return !object->IsActive();
 	}), std::end(objects));
 }
  
-Actor* ObjectManager::CreateActor()
+std::shared_ptr<Actor> ObjectManager::CreateActor()
 {
-	Actor* obj = new Actor(engine);
+	std::shared_ptr<Actor> obj(new Actor(engine));
 	pendingList.push(obj);
 	return obj;
 }

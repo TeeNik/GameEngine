@@ -11,7 +11,10 @@ Actor::Actor(Engine* e)
 
 Actor::~Actor()
 {
-
+	for (auto& c : components)
+	{
+		delete c;
+	}
 }
 
 void Actor::BeginPlay()
@@ -39,10 +42,6 @@ const bool Actor::IsActive()
 
 void Actor::Destroy()
 {
-	for(auto& c : components)
-	{
-		delete c;
-	}
 	isActive = false;
 }
 
