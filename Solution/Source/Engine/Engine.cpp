@@ -36,8 +36,7 @@ void Engine::Run()
 	auto player = ECS->CreateActor();
 	auto sprite = player->AddComponent<SpriteRendererComponent>("../Solution/Assets/adventurer.png");
 	auto input = player->AddComponent<InputComponent>();
-	Vector pos(sprite->GetTexWidth() / 2, sprite->GetTexHeight() / 2);
-	player->SetActorLocation(pos);
+	player->SetActorLocation(Vector(sprite->GetTextureWidth()/2, sprite->GetTextureHeight()/2));
 	input->BindKey(SDLK_UP, []() {std::cout << "Up\n"; });
 }
 
@@ -55,7 +54,7 @@ void Engine::InitWindow()
 
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		if (renderer) {
-			SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+			SDL_SetRenderDrawColor(renderer, 0, 100, 100, 100);
 			std::cout << "Renderer Created.\n";
 		}
 		TextureManager::SetRenderer(renderer);
@@ -120,6 +119,7 @@ void Engine::Clean()
 	SDL_Quit();
 	std::cout << "Window Cleaned.\n";
 }
+
 
 
 bool Engine::IsRunning()

@@ -34,7 +34,7 @@ public:
 	inline Engine *const GetEngine() { return engine; }
 	inline const Transform& GetActorTransform() { return transform; }
 	inline const Vector& GetActorLocation() { return transform.position; }
-	inline void SetActorLocation(Vector& vector) { transform.position = vector; }
+	inline void SetActorLocation(const Vector& location) { transform.position = location; }
 
 protected:
 

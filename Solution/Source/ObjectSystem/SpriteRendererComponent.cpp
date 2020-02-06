@@ -31,6 +31,10 @@ void SpriteRendererComponent::BeginPlay()
 {
 }
 
+void SpriteRendererComponent::SetTexture(const char* path)
+{
+}
+
 void SpriteRendererComponent::Init()
 {
 	actorTransform = &owner->GetActorTransform();

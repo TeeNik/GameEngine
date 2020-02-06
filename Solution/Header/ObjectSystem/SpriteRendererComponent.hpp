@@ -17,13 +17,13 @@ public:
 	~SpriteRendererComponent();
 
 	virtual void BeginPlay() override;
-	//void SetTexture(const char* path);
+	virtual void SetTexture(const char* path);
 	virtual void SetTexture(SDL_Texture* texture);
 	virtual void Draw(SDL_Renderer* renderer);
 
-	inline int GetDrawOrder() const { return drawOrder; };
-	inline int GetTexWidth() const { return texWidth; }
-	inline int GetTexHeight() const { return texHeight; }
+	inline const int GetDrawOrder() const { return drawOrder; };
+	inline const int GetTextureWidth() const { return texWidth; };
+	inline const int GetTextureHeight() const { return texHeight; };
 
 protected:
 	void Init();
