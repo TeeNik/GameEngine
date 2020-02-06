@@ -55,7 +55,8 @@ void SpriteRendererComponent::Draw(SDL_Renderer* renderer)
 
 		srcRect.h = 37;
 		srcRect.w = 50;
-		srcRect.x = srcRect.y = 0;
+		srcRect.x = 0;
+		srcRect.y = 37;
 
 		SDL_RenderCopyEx(renderer, texture, &srcRect, &destRect, 0, nullptr, SDL_FLIP_NONE);
 	}
