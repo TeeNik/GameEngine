@@ -21,6 +21,10 @@
   <ItemGroup>
     <ClCompile Include="Source\BaseStructs\Transform.cpp" />
     <ClCompile Include="Source\BaseStructs\Vector.cpp" />
+    <ClCompile Include="Source\Graphics\Graphics2D.cpp" />
+    <ClCompile Include="Source\Input\Input.cpp" />
+    <ClCompile Include="Source\ObjectSystem\AnimSpriteComponent.cpp" />
+    <ClCompile Include="Source\ObjectSystem\InputComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\ObjectManager.cpp" />
     <ClCompile Include="Source\ObjectSystem\Component.cpp" />
     <ClCompile Include="main.cpp" />
@@ -32,9 +36,14 @@
   <ItemGroup>
     <ClInclude Include="Header\BaseStructs\Transform.hpp" />
     <ClInclude Include="Header\BaseStructs\Vector.hpp" />
+    <ClInclude Include="Header\Graphics\Graphics2D.hpp" />
+    <ClInclude Include="Header\Input\Input.hpp" />
+    <ClInclude Include="Header\Input\InputSubscriber.hpp" />
+    <ClInclude Include="Header\ObjectSystem\AnimSpriteComponent.hpp" />
     <ClInclude Include="Header\ObjectSystem\Component.hpp" />
     <ClInclude Include="Header\Engine\Engine.hpp" />
     <ClInclude Include="Header\ObjectSystem\Actor.hpp" />
+    <ClInclude Include="Header\ObjectSystem\InputComponent.hpp" />
     <ClInclude Include="Header\ObjectSystem\ObjectManager.hpp" />
     <ClInclude Include="Header\ObjectSystem\SpriteRendererComponent.hpp" />
     <ClInclude Include="Header\TextureManager.hpp" />
@@ -46,7 +55,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{5AFCC713-FDD5-4663-8DEC-18D65A0B2DD3}</ProjectGuid>
     <RootNamespace>GameEngine</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.10240.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -65,7 +74,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -111,11 +120,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Header;$(SolutionDir)\..\Plugins\SDL\include;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Header;$(SolutionDir)\..\Plugins\SDL\include;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\include;$(SolutionDir)\..\Plugins\VLD\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\Plugins\SDL\lib\win64;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\Plugins\SDL\lib\win64;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\lib\x64;$(SolutionDir)\..\Plugins\VLD\lib\Win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
