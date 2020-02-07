@@ -1,17 +1,12 @@
 #pragma once
 #include "ObjectSystem/Component.hpp"
 #include "SDL.h"
-
-class Actor;
-struct SDL_Texture;
-struct SDL_Rect;
-struct Transform;
-class Component;
+#include "BaseStructs/Transform.hpp"
+#include "ObjectSystem/Actor.hpp"
 
 class SpriteRendererComponent : public Component {
 	
 public:
-	SpriteRendererComponent(Actor* o, int drawOrder = 100);
 	SpriteRendererComponent(const char* path, Actor* o, int drawOrder = 100);
 
 	~SpriteRendererComponent();
@@ -22,17 +17,16 @@ public:
 	virtual void Draw(SDL_Renderer* renderer);
 
 	inline const int GetDrawOrder() const { return drawOrder; };
-	inline const int GetTextureWidth() const { return texWidth; };
-	inline const int GetTextureHeight() const { return texHeight; };
+	inline const int GetTextureWidth() const { return textureWidth; };
+	inline const int GetTextureHeight() const { return textureHeight; };
 
 protected:
-	void Init();
 
 	int drawOrder;
 	SDL_Texture* texture;
 	SDL_Rect srcRect, destRect;
 	const Transform*  actorTransform;
-	int texWidth;
-	int texHeight;
+	int textureWidth;
+	int textureHeight;
 
 };

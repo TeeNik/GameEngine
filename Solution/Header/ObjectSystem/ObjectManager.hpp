@@ -9,8 +9,8 @@ class Engine;
 class ObjectManager {
 
 private:
-	std::queue<std::shared_ptr<Actor>> pendingList;
-	std::vector<std::shared_ptr<Actor>> objects;
+	std::queue<Actor*> pendingList;
+	std::vector<Actor*> objects;
 	Engine* engine;
 
 public:
@@ -19,6 +19,6 @@ public:
 
 	void Update(float deltaTime);
 	void Refresh();
-	std::shared_ptr<Actor> CreateActor();
+	Actor* CreateActor();
 };
 

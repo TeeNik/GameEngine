@@ -1,10 +1,11 @@
 #include <iostream>
+#include <vector>
 #include "SDL.h"
 #include "SDL_image.h"
 #include "TextureManager.hpp"
 #include "Engine/Engine.hpp"
 #include "ObjectSystem/Actor.hpp"
-#include "ObjectSystem/SpriteRendererComponent.hpp"
+#include "ObjectSystem/AnimSpriteComponent.hpp"
 #include "ObjectSystem/ObjectManager.hpp"
 #include "Input/Input.hpp"
 #include "Graphics/Graphics2D.hpp"
@@ -34,7 +35,7 @@ void Engine::Init()
 void Engine::Run()
 {
 	auto player = ECS->CreateActor();
-	auto sprite = player->AddComponent<SpriteRendererComponent>("../Solution/Assets/adventurer.png");
+	auto sprite = player->AddComponent<AnimSpriteComponent>("../Solution/Assets/adventurer.png", 7, 11);
 	auto input = player->AddComponent<InputComponent>();
 	player->SetActorLocation(Vector(sprite->GetTextureWidth()/2, sprite->GetTextureHeight()/2));
 	input->BindKey(SDLK_UP, []() {std::cout << "Up\n"; });
