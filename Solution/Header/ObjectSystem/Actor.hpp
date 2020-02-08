@@ -20,16 +20,16 @@ public:
 	const bool IsActive();
 	void Destroy();
 
-	template<typename T, typename... TArgs>
+	/*template<typename T, typename... TArgs>
 	T* AddComponent(TArgs&&... args)
 	{
 		T* comp = new T(std::forward<TArgs>(args)..., this);
 		components.push_back(comp);
 		return comp;
-	}
+	}*/
 
-	/*void AddComponent(Component* component);
-	void RemoveComponent(Component* component);*/
+	void AddComponent(Component* component);
+	void RemoveComponent(Component* component);
 	
 	inline Engine *const GetEngine() { return engine; }
 	inline const Transform& GetActorTransform() { return transform; }

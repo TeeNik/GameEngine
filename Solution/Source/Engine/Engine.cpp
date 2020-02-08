@@ -35,8 +35,8 @@ void Engine::Init()
 void Engine::Run()
 {
 	auto player = ECS->CreateActor();
-	auto sprite = player->AddComponent<AnimSpriteComponent>("../Solution/Assets/adventurer.png", 7, 11);
-	auto input = player->AddComponent<InputComponent>();
+	auto sprite = new AnimSpriteComponent("../Solution/Assets/adventurer.png", 7, 11, player);
+	auto input = new InputComponent(player);
 	player->SetActorLocation(Vector(sprite->GetTextureWidth()/2, sprite->GetTextureHeight()/2));
 	input->BindKey(SDLK_UP, []() {std::cout << "Up\n"; });
 }

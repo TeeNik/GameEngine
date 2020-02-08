@@ -45,7 +45,7 @@ void Actor::Destroy()
 	isActive = false;
 }
 
-/*void Actor::AddComponent(Component * component)
+void Actor::AddComponent(Component * component)
 {
 	int myOrder = component->GetUpdateOrder();
 	auto iter = components.begin();
@@ -68,4 +68,4 @@ void Actor::RemoveComponent(Component * component)
 	{
 		components.erase(iter);
 	}
-}*/
+}
