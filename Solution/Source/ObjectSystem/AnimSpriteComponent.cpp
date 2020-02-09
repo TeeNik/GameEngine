@@ -5,8 +5,8 @@ AnimSpriteComponent::AnimSpriteComponent(const char* path, int col, int row, Act
 	columns = col;
 	rows = row;
 
-	srcRect.x = textureWidth / columns;
-	srcRect.y = textureHeight / rows;
+	srcRect.w = textureWidth / columns;
+	srcRect.h = textureHeight / rows;
 }
 
 void AnimSpriteComponent::Update(float deltaTime)
@@ -14,20 +14,23 @@ void AnimSpriteComponent::Update(float deltaTime)
 	SpriteRendererComponent::Update(deltaTime);
 
 	currentFrame += (animFPS * deltaTime);
-	currentFrame = static_cast<int>(currentFrame) % frames.size();
+	while (currentFrame >= frames.size()) {
+		currentFrame -= frames.size();
+	}
+	//currentFrame = static_cast<int>(currentFrame) % frames.size();
 }
 
 void AnimSpriteComponent::Draw(SDL_Renderer* renderer)
 {
 	if (texture) {
 		auto& scale = actorTransform->scale;
-		destRect.w = srcRect.x * scale.x;
-		destRect.h = srcRect.y * scale.y;
+		destRect.w = srcRect.w * scale.x;
+		destRect.h = srcRect.h * scale.y;
 		auto& pos = actorTransform->position;
 		destRect.x = pos.x - destRect.w / 2;
 		destRect.y = pos.y - destRect.h / 2;
 
-		int frame = frames[currentFrame];
+		int frame = frames[static_cast<int>(currentFrame)];
 		srcRect.x = (frame % columns) * srcRect.w;
 		srcRect.y = (frame / rows) * srcRect.h;
 

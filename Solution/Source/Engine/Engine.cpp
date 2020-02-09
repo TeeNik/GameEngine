@@ -35,6 +35,7 @@ void Engine::Init()
 void Engine::Run()
 {
 	auto player = ECS->CreateActor();
+	player->SetActorScale(Vector(3, 3, 3));
 	auto sprite = new AnimSpriteComponent("../Solution/Assets/adventurer.png", 7, 11, player);
 	auto input = new InputComponent(player);
 	player->SetActorLocation(Vector(sprite->GetTextureWidth()/2, sprite->GetTextureHeight()/2));

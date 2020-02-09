@@ -35,6 +35,8 @@ public:
 	inline const Transform& GetActorTransform() { return transform; }
 	inline const Vector& GetActorLocation() { return transform.position; }
 	inline void SetActorLocation(const Vector& location) { transform.position = location; }
+	inline const Vector& GetActorScale() { return transform.scale; }
+	inline void SetActorScale(const Vector& scale) { transform.scale = scale; }
 
 protected:
 

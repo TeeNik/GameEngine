@@ -18,7 +18,7 @@ private:
 	std::vector<int> frames{ 0, 1, 2, 3 };
 	
 	float currentFrame = 0;
-	float animFPS = 24;
+	float animFPS = 4;
 	int columns;
 	int rows;
 };
