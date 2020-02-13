@@ -31,7 +31,6 @@
     <ClCompile Include="Source\ObjectSystem\Actor.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
     <ClCompile Include="Source\ObjectSystem\SpriteRendererComponent.cpp" />
-    <ClCompile Include="Source\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\BaseStructs\Transform.hpp" />
@@ -46,7 +45,6 @@
     <ClInclude Include="Header\ObjectSystem\InputComponent.hpp" />
     <ClInclude Include="Header\ObjectSystem\ObjectManager.hpp" />
     <ClInclude Include="Header\ObjectSystem\SpriteRendererComponent.hpp" />
-    <ClInclude Include="Header\TextureManager.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\player.png" />
@@ -120,12 +118,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Header;$(SolutionDir)\..\Plugins\SDL\include;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\include;$(SolutionDir)\..\Plugins\VLD\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Header;$(SolutionDir)\..\Plugins\SDL\include;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\include;C:\Program Files (x86)\Visual Leak Detector\include;$(SolutionDir)\..\Plugins\GLEW\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\Plugins\SDL\lib\win64;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\lib\x64;$(SolutionDir)\..\Plugins\VLD\lib\Win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\Plugins\SDL\lib\win64;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\lib\x64;C:\Program Files (x86)\Visual Leak Detector\lib\Win64;$(SolutionDir)\..\Plugins\GLEW\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
