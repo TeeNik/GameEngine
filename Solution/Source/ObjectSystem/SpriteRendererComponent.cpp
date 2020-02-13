@@ -1,15 +1,15 @@
 #pragma once
 #include "ObjectSystem/SpriteRendererComponent.hpp"
 #include "SDL.h"
-#include "TextureManager.hpp"
 #include "Engine/Engine.hpp"
 #include "Graphics/Graphics2D.hpp"
 
 SpriteRendererComponent::SpriteRendererComponent(const char* path, Actor* o, int drawOrder) : Component(o)
 {
 	actorTransform = &owner->GetActorTransform();
-	owner->GetEngine()->GetGraphics2D()->AddSprite(this);
-	texture = TextureManager::LoadTexture(path);
+	auto graphics = owner->GetEngine()->GetGraphics2D();
+	graphics->AddSprite(this);
+	texture = graphics->LoadTexture(path);
 	SDL_QueryTexture(texture, nullptr, nullptr, &textureWidth, &textureHeight);
 }
 

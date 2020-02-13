@@ -1,5 +1,4 @@
 #include "ObjectSystem/Actor.hpp"
-#include "TextureManager.hpp"
 #include "ObjectSystem/Component.hpp"
 #include "SDL.h"
 #include "Engine/Engine.hpp"

@@ -2,12 +2,12 @@
 #include <vector>
 #include "SDL.h"
 #include "SDL_image.h"
-#include "TextureManager.hpp"
 #include "Engine/Engine.hpp"
 #include "ObjectSystem/Actor.hpp"
 #include "ObjectSystem/AnimSpriteComponent.hpp"
 #include "ObjectSystem/ObjectManager.hpp"
 #include "Input/Input.hpp"
+#include "glew.h"
 #include "Graphics/Graphics2D.hpp"
 #include "ObjectSystem/InputComponent.hpp"
 
@@ -42,6 +42,7 @@ void Engine::Run()
 	input->BindKey(SDLK_UP, []() {std::cout << "Up\n"; });
 }
 
+//TODO refactor
 void Engine::InitWindow()
 {
 	bool fullscreen = false;
@@ -49,17 +50,28 @@ void Engine::InitWindow()
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
 		std::cout << "Subsystems Initialised.\n";
-		window = SDL_CreateWindow("GameEngine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flags);
+
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+		SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
+		SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
+		SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
+		SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
+		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+		SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
+
+		window = SDL_CreateWindow("GameEngine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
 		if (window) {
 			std::cout << "Window Created.\n";
 		}
-
-		renderer = SDL_CreateRenderer(window, -1, 0);
-		if (renderer) {
-			SDL_SetRenderDrawColor(renderer, 0, 100, 100, 100);
-			std::cout << "Renderer Created.\n";
+		context = SDL_GL_CreateContext(window);
+		glewExperimental = GL_TRUE;
+		if (glewInit() != GLEW_OK) {
+			std::cout << "Failed init glew!\n";
 		}
-		TextureManager::SetRenderer(renderer);
+
+		glGetError();
 		isRunning = true;
 	}
 	else {
@@ -105,9 +117,11 @@ void Engine::Update()
 
 void Engine::Render()
 {
-	SDL_RenderClear(renderer);
-	Graphics2DSystem->Draw();
-	SDL_RenderPresent(renderer);
+	glClearColor(.8f, .8f, .8f, 1);
+	glClear(GL_COLOR_BUFFER_BIT);
+	//draw
+
+	SDL_GL_SwapWindow(window);
 }
 
 void Engine::Clean()
@@ -116,6 +130,7 @@ void Engine::Clean()
 	delete InputSystem;
 	delete ECS;
 
+	SDL_GL_DeleteContext(context);
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();

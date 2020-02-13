@@ -1,11 +1,10 @@
 #pragma once
+#include "SDL.h"
 
 class Input;
 class Graphics2D;
 class ObjectManager;
 class InputSubscriber;
-struct SDL_Window;
-struct SDL_Renderer;
 
 class Engine {
 
@@ -32,6 +31,7 @@ private:
 	Input* InputSystem;
 
 	SDL_Window* window;
+	SDL_GLContext context;
 	SDL_Renderer* renderer;
 	bool isRunning;
 	int frameCounter = 0;
