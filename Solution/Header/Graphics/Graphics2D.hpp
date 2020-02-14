@@ -4,11 +4,12 @@
 class SpriteRendererComponent;
 struct SDL_Texture;
 struct SDL_Renderer;
+class Shader;
 
 class Graphics2D {
 
 public:
-	Graphics2D(SDL_Renderer* r);
+	Graphics2D(Shader* s);
 	~Graphics2D();
 
 	void AddSprite(SpriteRendererComponent* sr);
@@ -17,6 +18,7 @@ public:
 
 private:
 	std::vector<SpriteRendererComponent*> sprites;
+	Shader* shader;
 	SDL_Renderer* renderer;
 
 };

@@ -9,7 +9,7 @@ public:
 	AnimSpriteComponent(const char* path, int col, int row, Actor* o, int drawOrder = 100);
 
 	void Update(float deltaTime) override;
-	void Draw(SDL_Renderer* renderer) override;
+	//void Draw(SDL_Renderer* renderer) override;
 	
 	inline void SetAnimFPS(float fps) { animFPS = fps; }
 	inline const float GetAnimFPS() { return animFPS; }

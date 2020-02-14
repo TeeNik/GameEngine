@@ -13,8 +13,8 @@ Shader::~Shader()
 
 bool Shader::Load(const std::string vertName, const std::string fragName)
 {
-	auto isVertCompiled = CompileShader(vertName, GL_VERTEX_SHADER, vertexShader);
-	auto isFragCompiled = CompileShader(vertName, GL_FRAGMENT_SHADER, fragShader);
+	bool isVertCompiled = CompileShader(vertName, GL_VERTEX_SHADER, vertexShader);
+	bool isFragCompiled = CompileShader(fragName, GL_FRAGMENT_SHADER, fragShader);
 	if (!isFragCompiled || !isVertCompiled) {
 		return false;
 	}

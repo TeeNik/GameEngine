@@ -20,7 +20,7 @@ void AnimSpriteComponent::Update(float deltaTime)
 	//currentFrame = static_cast<int>(currentFrame) % frames.size();
 }
 
-void AnimSpriteComponent::Draw(SDL_Renderer* renderer)
+/*void AnimSpriteComponent::Draw(SDL_Renderer* renderer)
 {
 	if (texture) {
 		auto& scale = actorTransform->scale;
@@ -36,4 +36,4 @@ void AnimSpriteComponent::Draw(SDL_Renderer* renderer)
 
 		SDL_RenderCopyEx(renderer, texture, &srcRect, &destRect, 0, nullptr, SDL_FLIP_NONE);
 	}
-}
+}*/

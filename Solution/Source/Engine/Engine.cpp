@@ -28,7 +28,7 @@ void Engine::Init()
 	InitWindow();
 
 	ECS = new ObjectManager(this);
-	Graphics2DSystem = new Graphics2D(renderer);
+	Graphics2DSystem = new Graphics2D(spriteShader);
 	InputSystem = new Input();
 
 	Run();
@@ -90,10 +90,10 @@ void Engine::InitWindow()
 void Engine::CreateSpriteVerts()
 {
 	float vertices[] = {
-		-0.5f,  0.5f, 0.f, 0.f, 0.f, // top left
-		 0.5f,  0.5f, 0.f, 1.f, 0.f, // top right
-		 0.5f, -0.5f, 0.f, 1.f, 1.f, // bottom right
-		-0.5f, -0.5f, 0.f, 0.f, 1.f  // bottom left
+		-0.5f,  0.5f, 0.f, // top left
+		 0.5f,  0.5f, 0.f, // top right
+		 0.5f, -0.5f, 0.f, // bottom right
+		-0.5f, -0.5f, 0.f, // bottom left
 	};
 
 	unsigned int indices[] = {
@@ -160,7 +160,9 @@ void Engine::Render()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	//call Graphycs3D
+	spriteShader->SetActive();
+	spriteVerts->SetActive();
+	Graphics2DSystem->Draw();
 
 	SDL_GL_SwapWindow(window);
 }
