@@ -10,7 +10,7 @@
 #include "glew.h"
 #include "Graphics/Graphics2D.hpp"
 #include "ObjectSystem/InputComponent.hpp"
-
+#include "Graphics/VertexArray.hpp"
 
 Engine::Engine()
 {
@@ -72,11 +72,31 @@ void Engine::InitWindow()
 		}
 
 		glGetError();
+
+		CreateSpriteVerts();
+
 		isRunning = true;
 	}
 	else {
 		isRunning = false;
 	}
+}
+
+void Engine::CreateSpriteVerts()
+{
+	float vertices[] = {
+		-0.5f,  0.5f, 0.f, 0.f, 0.f, // top left
+		 0.5f,  0.5f, 0.f, 1.f, 0.f, // top right
+		 0.5f, -0.5f, 0.f, 1.f, 1.f, // bottom right
+		-0.5f, -0.5f, 0.f, 0.f, 1.f  // bottom left
+	};
+
+	unsigned int indices[] = {
+		0, 1, 2,
+		2, 3, 0
+	};
+
+	spriteVerts = new VertexArray(vertices, 4, indices, 6);
 }
 
 void Engine::HandleEvents()

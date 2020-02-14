@@ -46,5 +46,8 @@ private:
 
 	//TODO refactor
 	void InitWindow();
+	
+	class VertexArray* spriteVerts;
+	void CreateSpriteVerts();
 
 };
