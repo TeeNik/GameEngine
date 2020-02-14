@@ -10,7 +10,9 @@
 #include "glew.h"
 #include "Graphics/Graphics2D.hpp"
 #include "ObjectSystem/InputComponent.hpp"
+
 #include "Graphics/VertexArray.hpp"
+#include "Graphics/Shader.hpp"
 
 Engine::Engine()
 {
@@ -73,6 +75,9 @@ void Engine::InitWindow()
 
 		glGetError();
 
+		if (!LoadShaders()) {
+			std::cout << "Failed to load shaders.";
+		}
 		CreateSpriteVerts();
 
 		isRunning = true;
@@ -97,6 +102,17 @@ void Engine::CreateSpriteVerts()
 	};
 
 	spriteVerts = new VertexArray(vertices, 4, indices, 6);
+}
+
+bool Engine::LoadShaders()
+{
+	spriteShader = new Shader();
+	bool isLoaded = spriteShader->Load("../Solution/Assets/Shaders/Basic.vert",
+		"../Solution/Assets/Shaders/Basic.frag");
+	if (!isLoaded) {
+		return false;
+	}
+	spriteShader->SetActive();
 }
 
 void Engine::HandleEvents()
@@ -140,6 +156,11 @@ void Engine::Render()
 	glClearColor(.8f, .8f, .8f, 1);
 	glClear(GL_COLOR_BUFFER_BIT);
 	//draw
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	//call Graphycs3D
 
 	SDL_GL_SwapWindow(window);
 }

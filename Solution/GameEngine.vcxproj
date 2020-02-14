@@ -22,6 +22,7 @@
     <ClCompile Include="Source\BaseStructs\Transform.cpp" />
     <ClCompile Include="Source\BaseStructs\Vector.cpp" />
     <ClCompile Include="Source\Graphics\Graphics2D.cpp" />
+    <ClCompile Include="Source\Graphics\Shader.cpp" />
     <ClCompile Include="Source\Graphics\VertexArray.cpp" />
     <ClCompile Include="Source\Input\Input.cpp" />
     <ClCompile Include="Source\ObjectSystem\AnimSpriteComponent.cpp" />
@@ -37,6 +38,7 @@
     <ClInclude Include="Header\BaseStructs\Transform.hpp" />
     <ClInclude Include="Header\BaseStructs\Vector.hpp" />
     <ClInclude Include="Header\Graphics\Graphics2D.hpp" />
+    <ClInclude Include="Header\Graphics\Shader.hpp" />
     <ClInclude Include="Header\Graphics\VertexArray.hpp" />
     <ClInclude Include="Header\Input\Input.hpp" />
     <ClInclude Include="Header\Input\InputSubscriber.hpp" />
@@ -50,6 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\player.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\Basic.frag" />
+    <None Include="Assets\Shaders\Basic.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

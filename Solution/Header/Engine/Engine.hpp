@@ -49,5 +49,7 @@ private:
 	
 	class VertexArray* spriteVerts;
 	void CreateSpriteVerts();
+	class Shader* spriteShader;
+	bool LoadShaders();
 
 };

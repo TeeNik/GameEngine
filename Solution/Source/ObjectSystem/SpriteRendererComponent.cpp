@@ -3,6 +3,7 @@
 #include "SDL.h"
 #include "Engine/Engine.hpp"
 #include "Graphics/Graphics2D.hpp"
+#include "Graphics/Shader.hpp"
 
 SpriteRendererComponent::SpriteRendererComponent(const char* path, Actor* o, int drawOrder) : Component(o)
 {
@@ -34,9 +35,10 @@ void SpriteRendererComponent::SetTexture(SDL_Texture* tex)
 	texture = tex;
 }
 
-void SpriteRendererComponent::Draw(SDL_Renderer* renderer)
+void SpriteRendererComponent::Draw(Shader* renderer)
 {
-	if (texture) {
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+	/*if (texture) {
 		auto& scale = actorTransform->scale;
 		destRect.w = textureWidth * scale.x;
 		destRect.h = textureHeight * scale.y;
@@ -45,5 +47,5 @@ void SpriteRendererComponent::Draw(SDL_Renderer* renderer)
 		destRect.y = pos.y - destRect.h / 2;
 
 		SDL_RenderCopyEx(renderer, texture, nullptr, &destRect, 0, nullptr, SDL_FLIP_NONE);
-	}
+	}*/
 }

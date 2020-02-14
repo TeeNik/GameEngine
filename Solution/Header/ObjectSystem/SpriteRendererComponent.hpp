@@ -14,7 +14,7 @@ public:
 	virtual void BeginPlay() override;
 	virtual void SetTexture(const char* path);
 	virtual void SetTexture(SDL_Texture* texture);
-	virtual void Draw(SDL_Renderer* renderer);
+	virtual void Draw(class Shader* renderer);
 
 	inline const int GetDrawOrder() const { return drawOrder; };
 	inline const int GetTextureWidth() const { return textureWidth; };
