@@ -1,11 +1,11 @@
 #pragma once
-#include "BaseStructs/Vector.hpp"
+#include "Math/Math.h"
 
 struct Transform {
 
-	Vector position;
-	Vector rotation;
-	Vector scale = { 1,1,1 };
+	Vector3 position;
+	Vector3 rotation;
+	Vector3 scale;
 
 	Transform();
 };

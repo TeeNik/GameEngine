@@ -2,9 +2,10 @@
 #include "ObjectSystem\SpriteRendererComponent.hpp"
 #include "SDL_image.h"
 
-Graphics2D::Graphics2D(Shader* s)
+Graphics2D::Graphics2D(Shader* s, SDL_Renderer* r)
 {
 	shader = s;
+	renderer = r;
 }
 
 Graphics2D::~Graphics2D()
@@ -33,8 +34,6 @@ void Graphics2D::Draw()
 
 SDL_Texture* Graphics2D::LoadTexture(const char* filename)
 {
-	return nullptr;
-
 	SDL_Surface* tmpSurface = IMG_Load(filename);
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, tmpSurface);
 	SDL_FreeSurface(tmpSurface);

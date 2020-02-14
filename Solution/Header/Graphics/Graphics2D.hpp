@@ -9,7 +9,7 @@ class Shader;
 class Graphics2D {
 
 public:
-	Graphics2D(Shader* s);
+	Graphics2D(Shader* s, SDL_Renderer* renderer);
 	~Graphics2D();
 
 	void AddSprite(SpriteRendererComponent* sr);

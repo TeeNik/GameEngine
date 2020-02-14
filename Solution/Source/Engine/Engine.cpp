@@ -28,7 +28,7 @@ void Engine::Init()
 	InitWindow();
 
 	ECS = new ObjectManager(this);
-	Graphics2DSystem = new Graphics2D(spriteShader);
+	Graphics2DSystem = new Graphics2D(spriteShader, renderer);
 	InputSystem = new Input();
 
 	Run();
@@ -37,10 +37,11 @@ void Engine::Init()
 void Engine::Run()
 {
 	auto player = ECS->CreateActor();
-	player->SetActorScale(Vector(3, 3, 3));
-	auto sprite = new AnimSpriteComponent("../Solution/Assets/adventurer.png", 7, 11, player);
+	player->SetActorScale(Vector3(.5f, .5f, 1));
+	//auto sprite = new AnimSpriteComponent("../Solution/Assets/adventurer.png", 7, 11, player);
+	auto sprite = new SpriteRendererComponent("../Solution/Assets/player.png", player);
 	auto input = new InputComponent(player);
-	player->SetActorLocation(Vector(sprite->GetTextureWidth()/2, sprite->GetTextureHeight()/2));
+	//player->SetActorLocation(Vector3(sprite->GetTextureWidth()/2, sprite->GetTextureHeight()/2, 0));
 	input->BindKey(SDLK_UP, []() {std::cout << "Up\n"; });
 }
 
@@ -67,6 +68,7 @@ void Engine::InitWindow()
 		if (window) {
 			std::cout << "Window Created.\n";
 		}
+		renderer = SDL_CreateRenderer(window, -1, 0);
 		context = SDL_GL_CreateContext(window);
 		glewExperimental = GL_TRUE;
 		if (glewInit() != GLEW_OK) {
@@ -107,12 +109,15 @@ void Engine::CreateSpriteVerts()
 bool Engine::LoadShaders()
 {
 	spriteShader = new Shader();
-	bool isLoaded = spriteShader->Load("../Solution/Assets/Shaders/Basic.vert",
+	bool isLoaded = spriteShader->Load("../Solution/Assets/Shaders/Transform.vert",
 		"../Solution/Assets/Shaders/Basic.frag");
 	if (!isLoaded) {
 		return false;
 	}
+
 	spriteShader->SetActive();
+	Matrix4 viewProj = Matrix4::CreateSimpleViewProj(width, height);
+	spriteShader->SetMatrixUniform("uViewProj", viewProj);
 }
 
 void Engine::HandleEvents()

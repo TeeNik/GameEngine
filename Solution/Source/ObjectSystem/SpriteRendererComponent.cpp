@@ -35,8 +35,11 @@ void SpriteRendererComponent::SetTexture(SDL_Texture* tex)
 	texture = tex;
 }
 
-void SpriteRendererComponent::Draw(Shader* renderer)
+void SpriteRendererComponent::Draw(Shader* shader)
 {
+	Matrix4 scaleMat = Matrix4::CreateScale(textureWidth, textureHeight, 1);
+	Matrix4 world = scaleMat * owner->GetWorldTransform();
+	shader->SetMatrixUniform("uWorldTransform", world);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 	/*if (texture) {
 		auto& scale = actorTransform->scale;

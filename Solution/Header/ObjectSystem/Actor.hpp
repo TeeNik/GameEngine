@@ -3,6 +3,7 @@
 #include <bitset>
 #include <algorithm>
 #include "BaseStructs/Transform.hpp"
+#include "Math/Math.h"
 
 class Component;
 class Engine;
@@ -20,23 +21,23 @@ public:
 	const bool IsActive();
 	void Destroy();
 
-	/*template<typename T, typename... TArgs>
-	T* AddComponent(TArgs&&... args)
-	{
-		T* comp = new T(std::forward<TArgs>(args)..., this);
-		components.push_back(comp);
-		return comp;
-	}*/
-
 	void AddComponent(Component* component);
 	void RemoveComponent(Component* component);
 	
 	inline Engine *const GetEngine() { return engine; }
+	inline const Matrix4 GetWorldTransform() { return worldTransform; }
 	inline const Transform& GetActorTransform() { return transform; }
-	inline const Vector& GetActorLocation() { return transform.position; }
-	inline void SetActorLocation(const Vector& location) { transform.position = location; }
-	inline const Vector& GetActorScale() { return transform.scale; }
-	inline void SetActorScale(const Vector& scale) { transform.scale = scale; }
+	
+	inline const Vector3& GetActorLocation() { return transform.position;}
+	inline void SetActorLocation(const Vector3& location) { transform.position = location; recomputeWorldTransform = true;}
+	
+	inline const Vector3& GetActorScale() { return transform.scale; }
+	inline void SetActorScale(const Vector3& scale) { transform.scale = scale; recomputeWorldTransform = true; }
+	
+	inline const Vector3& GetActorRotation() { return transform.rotation; }
+	inline void SetActorRotation(const Vector3& rotation) { transform.rotation = rotation; recomputeWorldTransform = true; }
+	
+	void ComputeWorldTransform();
 
 protected:
 
@@ -44,6 +45,9 @@ protected:
 	Transform transform;
 	bool isActive = true;
 	
+	Matrix4 worldTransform;
+	bool recomputeWorldTransform;
+
 private:
 	Engine* engine;
 

@@ -2,4 +2,5 @@
 
 Transform::Transform()
 {
+	scale = Vector3(1, 1, 1);
 }

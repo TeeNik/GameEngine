@@ -25,6 +25,7 @@
     <ClCompile Include="Source\Graphics\Shader.cpp" />
     <ClCompile Include="Source\Graphics\VertexArray.cpp" />
     <ClCompile Include="Source\Input\Input.cpp" />
+    <ClCompile Include="Source\Math\Math.cpp" />
     <ClCompile Include="Source\ObjectSystem\AnimSpriteComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\InputComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\ObjectManager.cpp" />
@@ -42,6 +43,7 @@
     <ClInclude Include="Header\Graphics\VertexArray.hpp" />
     <ClInclude Include="Header\Input\Input.hpp" />
     <ClInclude Include="Header\Input\InputSubscriber.hpp" />
+    <ClInclude Include="Header\Math\Math.h" />
     <ClInclude Include="Header\ObjectSystem\AnimSpriteComponent.hpp" />
     <ClInclude Include="Header\ObjectSystem\Component.hpp" />
     <ClInclude Include="Header\Engine\Engine.hpp" />
@@ -56,6 +58,7 @@
   <ItemGroup>
     <None Include="Assets\Shaders\Basic.frag" />
     <None Include="Assets\Shaders\Basic.vert" />
+    <None Include="Assets\Shaders\Transform.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

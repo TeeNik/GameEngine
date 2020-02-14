@@ -25,6 +25,8 @@ void Actor::BeginPlay()
 
 void Actor::Update(float deltaTime)
 {
+	ComputeWorldTransform();
+
 	for (auto& component : components) {
 		component->Update(deltaTime);
 	}
@@ -66,5 +68,16 @@ void Actor::RemoveComponent(Component * component)
 	if (iter != components.end())
 	{
 		components.erase(iter);
+	}
+}
+
+void Actor::ComputeWorldTransform()
+{
+	if (recomputeWorldTransform) {
+		recomputeWorldTransform = false;
+
+		worldTransform = Matrix4::CreateScale(transform.scale);
+		worldTransform *= Matrix4::CreateRotationZ(transform.rotation.z);
+		worldTransform *= Matrix4::CreateTranslation(transform.position);
 	}
 }
