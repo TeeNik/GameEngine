@@ -60,6 +60,9 @@
     <ClCompile Include="Source\Math\Math.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Graphics\Texture.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Engine\Engine.hpp">
@@ -107,6 +110,9 @@
     <ClInclude Include="Header\Math\Math.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Graphics\Texture.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\player.png">
@@ -117,5 +123,7 @@
     <None Include="Assets\Shaders\Basic.vert" />
     <None Include="Assets\Shaders\Basic.frag" />
     <None Include="Assets\Shaders\Transform.vert" />
+    <None Include="Assets\Shaders\Sprite.frag" />
+    <None Include="Assets\Shaders\Sprite.vert" />
   </ItemGroup>
 </Project>

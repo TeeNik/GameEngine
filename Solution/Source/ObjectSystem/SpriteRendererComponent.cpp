@@ -4,6 +4,7 @@
 #include "Engine/Engine.hpp"
 #include "Graphics/Graphics2D.hpp"
 #include "Graphics/Shader.hpp"
+#include "Graphics/Texture.hpp"
 
 SpriteRendererComponent::SpriteRendererComponent(const char* path, Actor* o, int drawOrder) : Component(o)
 {
@@ -11,14 +12,15 @@ SpriteRendererComponent::SpriteRendererComponent(const char* path, Actor* o, int
 	auto graphics = owner->GetEngine()->GetGraphics2D();
 	graphics->AddSprite(this);
 	texture = graphics->LoadTexture(path);
-	SDL_QueryTexture(texture, nullptr, nullptr, &textureWidth, &textureHeight);
+	textureWidth = texture->GetWidth();
+	textureHeight = texture->GetHeight();
 }
 
 SpriteRendererComponent::~SpriteRendererComponent()
 {
 	if (!texture)
 	{
-		SDL_DestroyTexture(texture);
+		texture->Unload();
 	}
 }
 
@@ -30,7 +32,7 @@ void SpriteRendererComponent::SetTexture(const char* path)
 {
 }
 
-void SpriteRendererComponent::SetTexture(SDL_Texture* tex)
+void SpriteRendererComponent::SetTexture(Texture* tex)
 {
 	texture = tex;
 }

@@ -92,10 +92,10 @@ void Engine::InitWindow()
 void Engine::CreateSpriteVerts()
 {
 	float vertices[] = {
-		-0.5f,  0.5f, 0.f, // top left
-		 0.5f,  0.5f, 0.f, // top right
-		 0.5f, -0.5f, 0.f, // bottom right
-		-0.5f, -0.5f, 0.f, // bottom left
+		-0.5f,  0.5f, 0.f, 0.f, 0.f, // top left
+		 0.5f,  0.5f, 0.f, 1.f, 0.f, // top right
+		 0.5f, -0.5f, 0.f, 1.f, 1.f, // bottom right
+		-0.5f, -0.5f, 0.f, 0.f, 1.f, // bottom left
 	};
 
 	unsigned int indices[] = {
@@ -109,8 +109,8 @@ void Engine::CreateSpriteVerts()
 bool Engine::LoadShaders()
 {
 	spriteShader = new Shader();
-	bool isLoaded = spriteShader->Load("../Solution/Assets/Shaders/Transform.vert",
-		"../Solution/Assets/Shaders/Basic.frag");
+	bool isLoaded = spriteShader->Load("../Solution/Assets/Shaders/Sprite.vert",
+		"../Solution/Assets/Shaders/Sprite.frag");
 	if (!isLoaded) {
 		return false;
 	}

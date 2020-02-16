@@ -4,6 +4,8 @@
 #include "BaseStructs/Transform.hpp"
 #include "ObjectSystem/Actor.hpp"
 
+class Texture;
+
 class SpriteRendererComponent : public Component {
 	
 public:
@@ -13,7 +15,7 @@ public:
 
 	virtual void BeginPlay() override;
 	virtual void SetTexture(const char* path);
-	virtual void SetTexture(SDL_Texture* texture);
+	virtual void SetTexture(Texture* texture);
 	virtual void Draw(class Shader* renderer);
 
 	inline const int GetDrawOrder() const { return drawOrder; };
@@ -21,12 +23,13 @@ public:
 	inline const int GetTextureHeight() const { return textureHeight; };
 
 protected:
-
+	Texture* texture;
 	int drawOrder;
-	SDL_Texture* texture;
-	SDL_Rect srcRect, destRect;
-	const Transform*  actorTransform;
 	int textureWidth;
 	int textureHeight;
+	const Transform* actorTransform;
+
+	//SDL_Texture* texture;
+	SDL_Rect srcRect, destRect;
 
 };

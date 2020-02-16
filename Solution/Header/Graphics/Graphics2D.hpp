@@ -1,8 +1,9 @@
 #pragma once
 #include <vector>
+#include <string>
 
 class SpriteRendererComponent;
-struct SDL_Texture;
+class Texture;
 struct SDL_Renderer;
 class Shader;
 
@@ -14,7 +15,7 @@ public:
 
 	void AddSprite(SpriteRendererComponent* sr);
 	void Draw();
-	SDL_Texture* LoadTexture(const char* filename);
+	Texture* LoadTexture(const std::string& filename);
 
 private:
 	std::vector<SpriteRendererComponent*> sprites;
