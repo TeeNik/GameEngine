@@ -34,9 +34,11 @@ public:
 	inline const Vector3& GetActorScale() { return transform.scale; }
 	inline void SetActorScale(const Vector3& scale) { transform.scale = scale; recomputeWorldTransform = true; }
 	
-	inline const Vector3& GetActorRotation() { return transform.rotation; }
-	inline void SetActorRotation(const Vector3& rotation) { transform.rotation = rotation; recomputeWorldTransform = true; }
+	inline const Quaternion& GetActorRotation() { return transform.rotation; }
+	inline void SetActorRotation(const Quaternion& rotation) { transform.rotation = rotation; recomputeWorldTransform = true; }
 	
+	inline Vector3 GetForward() const { return Vector3::Transform(Vector3::UnitX, transform.rotation); }
+
 	void ComputeWorldTransform();
 
 protected:

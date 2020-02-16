@@ -77,7 +77,7 @@ void Actor::ComputeWorldTransform()
 		recomputeWorldTransform = false;
 
 		worldTransform = Matrix4::CreateScale(transform.scale);
-		worldTransform *= Matrix4::CreateRotationZ(transform.rotation.z);
+		worldTransform *= Matrix4::CreateFromQuaternion(transform.rotation);
 		worldTransform *= Matrix4::CreateTranslation(transform.position);
 	}
 }
