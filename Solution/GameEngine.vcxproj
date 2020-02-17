@@ -22,6 +22,7 @@
     <ClCompile Include="Source\BaseStructs\Transform.cpp" />
     <ClCompile Include="Source\BaseStructs\Vector.cpp" />
     <ClCompile Include="Source\Graphics\Graphics2D.cpp" />
+    <ClCompile Include="Source\Graphics\Mesh.cpp" />
     <ClCompile Include="Source\Graphics\Shader.cpp" />
     <ClCompile Include="Source\Graphics\Texture.cpp" />
     <ClCompile Include="Source\Graphics\VertexArray.cpp" />
@@ -40,6 +41,7 @@
     <ClInclude Include="Header\BaseStructs\Transform.hpp" />
     <ClInclude Include="Header\BaseStructs\Vector.hpp" />
     <ClInclude Include="Header\Graphics\Graphics2D.hpp" />
+    <ClInclude Include="Header\Graphics\Mesh.hpp" />
     <ClInclude Include="Header\Graphics\Shader.hpp" />
     <ClInclude Include="Header\Graphics\Texture.hpp" />
     <ClInclude Include="Header\Graphics\VertexArray.hpp" />
