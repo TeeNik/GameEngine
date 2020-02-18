@@ -1,7 +1,14 @@
 #pragma once
+#include <unordered_map>
+#include <string>
+#include <vector>
 
 
 class SpriteRendererComponent;
+class Shader;
+class Texture;
+class Mesh;
+class Engine;
 
 class Renderer {
 public:
@@ -20,5 +27,14 @@ public:
 	void RemoveMeshComponent();
 
 private:
+	bool LoadShaders();
+	void CreateSpriteVerts();
+	void SetLightUniforms(Shader* shader);
 
+	std::unordered_map<std::string, Texture*> textures;
+	std::unordered_map<std::string, Mesh*> meshes;
+
+	std::vector<SpriteRendererComponent*> spritesComponents;
+
+	Engine* engine;
 };
