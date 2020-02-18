@@ -27,7 +27,7 @@ bool Shader::Load(const std::string vertName, const std::string fragName)
 	return IsValidProgram();
 }
 
-void Shader::Upload()
+void Shader::Unload()
 {
 	glDeleteProgram(shaderProgram);
 	glDeleteShader(vertexShader);
@@ -43,6 +43,18 @@ void Shader::SetMatrixUniform(const char* name, const Matrix4& matrix)
 {
 	GLuint loc = glGetUniformLocation(shaderProgram, name);
 	glUniformMatrix4fv(loc, 1, GL_TRUE, matrix.GetAsFloatPtr());
+}
+
+void Shader::SetVectorUniform(const char* name, const Vector3& vector)
+{
+	GLuint loc = glGetUniformLocation(shaderProgram, name);
+	glUniform3fv(loc, 1, vector.GetAsFloatPtr());
+}
+
+void Shader::SetFloatUniform(const char* name, const float value)
+{
+	GLuint loc = glGetUniformLocation(shaderProgram, name);
+	glUniform1f(loc, value);
 }
 
 bool Shader::CompileShader(const std::string fileName, GLenum shaderType, GLuint & outShader)

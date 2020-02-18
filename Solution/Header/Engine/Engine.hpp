@@ -5,6 +5,7 @@ class Input;
 class Graphics2D;
 class ObjectManager;
 class InputSubscriber;
+class Renderer;
 
 class Engine {
 
@@ -22,17 +23,16 @@ public:
 	bool IsRunning();
 
 	//TODO Move systems' getters to interface
-	inline Graphics2D* GetGraphics2D() { return Graphics2DSystem; }
+	//inline Graphics2D* GetGraphics2D() { return Graphics2DSystem; }
 	inline InputSubscriber* GetInput() { return (InputSubscriber*)InputSystem; }
+	inline Renderer* GetRenderer() { return renderer; }
 
 private:
 	ObjectManager* ECS;
-	Graphics2D* Graphics2DSystem;
+	//Graphics2D* Graphics2DSystem;
+	Renderer* renderer;
 	Input* InputSystem;
 
-	SDL_Window* window;
-	SDL_GLContext context;
-	SDL_Renderer* renderer;
 	bool isRunning;
 	int frameCounter = 0;
 
@@ -43,13 +43,4 @@ private:
 
 	const int width = 1024;
 	const int height = 720;
-
-	//TODO refactor
-	void InitWindow();
-	
-	class VertexArray* spriteVerts;
-	void CreateSpriteVerts();
-	class Shader* spriteShader;
-	bool LoadShaders();
-
 };

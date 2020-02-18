@@ -10,9 +10,10 @@
 #include "glew.h"
 #include "Graphics/Graphics2D.hpp"
 #include "ObjectSystem/InputComponent.hpp"
-
+#include "Graphics/Renderer.hpp"
 #include "Graphics/VertexArray.hpp"
 #include "Graphics/Shader.hpp"
+#include "ObjectSystem/MeshComponent.hpp"
 
 Engine::Engine()
 {
@@ -25,99 +26,110 @@ Engine::~Engine()
 
 void Engine::Init()
 {
-	InitWindow();
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
+		printf("Unable to initialize SDL: %s", SDL_GetError());
+	}
+
+	renderer = new Renderer(this);
+	if (!renderer->Initialize(width, height)) {
+		printf("Failed to initialize renderer");
+		delete renderer;
+		renderer = nullptr;
+	}
 
 	ECS = new ObjectManager(this);
-	Graphics2DSystem = new Graphics2D(spriteShader, renderer);
+	//Graphics2DSystem = new Graphics2D(spriteShader, renderer);
 	InputSystem = new Input();
-
+	isRunning = true;
 	Run();
 }
 
 void Engine::Run()
 {
-	auto player = ECS->CreateActor();
+	/*auto player = ECS->CreateActor();
 	player->SetActorScale(Vector3(.5f, .5f, 1));
 	//auto sprite = new AnimSpriteComponent("../Solution/Assets/adventurer.png", 7, 11, player);
 	auto sprite = new SpriteRendererComponent("../Solution/Assets/player.png", player);
 	auto input = new InputComponent(player);
 	//player->SetActorLocation(Vector3(sprite->GetTextureWidth()/2, sprite->GetTextureHeight()/2, 0));
-	input->BindKey(SDLK_UP, []() {std::cout << "Up\n"; });
-}
+	input->BindKey(SDLK_UP, []() {std::cout << "Up\n"; });*/
 
-//TODO refactor
-void Engine::InitWindow()
-{
-	bool fullscreen = false;
-	int flags = fullscreen ? SDL_WINDOW_FULLSCREEN : 0;
+	Actor* a = new Actor(this);
+	a->SetActorLocation(Vector3(200.0f, 75.0f, 0.0f));
+	a->SetActorScale(Vector3(100,100,100));
+	Quaternion q(Vector3::UnitY, -Math::PiOver2);
+	q = Quaternion::Concatenate(q, Quaternion(Vector3::UnitZ, Math::Pi + Math::Pi / 4.0f));
+	a->SetActorRotation(q);
+	MeshComponent* mc = new MeshComponent(a);
+	mc->SetMesh(renderer->GetMesh("../Solution/Assets/Cube.gpmesh"));
 
-	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
-		std::cout << "Subsystems Initialised.\n";
+	a = new Actor(this);
+	a->SetActorLocation(Vector3(200.0f, -75.0f, 0.0f));
+	a->SetActorScale(Vector3(3,3,3));
+	mc = new MeshComponent(a);
+	mc->SetMesh(renderer->GetMesh("../Solution/Assets/Sphere.gpmesh"));
 
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
-		SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
-		SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
-		SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
-		SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
-		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-		SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
-
-		window = SDL_CreateWindow("GameEngine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
-		if (window) {
-			std::cout << "Window Created.\n";
+	// Setup floor
+	/*const float start = -1250.0f;
+	const float size = 250.0f;
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			a = new PlaneActor(this);
+			a->SetPosition(Vector3(start + i * size, start + j * size, -100.0f));
 		}
-		renderer = SDL_CreateRenderer(window, -1, 0);
-		context = SDL_GL_CreateContext(window);
-		glewExperimental = GL_TRUE;
-		if (glewInit() != GLEW_OK) {
-			std::cout << "Failed init glew!\n";
-		}
+	}*/
 
-		glGetError();
+	// Left/right walls
+	q = Quaternion(Vector3::UnitX, Math::PiOver2);
+	/*for (int i = 0; i < 10; i++)
+	{
+		a = new PlaneActor(this);
+		a->SetPosition(Vector3(start + i * size, start - size, 0.0f));
+		a->SetRotation(q);
 
-		if (!LoadShaders()) {
-			std::cout << "Failed to load shaders.";
-		}
-		CreateSpriteVerts();
+		a = new PlaneActor(this);
+		a->SetPosition(Vector3(start + i * size, -start + size, 0.0f));
+		a->SetRotation(q);
+	}*/
 
-		isRunning = true;
-	}
-	else {
-		isRunning = false;
-	}
-}
+	/*q = Quaternion::Concatenate(q, Quaternion(Vector3::UnitZ, Math::PiOver2));
+	// Forward/back walls
+	for (int i = 0; i < 10; i++)
+	{
+		a = new PlaneActor(this);
+		a->SetPosition(Vector3(start - size, start + i * size, 0.0f));
+		a->SetRotation(q);
 
-void Engine::CreateSpriteVerts()
-{
-	float vertices[] = {
-		-0.5f,  0.5f, 0.f, 0.f, 0.f, 0.f, 0.f, 0.f, // top left
-		 0.5f,  0.5f, 0.f, 0.f, 0.f, 0.f, 1.f, 0.f, // top right
-		 0.5f, -0.5f, 0.f, 0.f, 0.f, 0.f, 1.f, 1.f, // bottom right
-		-0.5f, -0.5f, 0.f, 0.f, 0.f, 0.f, 0.f, 1.f, // bottom left
-	};
+		a = new PlaneActor(this);
+		a->SetPosition(Vector3(-start + size, start + i * size, 0.0f));
+		a->SetRotation(q);
+	}*/
 
-	unsigned int indices[] = {
-		0, 1, 2,
-		2, 3, 0
-	};
+	// Setup lights
+	renderer->SetAmbientLight(Vector3(0.2f, 0.2f, 0.2f));
+	DirectionalLight& dir = renderer->GetDirectionalLight();
+	dir.direction = Vector3(0.0f, -0.707f, -0.707f);
+	dir.diffuseColor = Vector3(0.78f, 0.88f, 1.0f);
+	dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
 
-	spriteVerts = new VertexArray(vertices, 4, indices, 6);
-}
+	// Camera actor
+	/*mCameraActor = new CameraActor(this);
 
-bool Engine::LoadShaders()
-{
-	spriteShader = new Shader();
-	bool isLoaded = spriteShader->Load("../Solution/Assets/Shaders/Sprite.vert",
-		"../Solution/Assets/Shaders/Sprite.frag");
-	if (!isLoaded) {
-		return false;
-	}
+	// UI elements
+	a = new Actor(this);
+	a->SetPosition(Vector3(-350.0f, -350.0f, 0.0f));
+	SpriteComponent* sc = new SpriteComponent(a);
+	sc->SetTexture(mRenderer->GetTexture("../Solution/Assets/HealthBar.png"));
 
-	spriteShader->SetActive();
-	Matrix4 viewProj = Matrix4::CreateSimpleViewProj(width, height);
-	spriteShader->SetMatrixUniform("uViewProj", viewProj);
+	a = new Actor(this);
+	a->SetPosition(Vector3(375.0f, -275.0f, 0.0f));
+	a->SetScale(0.75f);
+	sc = new SpriteComponent(a);
+	sc->SetTexture(mRenderer->GetTexture("../Solution/Assets/Radar.png"));*/
+
+
 }
 
 void Engine::HandleEvents()
@@ -158,29 +170,17 @@ void Engine::Update()
 
 void Engine::Render()
 {
-	glClearColor(.8f, .8f, .8f, 1);
-	glClear(GL_COLOR_BUFFER_BIT);
-	//draw
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	spriteShader->SetActive();
-	spriteVerts->SetActive();
-	Graphics2DSystem->Draw();
-
-	SDL_GL_SwapWindow(window);
+	renderer->Draw();
 }
 
 void Engine::Clean()
 {
-	delete Graphics2DSystem;
+	//delete Graphics2DSystem;
 	delete InputSystem;
 	delete ECS;
-
-	SDL_GL_DeleteContext(context);
-	SDL_DestroyWindow(window);
-	SDL_DestroyRenderer(renderer);
+	if (renderer) {
+		renderer->Shutdown();
+	}
 	SDL_Quit();
 	std::cout << "Window Cleaned.\n";
 }

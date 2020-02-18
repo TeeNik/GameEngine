@@ -2,16 +2,16 @@
 #include "ObjectSystem/SpriteRendererComponent.hpp"
 #include "SDL.h"
 #include "Engine/Engine.hpp"
-#include "Graphics/Graphics2D.hpp"
+#include "Graphics/Renderer.hpp"
 #include "Graphics/Shader.hpp"
 #include "Graphics/Texture.hpp"
 
-SpriteRendererComponent::SpriteRendererComponent(const char* path, Actor* o, int drawOrder) : Component(o)
+SpriteRendererComponent::SpriteRendererComponent(const char* path, Actor* o, int drawOrder) : Component(o), drawOrder(drawOrder)
 {
 	actorTransform = &owner->GetActorTransform();
-	auto graphics = owner->GetEngine()->GetGraphics2D();
-	graphics->AddSprite(this);
-	texture = graphics->LoadTexture(path);
+	auto renderer = owner->GetEngine()->GetRenderer();
+	renderer->AddSprite(this);
+	texture = renderer->GetTexture(path);
 	textureWidth = texture->GetWidth();
 	textureHeight = texture->GetHeight();
 }

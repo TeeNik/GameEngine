@@ -6,20 +6,25 @@ class Renderer;
 class VertexArray;
 class Texture;
 
-class Mesh {
+class Mesh
+{
 public:
 	Mesh();
 	~Mesh();
-
-	bool Load(const std::string& fileName, Renderer* renderer);
+	
+	bool Load(const std::string& fileName, class Renderer* renderer);
 	void Unload();
-	inline VertexArray* GetVertexArray() { return vertexArray; }
-	Texture* GetTextureArray(size_t index);
-
+	
+	VertexArray* GetVertexArray() { return vertexArray; }
+	Texture* GetTexture(size_t index);
+	
+	inline const std::string& GetShaderName() const { return shaderName; }
+	inline float GetRadius() const { return radius; }
+	inline float GetSpecPower() const { return specPower; }
 private:
 	std::vector<Texture*> textures;
-	VertexArray* vertexArray;
+	class VertexArray* vertexArray;
 	std::string shaderName;
 	float radius;
-	float specularPower;
+	float specPower;
 };

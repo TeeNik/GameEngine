@@ -9,9 +9,11 @@ public:
 	~Shader();
 
 	bool Load(const std::string vertName, const std::string fragName);
-	void Upload();
+	void Unload();
 	void SetActive();
 	void SetMatrixUniform(const char* name, const Matrix4& matrix);
+	void SetVectorUniform(const char* name, const Vector3& vector);
+	void SetFloatUniform(const char* name, const float value);
 
 private:
 	bool CompileShader(const std::string fileName, GLenum shaderType, GLuint& outShader);

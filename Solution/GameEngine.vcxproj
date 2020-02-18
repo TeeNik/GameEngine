@@ -23,6 +23,7 @@
     <ClCompile Include="Source\BaseStructs\Vector.cpp" />
     <ClCompile Include="Source\Graphics\Graphics2D.cpp" />
     <ClCompile Include="Source\Graphics\Mesh.cpp" />
+    <ClCompile Include="Source\Graphics\Renderer.cpp" />
     <ClCompile Include="Source\Graphics\Shader.cpp" />
     <ClCompile Include="Source\Graphics\Texture.cpp" />
     <ClCompile Include="Source\Graphics\VertexArray.cpp" />
@@ -30,6 +31,7 @@
     <ClCompile Include="Source\Math\Math.cpp" />
     <ClCompile Include="Source\ObjectSystem\AnimSpriteComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\InputComponent.cpp" />
+    <ClCompile Include="Source\ObjectSystem\MeshComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\ObjectManager.cpp" />
     <ClCompile Include="Source\ObjectSystem\Component.cpp" />
     <ClCompile Include="main.cpp" />
@@ -42,6 +44,7 @@
     <ClInclude Include="Header\BaseStructs\Vector.hpp" />
     <ClInclude Include="Header\Graphics\Graphics2D.hpp" />
     <ClInclude Include="Header\Graphics\Mesh.hpp" />
+    <ClInclude Include="Header\Graphics\Renderer.hpp" />
     <ClInclude Include="Header\Graphics\Shader.hpp" />
     <ClInclude Include="Header\Graphics\Texture.hpp" />
     <ClInclude Include="Header\Graphics\VertexArray.hpp" />
@@ -53,6 +56,7 @@
     <ClInclude Include="Header\Engine\Engine.hpp" />
     <ClInclude Include="Header\ObjectSystem\Actor.hpp" />
     <ClInclude Include="Header\ObjectSystem\InputComponent.hpp" />
+    <ClInclude Include="Header\ObjectSystem\MeshComponent.hpp" />
     <ClInclude Include="Header\ObjectSystem\ObjectManager.hpp" />
     <ClInclude Include="Header\ObjectSystem\SpriteRendererComponent.hpp" />
   </ItemGroup>
@@ -62,6 +66,10 @@
   <ItemGroup>
     <None Include="Assets\Shaders\Basic.frag" />
     <None Include="Assets\Shaders\Basic.vert" />
+    <None Include="Assets\Shaders\BasicMesh.frag" />
+    <None Include="Assets\Shaders\BasicMesh.vert" />
+    <None Include="Assets\Shaders\Phong.frag" />
+    <None Include="Assets\Shaders\Phong.vert" />
     <None Include="Assets\Shaders\Sprite.frag" />
     <None Include="Assets\Shaders\Sprite.vert" />
     <None Include="Assets\Shaders\Transform.vert" />
