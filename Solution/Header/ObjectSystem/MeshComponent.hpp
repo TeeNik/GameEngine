@@ -14,7 +14,7 @@ public:
 	
 	virtual void Draw(Shader* shader);
 	
-	virtual void SetMesh(Mesh* mesh) { mesh = mesh; }
+	virtual void SetMesh(Mesh* m) { mesh = m; }
 	void SetTextureIndex(size_t index) { textureIndex = index; }
 protected:
 	Mesh* mesh;

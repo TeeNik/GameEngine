@@ -23,7 +23,7 @@ uniform DirectionalLight uDirLight;
 void main()
 {
 	vec3 N = normalize(fragNormal);
-	vec3 L = normalize(-uDirLight.mDirection);
+	vec3 L = normalize(-uDirLight.direction);
 	vec3 V = normalize(uCameraPos - fragWorldPos);
 	vec3 R = normalize(reflect(-L, N));
 
@@ -31,8 +31,8 @@ void main()
 	float NdotL = dot(N, L);
 	if (NdotL > 0)
 	{
-		vec3 Diffuse = uDirLight.mDiffuseColor * NdotL;
-		vec3 Specular = uDirLight.mSpecColor * pow(max(0.0, dot(R, V)), uSpecPower);
+		vec3 Diffuse = uDirLight.diffuseColor * NdotL;
+		vec3 Specular = uDirLight.specColor * pow(max(0.0, dot(R, V)), uSpecPower);
 		Phong += Diffuse + Specular;
 	}
 

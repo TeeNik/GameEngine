@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\BaseActors\Camera.cpp" />
+    <ClCompile Include="Source\BaseActors\Plane.cpp" />
     <ClCompile Include="Source\BaseStructs\Transform.cpp" />
     <ClCompile Include="Source\BaseStructs\Vector.cpp" />
     <ClCompile Include="Source\Graphics\Graphics2D.cpp" />
@@ -32,6 +34,7 @@
     <ClCompile Include="Source\ObjectSystem\AnimSpriteComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\InputComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\MeshComponent.cpp" />
+    <ClCompile Include="Source\ObjectSystem\MovementComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\ObjectManager.cpp" />
     <ClCompile Include="Source\ObjectSystem\Component.cpp" />
     <ClCompile Include="main.cpp" />
@@ -40,6 +43,8 @@
     <ClCompile Include="Source\ObjectSystem\SpriteRendererComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header\BaseActors\Camera.hpp" />
+    <ClInclude Include="Header\BaseActors\Plane.hpp" />
     <ClInclude Include="Header\BaseStructs\Transform.hpp" />
     <ClInclude Include="Header\BaseStructs\Vector.hpp" />
     <ClInclude Include="Header\Graphics\Graphics2D.hpp" />
@@ -57,8 +62,10 @@
     <ClInclude Include="Header\ObjectSystem\Actor.hpp" />
     <ClInclude Include="Header\ObjectSystem\InputComponent.hpp" />
     <ClInclude Include="Header\ObjectSystem\MeshComponent.hpp" />
+    <ClInclude Include="Header\ObjectSystem\MovementComponent.hpp" />
     <ClInclude Include="Header\ObjectSystem\ObjectManager.hpp" />
     <ClInclude Include="Header\ObjectSystem\SpriteRendererComponent.hpp" />
+    <ClInclude Include="Header\Utils\Utils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\player.png" />

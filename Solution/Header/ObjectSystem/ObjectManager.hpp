@@ -19,6 +19,13 @@ public:
 
 	void Update(float deltaTime);
 	void Refresh();
-	Actor* CreateActor();
+	//Actor* CreateActor();
+
+	template<typename T>
+	T* SpawnActor() {
+		T* actor = new T(engine);
+		pendingList.push(actor);
+		return actor;
+	}
 };
 

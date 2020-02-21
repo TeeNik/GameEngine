@@ -8,6 +8,7 @@
 #include "ObjectSystem/SpriteRendererComponent.hpp"
 #include "ObjectSystem/MeshComponent.hpp"
 #include <glew.h>
+#include "Utils/Utils.hpp"
 
 Renderer::Renderer(Engine* engine) :
 	engine(engine),
@@ -211,7 +212,7 @@ Mesh* Renderer::GetMesh(const std::string& fileName)
 bool Renderer::LoadShaders()
 {
 	spriteShader = new Shader();
-	if (!spriteShader->Load("../Solution/Assets/Shaders/Sprite.vert", "../Solution/Assets/Shaders/Sprite.frag"))
+	if (!spriteShader->Load(Utils::ContructPath("Shaders/Sprite.vert"), Utils::ContructPath("Shaders/Sprite.frag")))
 	{
 		return false;
 	}
@@ -222,7 +223,7 @@ bool Renderer::LoadShaders()
 	spriteShader->SetMatrixUniform("uViewProj", viewProj);
 
 	meshShader = new Shader();
-	if (!meshShader->Load("../Solution/Assets/Shaders/Phong.vert", "../Solution/Assets/Shaders/Phong.frag"))
+	if (!meshShader->Load(Utils::ContructPath("Shaders/Phong.vert"), Utils::ContructPath("Shaders/Phong.frag")))
 	{
 		return false;
 	}

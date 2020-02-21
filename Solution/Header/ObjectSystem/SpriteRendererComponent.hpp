@@ -3,18 +3,19 @@
 #include "SDL.h"
 #include "BaseStructs/Transform.hpp"
 #include "ObjectSystem/Actor.hpp"
+#include <string>
 
 class Texture;
 
 class SpriteRendererComponent : public Component {
 	
 public:
-	SpriteRendererComponent(const char* path, Actor* o, int drawOrder = 100);
+	SpriteRendererComponent(std::string, Actor* o, int drawOrder = 100);
 
 	~SpriteRendererComponent();
 
 	virtual void BeginPlay() override;
-	virtual void SetTexture(const char* path);
+	virtual void SetTexture(std::string path);
 	virtual void SetTexture(Texture* texture);
 	virtual void Draw(class Shader* renderer);
 
