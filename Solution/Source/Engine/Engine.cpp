@@ -114,26 +114,22 @@ void Engine::Run()
 	// Setup lights
 	renderer->SetAmbientLight(Vector3(0.2f, 0.2f, 0.2f));
 	DirectionalLight& dir = renderer->GetDirectionalLight();
-	dir.direction = Vector3(-1.0f, -0.707f, -0.707f);
+	dir.direction = Vector3(0.0f, -0.707f, -0.707f);
 	dir.diffuseColor = Vector3(0.78f, 0.88f, 1.0f);
 	dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
 
 	// Camera actor
-	//Camera* cameraActor = ECS->SpawnActor<Camera>();
+	Camera* cameraActor = ECS->SpawnActor<Camera>();
 
 	// UI elements
-	/*a = new Actor(this);
+	a = ECS->SpawnActor<Actor>();
 	a->SetActorLocation(Vector3(-350.0f, -350.0f, 0.0f));
-	SpriteComponent* sc = new SpriteComponent(a);
-	sc->SetTexture(mRenderer->GetTexture("../Solution/Assets/HealthBar.png"));
+	SpriteRendererComponent* sc = new SpriteRendererComponent("../Solution/Assets/HealthBar.png", a);
 
-	a = new Actor(this);
-	a->SetPosition(Vector3(375.0f, -275.0f, 0.0f));
-	a->SetScale(0.75f);
-	sc = new SpriteComponent(a);
-	sc->SetTexture(mRenderer->GetTexture("../Solution/Assets/Radar.png"));*/
-
-
+	a = ECS->SpawnActor<Actor>();
+	a->SetActorLocation(Vector3(375.0f, -275.0f, 0.0f));
+	a->SetActorScale(Vector3(0.75f, 0.75f, 0.75f));
+	sc = new SpriteRendererComponent("../Solution/Assets/Radar.png", a);
 }
 
 void Engine::HandleEvents()
