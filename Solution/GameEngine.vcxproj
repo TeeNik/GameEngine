@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Audio\AudioSystem.cpp" />
     <ClCompile Include="Source\BaseActors\Camera.cpp" />
     <ClCompile Include="Source\BaseActors\Plane.cpp" />
     <ClCompile Include="Source\BaseStructs\Transform.cpp" />
@@ -43,6 +44,7 @@
     <ClCompile Include="Source\ObjectSystem\SpriteRendererComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header\Audio\AudioSystem.hpp" />
     <ClInclude Include="Header\BaseActors\Camera.hpp" />
     <ClInclude Include="Header\BaseActors\Plane.hpp" />
     <ClInclude Include="Header\BaseStructs\Transform.hpp" />
@@ -85,7 +87,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{5AFCC713-FDD5-4663-8DEC-18D65A0B2DD3}</ProjectGuid>
     <RootNamespace>GameEngine</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.10240.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -104,7 +106,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -150,12 +152,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Header;$(SolutionDir)\..\Plugins\SDL\include;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\include;C:\Program Files (x86)\Visual Leak Detector\include;$(SolutionDir)\..\Plugins\GLEW\include\GL;$(SolutionDir)\..\Plugins\SOIL\include\SOIL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Header;$(SolutionDir)\..\Plugins\SDL\include;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\include;C:\Program Files (x86)\Visual Leak Detector\include;$(SolutionDir)\..\Plugins\GLEW\include\GL;$(SolutionDir)\..\Plugins\SOIL\include\SOIL;$(SolutionDir)\..\Plugins\SOIL\include\rapidjson;$(SolutionDir)\..\Plugins\FMOD\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\Plugins\SDL\lib\win64;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\lib\x64;C:\Program Files (x86)\Visual Leak Detector\lib\Win64;$(SolutionDir)\..\Plugins\GLEW\lib\Release\x64;$(SolutionDir)\..\Plugins\SOIL\lib\win\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\Plugins\SDL\lib\win64;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\lib\x64;C:\Program Files (x86)\Visual Leak Detector\lib\Win64;$(SolutionDir)\..\Plugins\GLEW\lib\Release\x64;$(SolutionDir)\..\Plugins\SOIL\lib\win\x64;$(SolutionDir)\..\Plugins\FMOD\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;SOIL.lib;fmod_vc.lib;fmodL_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
