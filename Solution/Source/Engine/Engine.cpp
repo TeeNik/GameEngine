@@ -15,6 +15,7 @@
 #include "Graphics/Shader.hpp"
 #include "ObjectSystem/MeshComponent.hpp"
 #include "Utils/Utils.hpp"
+#include "Audio/AudioSystem.hpp"
 
 #include "BaseActors/Plane.hpp"
 #include "BaseActors/Camera.hpp"
@@ -40,10 +41,17 @@ void Engine::Init()
 		delete renderer;
 		renderer = nullptr;
 	}
+	if (!audioSystem->Initialize()) {
+		printf("Failed to initialize audioSystem");
+		Clean();
+	}
 
 	ECS = new ObjectManager(this);
 	//Graphics2DSystem = new Graphics2D(spriteShader, renderer);
 	InputSystem = new Input();
+	audioSystem = new AudioSystem(this);
+	
+
 	isRunning = true;
 	Run();
 }
@@ -130,6 +138,8 @@ void Engine::Run()
 	a->SetActorLocation(Vector3(375.0f, -275.0f, 0.0f));
 	a->SetActorScale(Vector3(0.75f, 0.75f, 0.75f));
 	sc = new SpriteRendererComponent("../Solution/Assets/Radar.png", a);
+
+	audioSystem->PlayEvent("event:/Music");
 }
 
 void Engine::HandleEvents()
@@ -181,6 +191,11 @@ void Engine::Clean()
 	if (renderer) {
 		renderer->Shutdown();
 	}
+	delete renderer;
+	if (audioSystem) {
+		audioSystem->Shutdown();
+	}
+	delete audioSystem;
 	SDL_Quit();
 	std::cout << "Window Cleaned.\n";
 }

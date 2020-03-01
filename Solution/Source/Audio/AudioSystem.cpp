@@ -40,6 +40,22 @@ void AudioSystem::Shutdown()
 
 void AudioSystem::Update(float deltaTime)
 {
+	std::vector<unsigned int> done;
+	for (auto& iter : eventInstances) {
+		auto event = iter.second;
+		FMOD_STUDIO_PLAYBACK_STATE state;
+		event->getPlaybackState(&state);
+		if (state == FMOD_STUDIO_PLAYBACK_STOPPED) {
+			event->release();
+			done.emplace_back(iter.first);
+		}
+	}
+
+	for (auto id : done) {
+		eventInstances.erase(id);
+	}
+
+	system->update();
 }
 
 void AudioSystem::LoadBank(const std::string& name)

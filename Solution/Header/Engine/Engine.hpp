@@ -6,6 +6,7 @@ class Graphics2D;
 class ObjectManager;
 class InputSubscriber;
 class Renderer;
+class AudioSystem;
 
 class Engine {
 
@@ -31,6 +32,7 @@ private:
 	ObjectManager* ECS;
 	//Graphics2D* Graphics2DSystem;
 	Renderer* renderer;
+	AudioSystem* audioSystem;
 	Input* InputSystem;
 
 	bool isRunning;

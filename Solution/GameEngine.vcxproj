@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Audio\AudioSystem.cpp" />
+    <ClCompile Include="Source\Audio\SoundEvent.cpp" />
     <ClCompile Include="Source\BaseActors\Camera.cpp" />
     <ClCompile Include="Source\BaseActors\Plane.cpp" />
     <ClCompile Include="Source\BaseStructs\Transform.cpp" />
@@ -45,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Audio\AudioSystem.hpp" />
+    <ClInclude Include="Header\Audio\SoundEvent.hpp" />
     <ClInclude Include="Header\BaseActors\Camera.hpp" />
     <ClInclude Include="Header\BaseActors\Plane.hpp" />
     <ClInclude Include="Header\BaseStructs\Transform.hpp" />
