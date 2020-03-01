@@ -159,7 +159,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)\..\Plugins\SDL\lib\win64;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\lib\x64;C:\Program Files (x86)\Visual Leak Detector\lib\Win64;$(SolutionDir)\..\Plugins\GLEW\lib\Release\x64;$(SolutionDir)\..\Plugins\SOIL\lib\win\x64;$(SolutionDir)\..\Plugins\FMOD\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;SOIL.lib;fmod_vc.lib;fmodL_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;SOIL.lib;fmod64_vc.lib;fmodL64_vc.lib;fmodstudio_vc.lib;fmodstudioL_vc.lib;fsbank_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

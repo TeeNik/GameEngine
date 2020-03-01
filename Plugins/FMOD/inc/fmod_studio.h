@@ -2,7 +2,7 @@
 
 /*
     fmod_studio.h - FMOD Studio API
-    Copyright (c), Firelight Technologies Pty, Ltd. 2017.
+    Copyright (c), Firelight Technologies Pty, Ltd. 2020.
 
     This header defines the C API. If you are programming in C++ use fmod_studio.hpp.
 */
@@ -130,7 +130,7 @@ FMOD_RESULT F_API FMOD_Studio_EventInstance_SetTimelinePosition(FMOD_STUDIO_EVEN
 FMOD_RESULT F_API FMOD_Studio_EventInstance_GetPlaybackState(FMOD_STUDIO_EVENTINSTANCE *eventinstance, FMOD_STUDIO_PLAYBACK_STATE *state);
 FMOD_RESULT F_API FMOD_Studio_EventInstance_GetChannelGroup(FMOD_STUDIO_EVENTINSTANCE *eventinstance, FMOD_CHANNELGROUP **group);
 FMOD_RESULT F_API FMOD_Studio_EventInstance_Release(FMOD_STUDIO_EVENTINSTANCE *eventinstance);
-FMOD_RESULT F_API FMOD_Studio_EventInstance_IsVirtual(FMOD_STUDIO_EVENTINSTANCE *eventinstance, FMOD_BOOL *virtualState);
+FMOD_RESULT F_API FMOD_Studio_EventInstance_IsVirtual(FMOD_STUDIO_EVENTINSTANCE *eventinstance, FMOD_BOOL *virtualstate);
 FMOD_RESULT F_API FMOD_Studio_EventInstance_GetParameter(FMOD_STUDIO_EVENTINSTANCE *eventinstance, const char *name, FMOD_STUDIO_PARAMETERINSTANCE **parameter);
 FMOD_RESULT F_API FMOD_Studio_EventInstance_GetParameterByIndex(FMOD_STUDIO_EVENTINSTANCE *eventinstance, int index, FMOD_STUDIO_PARAMETERINSTANCE **parameter);
 FMOD_RESULT F_API FMOD_Studio_EventInstance_GetParameterCount(FMOD_STUDIO_EVENTINSTANCE *eventinstance, int *count);
@@ -138,6 +138,7 @@ FMOD_RESULT F_API FMOD_Studio_EventInstance_GetParameterValue(FMOD_STUDIO_EVENTI
 FMOD_RESULT F_API FMOD_Studio_EventInstance_SetParameterValue(FMOD_STUDIO_EVENTINSTANCE *eventinstance, const char *name, float value);
 FMOD_RESULT F_API FMOD_Studio_EventInstance_GetParameterValueByIndex(FMOD_STUDIO_EVENTINSTANCE *eventinstance, int index, float *value, float *finalvalue);
 FMOD_RESULT F_API FMOD_Studio_EventInstance_SetParameterValueByIndex(FMOD_STUDIO_EVENTINSTANCE *eventinstance, int index, float value);
+FMOD_RESULT F_API FMOD_Studio_EventInstance_SetParameterValuesByIndices(FMOD_STUDIO_EVENTINSTANCE *eventinstance, int *indices, float *values, int count);
 FMOD_RESULT F_API FMOD_Studio_EventInstance_TriggerCue(FMOD_STUDIO_EVENTINSTANCE *eventinstance);
 FMOD_RESULT F_API FMOD_Studio_EventInstance_SetCallback(FMOD_STUDIO_EVENTINSTANCE *eventinstance, FMOD_STUDIO_EVENT_CALLBACK callback, FMOD_STUDIO_EVENT_CALLBACK_TYPE callbackmask);
 FMOD_RESULT F_API FMOD_Studio_EventInstance_GetUserData(FMOD_STUDIO_EVENTINSTANCE *eventinstance, void **userdata);

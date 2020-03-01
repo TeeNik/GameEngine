@@ -1,6 +1,6 @@
 /*
     fmod_studio.hpp - FMOD Studio API
-    Copyright (c), Firelight Technologies Pty, Ltd. 2017.
+    Copyright (c), Firelight Technologies Pty, Ltd. 2020.
 
     This header defines the C++ API. If you are programming in C use fmod_studio.h.
 */
@@ -135,8 +135,8 @@ namespace Studio
 
         FMOD_RESULT F_API isSnapshot(bool *snapshot) const;
         FMOD_RESULT F_API isOneshot(bool *oneshot) const;
-        FMOD_RESULT F_API isStream(bool *isStream) const;
-        FMOD_RESULT F_API is3D(bool *is3D) const;
+        FMOD_RESULT F_API isStream(bool *stream) const;
+        FMOD_RESULT F_API is3D(bool *is3d) const;
         FMOD_RESULT F_API hasCue(bool *cue) const;
 
         // Playback control
@@ -206,13 +206,14 @@ namespace Studio
 
         FMOD_RESULT F_API release();
 
-        FMOD_RESULT F_API isVirtual(bool *virtualState) const;
+        FMOD_RESULT F_API isVirtual(bool *virtualstate) const;
 
         FMOD_RESULT F_API getParameterValue(const char *name, float *value, float *finalvalue = 0);
         FMOD_RESULT F_API setParameterValue(const char *name, float value);
 
         FMOD_RESULT F_API getParameterValueByIndex(int index, float *value, float *finalvalue = 0);
         FMOD_RESULT F_API setParameterValueByIndex(int index, float value);
+        FMOD_RESULT F_API setParameterValuesByIndices(int *indices, float *values, int count);
 
         // Deprecated - please use getParameterValue, setParameterValue, getParameterValueByIndex and setParameterValueByIndex instead
         FMOD_RESULT F_API getParameter(const char *name, ParameterInstance **parameter) const;
