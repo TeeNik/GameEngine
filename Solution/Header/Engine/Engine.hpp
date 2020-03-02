@@ -1,7 +1,7 @@
 #pragma once
 #include "SDL.h"
 
-class Input;
+class InputSystem;
 class Graphics2D;
 class ObjectManager;
 class InputSubscriber;
@@ -25,7 +25,7 @@ public:
 
 	//TODO Move systems' getters to interface
 	//inline Graphics2D* GetGraphics2D() { return Graphics2DSystem; }
-	inline InputSubscriber* GetInput() { return (InputSubscriber*)InputSystem; }
+	inline InputSubscriber* GetInput() { return (InputSubscriber*)inputSystem; }
 	inline Renderer* GetRenderer() { return renderer; }
 
 private:
@@ -33,7 +33,7 @@ private:
 	//Graphics2D* Graphics2DSystem;
 	Renderer* renderer;
 	AudioSystem* audioSystem;
-	Input* InputSystem;
+	InputSystem* inputSystem;
 
 	bool isRunning;
 	int frameCounter = 0;

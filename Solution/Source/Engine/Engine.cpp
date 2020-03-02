@@ -6,7 +6,7 @@
 #include "ObjectSystem/Actor.hpp"
 #include "ObjectSystem/AnimSpriteComponent.hpp"
 #include "ObjectSystem/ObjectManager.hpp"
-#include "Input/Input.hpp"
+#include "Input/InputSystem.hpp"
 #include "glew.h"
 #include "Graphics/Graphics2D.hpp"
 #include "ObjectSystem/InputComponent.hpp"
@@ -48,7 +48,7 @@ void Engine::Init()
 
 	ECS = new ObjectManager(this);
 	//Graphics2DSystem = new Graphics2D(spriteShader, renderer);
-	InputSystem = new Input();
+	inputSystem = new InputSystem();
 	isRunning = true;
 	Run();
 }
@@ -154,7 +154,7 @@ void Engine::HandleEvents()
 		if (state[SDL_SCANCODE_ESCAPE]) {
 			isRunning = false;
 		}
-		InputSystem->HandleEvents();
+		inputSystem->HandleEvents();
 	}
 }
 
@@ -182,7 +182,7 @@ void Engine::Render()
 void Engine::Clean()
 {
 	//delete Graphics2DSystem;
-	delete InputSystem;
+	delete inputSystem;
 	delete ECS;
 	if (renderer) {
 		renderer->Shutdown();
