@@ -1,6 +1,8 @@
 #pragma once
 #include "SDL_scancode.h"
 
+enum class ButtonState;
+
 class KeyboardState {
 public:
 	friend class InputSystem;

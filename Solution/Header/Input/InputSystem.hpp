@@ -6,7 +6,8 @@
 #include "SDL.h"
 #include "Input\InputSubscriber.hpp"
 #include "KeyboardState.hpp"
-
+#include "MouseState.hpp"
+#include "ControllerState.hpp"
 
 enum class ButtonState {
 	None,
@@ -16,7 +17,9 @@ enum class ButtonState {
 };
 
 struct InputState {
-	KeyboardState Keybord;
+	KeyboardState Keyboard;
+	MouseState Mouse;
+	ControllerState Controller;
 };
 
 class InputSystem : public InputSubscriber {
@@ -26,11 +29,10 @@ public:
 	InputSystem();
 	~InputSystem();
 
-	bool Initialize();
-	void Shutdown();
-
 	void PrepareForUpdate();
 	void Update();
+
+	void SetRelativeMouseMode(bool value);
 	
 	void HandleEvents();
 	void Subscribe(int keyCode, std::function<void()>& func) override;
@@ -38,6 +40,7 @@ public:
 
 private:
 	InputState state;
+	SDL_GameController* controller;
 
 	std::unordered_map<int, std::list<std::function<void()>>> eventsList;
 	SDL_Event event;
