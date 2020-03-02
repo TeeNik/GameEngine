@@ -20,7 +20,7 @@ namespace FMOD
 
 
 class AudioSystem {
-public:
+/*public:
 	AudioSystem(Engine* e);
 	~AudioSystem();
 
@@ -42,12 +42,12 @@ private:
 	static unsigned int NextID;
 
 	Engine* engine;
-	FMOD::Studio::System* system;
+	FMOD::System* system;
 	FMOD::System* lowLevelSystem;
 
 	std::unordered_map<std::string, FMOD::Studio::Bank*> banks;
 	std::unordered_map<std::string, FMOD::Studio::EventDescription*> events;
 	std::unordered_map<unsigned int, FMOD::Studio::EventInstance*> eventInstances;
 
-
+	*/
 };

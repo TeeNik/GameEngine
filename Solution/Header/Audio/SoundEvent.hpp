@@ -5,7 +5,7 @@
 class AudioSystem;
 
 class SoundEvent {
-public:
+/*public:
 	SoundEvent();
 	bool IsValid();
 	void Restart();
@@ -29,5 +29,5 @@ protected:
 private:
 	AudioSystem* system;
 	unsigned int ID;
-
+*/
 };

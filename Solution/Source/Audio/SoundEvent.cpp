@@ -1,6 +1,9 @@
+/*
 #include "Audio\SoundEvent.hpp"
 #include "Audio\AudioSystem.hpp"
-#include <fmod_studio.hpp>
+#include "fmod_studio.hpp"
+#include "fmod.h"
+#include "fmod_errors.h"
 
 SoundEvent::SoundEvent() : system(nullptr), ID(0)
 {
@@ -137,3 +140,4 @@ bool SoundEvent::Is3D() const
 void SoundEvent::Set3DAttributes(const Matrix4& worldTrans)
 {
 }
+*/

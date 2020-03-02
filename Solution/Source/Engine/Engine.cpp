@@ -41,17 +41,14 @@ void Engine::Init()
 		delete renderer;
 		renderer = nullptr;
 	}
-	if (!audioSystem->Initialize()) {
+	/*if (!audioSystem->Initialize()) {
 		printf("Failed to initialize audioSystem");
 		Clean();
-	}
+	}*/
 
 	ECS = new ObjectManager(this);
 	//Graphics2DSystem = new Graphics2D(spriteShader, renderer);
 	InputSystem = new Input();
-	audioSystem = new AudioSystem(this);
-	
-
 	isRunning = true;
 	Run();
 }
@@ -139,7 +136,6 @@ void Engine::Run()
 	a->SetActorScale(Vector3(0.75f, 0.75f, 0.75f));
 	sc = new SpriteRendererComponent("../Solution/Assets/Radar.png", a);
 
-	audioSystem->PlayEvent("event:/Music");
 }
 
 void Engine::HandleEvents()
@@ -193,7 +189,7 @@ void Engine::Clean()
 	}
 	delete renderer;
 	if (audioSystem) {
-		audioSystem->Shutdown();
+		//audioSystem->Shutdown();
 	}
 	delete audioSystem;
 	SDL_Quit();

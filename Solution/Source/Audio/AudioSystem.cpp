@@ -1,13 +1,16 @@
+/*
 #include "Audio\AudioSystem.hpp"
 #include "fmod_studio.hpp"
+#include "fmod.h"
 #include "fmod_errors.h"
 #include "Utils/Utils.hpp"
 #include <iostream>
 #include <vector>
 
-AudioSystem::AudioSystem(Engine* e)
+unsigned int AudioSystem::NextID = 0;
+
+AudioSystem::AudioSystem(Engine* e) : engine(e), system(nullptr), lowLevelSystem(nullptr)
 {
-	engine = e;
 }
 
 AudioSystem::~AudioSystem()
@@ -137,3 +140,15 @@ SoundEvent AudioSystem::PlayEvent(std::string name)
 	}
 	return SoundEvent(this, retID);
 }
+
+FMOD::Studio::EventInstance * AudioSystem::GetEventInstance(unsigned int id)
+{
+	FMOD::Studio::EventInstance* event = nullptr;
+	auto iter = eventInstances.find(id);
+	if (iter != eventInstances.end())
+	{
+		event = iter->second;
+	}
+	return event;
+}
+*/
