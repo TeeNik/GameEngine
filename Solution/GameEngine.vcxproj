@@ -31,7 +31,10 @@
     <ClCompile Include="Source\Graphics\Shader.cpp" />
     <ClCompile Include="Source\Graphics\Texture.cpp" />
     <ClCompile Include="Source\Graphics\VertexArray.cpp" />
-    <ClCompile Include="Source\Input\Input.cpp" />
+    <ClCompile Include="Source\Input\ControllerState.cpp" />
+    <ClCompile Include="Source\Input\InputSystem.cpp" />
+    <ClCompile Include="Source\Input\KeyboardState.cpp" />
+    <ClCompile Include="Source\Input\MouseState.cpp" />
     <ClCompile Include="Source\Math\Math.cpp" />
     <ClCompile Include="Source\ObjectSystem\AnimSpriteComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\InputComponent.cpp" />
@@ -57,8 +60,12 @@
     <ClInclude Include="Header\Graphics\Shader.hpp" />
     <ClInclude Include="Header\Graphics\Texture.hpp" />
     <ClInclude Include="Header\Graphics\VertexArray.hpp" />
+    <ClInclude Include="Header\Input\ControllerState.hpp" />
     <ClInclude Include="Header\Input\Input.hpp" />
     <ClInclude Include="Header\Input\InputSubscriber.hpp" />
+    <ClInclude Include="Header\Input\InputSystem.hpp" />
+    <ClInclude Include="Header\Input\KeyboardState.hpp" />
+    <ClInclude Include="Header\Input\MouseState.hpp" />
     <ClInclude Include="Header\Math\Math.h" />
     <ClInclude Include="Header\ObjectSystem\AnimSpriteComponent.hpp" />
     <ClInclude Include="Header\ObjectSystem\Component.hpp" />

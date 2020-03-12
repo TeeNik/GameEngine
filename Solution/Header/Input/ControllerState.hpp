@@ -1,7 +1,8 @@
 #pragma once
 #include "SDL_gamecontroller.h"
-#include "Input/InputSystem.hpp"
 #include "Math/Math.h"
+
+enum class ButtonState;
 
 class ControllerState {
 public:

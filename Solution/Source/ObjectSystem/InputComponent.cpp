@@ -1,5 +1,5 @@
 #include "ObjectSystem\InputComponent.hpp"
-#include "Input\Input.hpp"
+#include "Input\InputSystem.hpp"
 #include "ObjectSystem\Actor.hpp"
 #include "Engine\Engine.hpp"
 #include "Input\InputSubscriber.hpp"

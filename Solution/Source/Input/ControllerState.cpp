@@ -1,4 +1,5 @@
 #include "Input\ControllerState.hpp"
+#include "Input/InputSystem.hpp"
 
 bool ControllerState::GetButtonValue(SDL_GameControllerButton button) const
 {
