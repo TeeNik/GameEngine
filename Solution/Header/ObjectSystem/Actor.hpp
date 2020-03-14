@@ -24,7 +24,7 @@ public:
 	void AddComponent(Component* component);
 	void RemoveComponent(Component* component);
 	
-	inline Engine *const GetEngine() { return engine; }
+	inline Engine * GetEngine() { return engine; }
 	inline const Matrix4 GetWorldTransform() { return worldTransform; }
 	inline const Transform& GetActorTransform() { return transform; }
 	

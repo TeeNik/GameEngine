@@ -10,5 +10,5 @@ InputComponent::InputComponent(Actor* a) : Component(a)
 
 void InputComponent::BindKey(int keyCode, std::function<void()> func)
 {
-	owner->GetEngine()->GetInput()->Subscribe(keyCode, func);
+	//owner->GetEngine()->GetInput()->Subscribe(keyCode, func);
 }

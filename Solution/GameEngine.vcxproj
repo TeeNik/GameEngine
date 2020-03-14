@@ -37,6 +37,7 @@
     <ClCompile Include="Source\Input\MouseState.cpp" />
     <ClCompile Include="Source\Math\Math.cpp" />
     <ClCompile Include="Source\ObjectSystem\AnimSpriteComponent.cpp" />
+    <ClCompile Include="Source\ObjectSystem\Camera\CameraComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\InputComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\MeshComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\MovementComponent.cpp" />
@@ -46,6 +47,7 @@
     <ClCompile Include="Source\ObjectSystem\Actor.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
     <ClCompile Include="Source\ObjectSystem\SpriteRendererComponent.cpp" />
+    <ClCompile Include="Source\Temp\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Audio\AudioSystem.hpp" />
@@ -68,6 +70,7 @@
     <ClInclude Include="Header\Input\MouseState.hpp" />
     <ClInclude Include="Header\Math\Math.h" />
     <ClInclude Include="Header\ObjectSystem\AnimSpriteComponent.hpp" />
+    <ClInclude Include="Header\ObjectSystem\Camera\CameraComponent.hpp" />
     <ClInclude Include="Header\ObjectSystem\Component.hpp" />
     <ClInclude Include="Header\Engine\Engine.hpp" />
     <ClInclude Include="Header\ObjectSystem\Actor.hpp" />
@@ -76,6 +79,7 @@
     <ClInclude Include="Header\ObjectSystem\MovementComponent.hpp" />
     <ClInclude Include="Header\ObjectSystem\ObjectManager.hpp" />
     <ClInclude Include="Header\ObjectSystem\SpriteRendererComponent.hpp" />
+    <ClInclude Include="Header\Temp\Player.hpp" />
     <ClInclude Include="Header\Utils\Utils.hpp" />
   </ItemGroup>
   <ItemGroup>

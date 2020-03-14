@@ -9,6 +9,10 @@ bool KeyboardState::GetKeyValye(SDL_Scancode keyCode) const
 
 ButtonState KeyboardState::GetKeyState(SDL_Scancode keyCode) const
 {
+	if (keyCode == SDL_SCANCODE_W) {
+		currState[keyCode];
+	}
+
 	if (prevState[keyCode] == 0) {
 		if (currState[keyCode] == 0) {
 			return ButtonState::None;

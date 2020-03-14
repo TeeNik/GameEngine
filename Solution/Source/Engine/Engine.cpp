@@ -20,6 +20,8 @@
 #include "BaseActors/Plane.hpp"
 #include "BaseActors/Camera.hpp"
 
+#include "Temp/Player.hpp"
+
 Engine::Engine()
 {
 }
@@ -55,13 +57,7 @@ void Engine::Init()
 
 void Engine::Run()
 {
-	auto player = ECS->SpawnActor<Actor>();
-	player->SetActorScale(Vector3(.5f, .5f, 1));
-	//auto sprite = new AnimSpriteComponent("../Solution/Assets/adventurer.png", 7, 11, player);
-	auto sprite = new SpriteRendererComponent(Utils::ContructPath("player.png"), player);
-	//auto input = new InputComponent(player);
-	player->SetActorLocation(Vector3(sprite->GetTextureWidth()/2, sprite->GetTextureHeight()/2, 0));
-	//input->BindKey(SDLK_UP, []() {std::cout << "Up\n"; });
+	//auto player = ECS->SpawnActor<Player>();
 
 	Actor* a = ECS->SpawnActor<Actor>();
 	a->SetActorLocation(Vector3(200.0f, 75.0f, 0.0f));
@@ -122,9 +118,9 @@ void Engine::Run()
 	dir.direction = Vector3(0.0f, -0.707f, -0.707f);
 	dir.diffuseColor = Vector3(0.78f, 0.88f, 1.0f);
 	dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
-
+	
 	// Camera actor
-	Camera* cameraActor = ECS->SpawnActor<Camera>();
+	Player* playerCamera = ECS->SpawnActor<Player>();
 
 	// UI elements
 	a = ECS->SpawnActor<Actor>();
@@ -140,6 +136,8 @@ void Engine::Run()
 
 void Engine::HandleEvents()
 {
+	inputSystem->PrepareForUpdate();
+
 	//TODO refactor
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
@@ -154,8 +152,8 @@ void Engine::HandleEvents()
 		if (state[SDL_SCANCODE_ESCAPE]) {
 			isRunning = false;
 		}
-		inputSystem->HandleEvents();
 	}
+	inputSystem->Update();
 }
 
 void Engine::Update()

@@ -25,8 +25,8 @@ public:
 
 	//TODO Move systems' getters to interface
 	//inline Graphics2D* GetGraphics2D() { return Graphics2DSystem; }
-	inline InputSubscriber* GetInput() { return (InputSubscriber*)inputSystem; }
-	inline Renderer* GetRenderer() { return renderer; }
+	inline const InputSystem* GetInput() const { return inputSystem; }
+	inline Renderer* GetRenderer() const { return renderer; }
 
 private:
 	ObjectManager* ECS;

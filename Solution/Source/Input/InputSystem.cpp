@@ -9,9 +9,9 @@ InputSystem::InputSystem()
 	state.Mouse.prevButtons = 0;
 
 	controller = SDL_GameControllerOpen(0);
-	//state.Controller.isConnected = controller != nullptr;
-	//memset(state.Controller.currButtons, 0, SDL_CONTROLLER_BUTTON_MAX);
-	//memset(state.Controller.prevButtons, 0, SDL_CONTROLLER_BUTTON_MAX);
+	state.Controller.isConnected = controller != nullptr;
+	memset(state.Controller.currButtons, 0, SDL_CONTROLLER_BUTTON_MAX);
+	memset(state.Controller.prevButtons, 0, SDL_CONTROLLER_BUTTON_MAX);
 }
 
 InputSystem::~InputSystem()
@@ -26,7 +26,7 @@ void InputSystem::PrepareForUpdate()
 	state.Mouse.isRelative = false;
 	state.Mouse.scrollWheel = Vector2::Zero;
 
-	//memcpy(state.Controller.prevButtons, state.Controller.currButtons, SDL_CONTROLLER_BUTTON_MAX);
+	memcpy(state.Controller.prevButtons, state.Controller.currButtons, SDL_CONTROLLER_BUTTON_MAX);
 }
 
 void InputSystem::Update()
@@ -41,12 +41,14 @@ void InputSystem::Update()
 		state.Mouse.currButtons = SDL_GetMouseState(&x, &y);
 	}
 
+	state.Keyboard.currState = SDL_GetKeyboardState(NULL);
+
 	state.Mouse.mousePos.x = static_cast<float>(x);
 	state.Mouse.mousePos.y = static_cast<float>(y);
 
 	for (int i = 0; i < SDL_CONTROLLER_BUTTON_MAX; i++)
 	{
-		//state.Controller.currButtons[i] = SDL_GameControllerGetButton(controller, SDL_GameControllerButton(i));
+		state.Controller.currButtons[i] = SDL_GameControllerGetButton(controller, SDL_GameControllerButton(i));
 	}
 }
 
