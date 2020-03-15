@@ -60,7 +60,7 @@ void Engine::Run()
 	//auto player = ECS->SpawnActor<Player>();
 
 	Actor* a = ECS->SpawnActor<Actor>();
-	a->SetActorLocation(Vector3(200.0f, 75.0f, 0.0f));
+	a->SetActorPosition(Vector3(200.0f, 75.0f, 0.0f));
 	a->SetActorScale(Vector3(100,100,100));
 	Quaternion q(Vector3::UnitY, -Math::PiOver2);
 	q = Quaternion::Concatenate(q, Quaternion(Vector3::UnitZ, Math::Pi + Math::Pi / 4.0f));
@@ -69,7 +69,7 @@ void Engine::Run()
 	mc->SetMesh(renderer->GetMesh(Utils::ContructPath("Cube.gpmesh")));
 
 	a = ECS->SpawnActor<Actor>();
-	a->SetActorLocation(Vector3(200.0f, -75.0f, 0.0f));
+	a->SetActorPosition(Vector3(200.0f, -75.0f, 0.0f));
 	a->SetActorScale(Vector3(3,3,3));
 	mc = new MeshComponent(a);
 	mc->SetMesh(renderer->GetMesh(Utils::ContructPath("Sphere.gpmesh")));
@@ -82,7 +82,7 @@ void Engine::Run()
 		for (int j = 0; j < 10; j++)
 		{
 			a = ECS->SpawnActor<Plane>();
-			a->SetActorLocation(Vector3(start + i * size, start + j * size, -100.0f));
+			a->SetActorPosition(Vector3(start + i * size, start + j * size, -100.0f));
 		}
 	}
 
@@ -91,11 +91,11 @@ void Engine::Run()
 	for (int i = 0; i < 10; i++)
 	{
 		a = ECS->SpawnActor<Plane>();
-		a->SetActorLocation(Vector3(start + i * size, start - size, 0.0f));
+		a->SetActorPosition(Vector3(start + i * size, start - size, 0.0f));
 		a->SetActorRotation(q);
 
 		a = ECS->SpawnActor<Plane>();
-		a->SetActorLocation(Vector3(start + i * size, -start + size, 0.0f));
+		a->SetActorPosition(Vector3(start + i * size, -start + size, 0.0f));
 		a->SetActorRotation(q);
 	}
 
@@ -104,11 +104,11 @@ void Engine::Run()
 	for (int i = 0; i < 10; i++)
 	{
 		a = ECS->SpawnActor<Plane>();
-		a->SetActorLocation(Vector3(start - size, start + i * size, 0.0f));
+		a->SetActorPosition(Vector3(start - size, start + i * size, 0.0f));
 		a->SetActorRotation(q);
 
 		a = ECS->SpawnActor<Plane>();
-		a->SetActorLocation(Vector3(-start + size, start + i * size, 0.0f));
+		a->SetActorPosition(Vector3(-start + size, start + i * size, 0.0f));
 		a->SetActorRotation(q);
 	}
 
@@ -124,11 +124,11 @@ void Engine::Run()
 
 	// UI elements
 	a = ECS->SpawnActor<Actor>();
-	a->SetActorLocation(Vector3(-350.0f, -350.0f, 0.0f));
+	a->SetActorPosition(Vector3(-350.0f, -350.0f, 0.0f));
 	SpriteRendererComponent* sc = new SpriteRendererComponent("../Solution/Assets/HealthBar.png", a);
 
 	a = ECS->SpawnActor<Actor>();
-	a->SetActorLocation(Vector3(375.0f, -275.0f, 0.0f));
+	a->SetActorPosition(Vector3(375.0f, -275.0f, 0.0f));
 	a->SetActorScale(Vector3(0.75f, 0.75f, 0.75f));
 	sc = new SpriteRendererComponent("../Solution/Assets/Radar.png", a);
 

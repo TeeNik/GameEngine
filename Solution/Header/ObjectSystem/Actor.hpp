@@ -28,8 +28,8 @@ public:
 	inline const Matrix4 GetWorldTransform() { return worldTransform; }
 	inline const Transform& GetActorTransform() { return transform; }
 	
-	inline const Vector3& GetActorLocation() { return transform.position;}
-	inline void SetActorLocation(const Vector3& location) { transform.position = location; recomputeWorldTransform = true;}
+	inline const Vector3& GetActorPosition() { return transform.position;}
+	inline void SetActorPosition(const Vector3& location) { transform.position = location; recomputeWorldTransform = true;}
 	
 	inline const Vector3& GetActorScale() { return transform.scale; }
 	inline void SetActorScale(const Vector3& scale) { transform.scale = scale; recomputeWorldTransform = true; }
@@ -38,6 +38,8 @@ public:
 	inline void SetActorRotation(const Quaternion& rotation) { transform.rotation = rotation; recomputeWorldTransform = true; }
 	
 	inline Vector3 GetForward() const { return Vector3::Transform(Vector3::UnitX, transform.rotation); }
+	inline Vector3 GetRight() const { return Vector3::Transform(Vector3::UnitY, transform.rotation); }
+	inline Vector3 GetUp() const { return Vector3::Transform(Vector3::UnitZ, transform.rotation); }
 
 	void ComputeWorldTransform();
 

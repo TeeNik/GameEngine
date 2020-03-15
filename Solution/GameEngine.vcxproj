@@ -38,6 +38,7 @@
     <ClCompile Include="Source\Math\Math.cpp" />
     <ClCompile Include="Source\ObjectSystem\AnimSpriteComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\Camera\CameraComponent.cpp" />
+    <ClCompile Include="Source\ObjectSystem\Camera\FPSCamera.cpp" />
     <ClCompile Include="Source\ObjectSystem\InputComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\MeshComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\MovementComponent.cpp" />
@@ -71,6 +72,7 @@
     <ClInclude Include="Header\Math\Math.h" />
     <ClInclude Include="Header\ObjectSystem\AnimSpriteComponent.hpp" />
     <ClInclude Include="Header\ObjectSystem\Camera\CameraComponent.hpp" />
+    <ClInclude Include="Header\ObjectSystem\Camera\FPSCamera.hpp" />
     <ClInclude Include="Header\ObjectSystem\Component.hpp" />
     <ClInclude Include="Header\Engine\Engine.hpp" />
     <ClInclude Include="Header\ObjectSystem\Actor.hpp" />

@@ -10,7 +10,7 @@ void Camera::Update(float deltaTime)
 {
 	Actor::Update(deltaTime);
 
-	Vector3 cameraPos = GetActorLocation();
+	Vector3 cameraPos = GetActorPosition();
 	Vector3 target = cameraPos + GetForward() * 100.0f;
 	Vector3 up = Vector3::UnitZ;
 

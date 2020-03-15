@@ -24,8 +24,8 @@ void MovementComponent::Update(float deltaTime)
 
 	if (!Math::NearZero(forwardSpeed))
 	{
-		Vector3 pos = owner->GetActorLocation();
+		Vector3 pos = owner->GetActorPosition();
 		pos += owner->GetForward() * forwardSpeed * deltaTime;
-		owner->SetActorLocation(pos);
+		owner->SetActorPosition(pos);
 	}
 }
