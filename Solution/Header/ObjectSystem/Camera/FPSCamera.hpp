@@ -7,8 +7,10 @@ public:
 
 	virtual void Update(float deltaTime) override;
 
+	inline void SetPitchSpeed(float speed) { pitchSpeed = speed; }
+
 private:
-	float pitchSpeed;
-	float maxPitch;
-	float pitch;
+	float pitchSpeed = 0;
+	float maxPitch = 60;
+	float pitch = 0;
 };

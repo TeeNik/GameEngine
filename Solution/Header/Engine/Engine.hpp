@@ -25,7 +25,7 @@ public:
 
 	//TODO Move systems' getters to interface
 	//inline Graphics2D* GetGraphics2D() { return Graphics2DSystem; }
-	inline const InputSystem* GetInput() const { return inputSystem; }
+	inline InputSystem* GetInput() const { return inputSystem; }
 	inline Renderer* GetRenderer() const { return renderer; }
 
 private:
