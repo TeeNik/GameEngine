@@ -7,9 +7,10 @@ enum class ButtonState;
 class MouseState {
 	friend class InputSystem;
 
-	const Vector2& GetPosition() const { return mousePos; }
-	const Vector2& GetScrollWheel() const { return scrollWheel; }
-	bool IsRelative() const { return isRelative; }
+public:
+	inline const Vector2& GetPosition() const { return mousePos; }
+	inline const Vector2& GetScrollWheel() const { return scrollWheel; }
+	inline bool IsRelative() const { return isRelative; }
 
 	bool GetButtonValue(int button) const;
 	ButtonState GetButtonState(int button) const;

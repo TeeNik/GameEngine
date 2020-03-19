@@ -23,7 +23,7 @@ void InputSystem::PrepareForUpdate()
 	memcpy(state.Keyboard.prevState, state.Keyboard.currState, SDL_NUM_SCANCODES);
 
 	state.Mouse.prevButtons = state.Mouse.currButtons;
-	state.Mouse.isRelative = false;
+	//state.Mouse.isRelative = false;
 	state.Mouse.scrollWheel = Vector2::Zero;
 
 	memcpy(state.Controller.prevButtons, state.Controller.currButtons, SDL_CONTROLLER_BUTTON_MAX);
