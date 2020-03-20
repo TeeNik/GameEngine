@@ -15,7 +15,9 @@ MovementComponent::MovementComponent(Actor* o, int updateOrder) :
 
 void MovementComponent::Update(float deltaTime)
 {
-	auto keyboard = owner->GetEngine()->GetInput()->GetState().Keyboard;
+	auto inputState = owner->GetEngine()->GetInput()->GetState();
+	auto keyboard = inputState.Keyboard;
+	auto mouse = inputState.Mouse;
 
 	float forwardSpeed = 0.0f;
 	float strafeSpeed = 0.0f;
@@ -32,8 +34,9 @@ void MovementComponent::Update(float deltaTime)
 		strafeSpeed -= 400.0f;
 	}
 
-	int x = 0, y = 0;
-	//SDL_GetRelativeMouseState(&x, &y);
+	auto mousePos = mouse.GetPosition();
+	int x = mousePos.x;
+	int y = mousePos.y;
 
 	const int maxMouseSpeed = 500;
 	const float maxAngularSpeed = Math::Pi * 8;

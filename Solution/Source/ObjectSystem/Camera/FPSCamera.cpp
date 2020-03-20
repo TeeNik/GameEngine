@@ -1,6 +1,8 @@
 #include "ObjectSystem/Camera/FPSCamera.hpp"
 #include "ObjectSystem/Actor.hpp"
 #include "SDL.h"
+#include "Input/InputSystem.hpp"
+#include "Engine/Engine.hpp"
 
 FPSCamera::FPSCamera(Actor* o) : CameraComponent(o)
 {
@@ -13,9 +15,10 @@ void FPSCamera::Update(float deltaTime)
 
 	Vector3 cameraPos = owner->GetActorPosition();
 	
-	int x, y;
-	SDL_GetRelativeMouseState(&x, &y);
-	printf("%d %d\n", x, y);
+	auto mouse = owner->GetEngine()->GetInput()->GetState().Mouse;
+	auto mousePos = mouse.GetPosition();
+
+	int y = mousePos.y;
 	const int maxMouseSpeed = 500;
 	const float maxPitchSpeed = Math::Pi * 8;
 	float pitchSpeed = 0.0f;
@@ -25,7 +28,6 @@ void FPSCamera::Update(float deltaTime)
 	}
 
 	pitch += pitchSpeed * deltaTime;
-	printf("%f", pitch);
 	if (pitch > maxPitch) {
 		10 + 5;
 	}
