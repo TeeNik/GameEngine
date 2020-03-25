@@ -13,6 +13,8 @@ class Texture;
 class Mesh;
 class Engine;
 class VertexArray;
+class Font;
+class Canvas;
 
 struct DirectionalLight
 {
@@ -46,8 +48,10 @@ public:
 	inline void SetAmbientLight(const Vector3& ambient) { ambientLight = ambient; }
 	inline DirectionalLight& GetDirectionalLight() { return dirLight; }
 
-	float GetScreenWidth() const { return screenWidth; }
-	float GetScreenHeight() const { return screenHeight; }
+	inline float GetScreenWidth() const { return screenWidth; }
+	inline float GetScreenHeight() const { return screenHeight; }
+
+	Font* GetFont(const std::string& fileName);
 private:
 	bool LoadShaders();
 	void CreateSpriteVerts();
@@ -63,6 +67,7 @@ private:
 
 	Shader* spriteShader;
 	VertexArray* spriteVerts;
+	std::unordered_map<std::string, Font*> fonts;
 
 	Shader* meshShader;
 
@@ -77,4 +82,6 @@ private:
 
 	SDL_Window* window;
 	SDL_GLContext context;
+
+	Canvas* canvas;
 };

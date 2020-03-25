@@ -9,6 +9,9 @@
 #include "ObjectSystem/MeshComponent.hpp"
 #include <glew.h>
 #include "Utils/Utils.hpp"
+#include "Graphics/UI/Font.hpp"
+
+#include "Graphics/UI/Canvas.hpp"
 
 Renderer::Renderer(Engine* engine) :
 	engine(engine),
@@ -65,6 +68,8 @@ bool Renderer::Initialize(int sw, int sh)
 	}
 	CreateSpriteVerts();
 
+	canvas = new Canvas(engine);
+
 	return true;
 }
 
@@ -94,6 +99,12 @@ void Renderer::UnloadData()
 		delete mesh.second;
 	}
 	meshes.clear();
+
+	for (auto font : fonts) {
+		font.second->Unload();
+		delete font.second;
+	}
+	fonts.clear();
 }
 
 void Renderer::Draw()
@@ -125,6 +136,8 @@ void Renderer::Draw()
 	{
 		sprite->Draw(spriteShader);
 	}
+
+	canvas->Draw(spriteShader);
 
 	SDL_GL_SwapWindow(window);
 }
@@ -207,6 +220,30 @@ Mesh* Renderer::GetMesh(const std::string& fileName)
 		}
 	}
 	return m;
+}
+
+Font* Renderer::GetFont(const std::string& fileName)
+{
+	auto iter = fonts.find(fileName);
+	if (iter != fonts.end())
+	{
+		return iter->second;
+	}
+	else
+	{
+		Font* font = new Font(engine);
+		if (font->Load(fileName))
+		{
+			fonts.emplace(fileName, font);
+		}
+		else
+		{
+			font->Unload();
+			delete font;
+			font = nullptr;
+		}
+		return font;
+	}
 }
 
 bool Renderer::LoadShaders()
