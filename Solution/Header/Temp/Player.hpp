@@ -2,7 +2,7 @@
 #include "ObjectSystem/Actor.hpp"
 
 class Engine;
-class FPSCamera;
+class CameraComponent;
 class MovementComponent;
 
 class Player : public Actor {
@@ -13,7 +13,7 @@ public:
 	virtual void Update(float deltaTime) override;
 
 protected:
-	FPSCamera* camera;
+	CameraComponent* camera;
 	MovementComponent* moveComp;
 
 };

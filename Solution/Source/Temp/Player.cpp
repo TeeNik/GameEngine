@@ -3,7 +3,7 @@
 #include "Utils/Utils.hpp"
 #include "Engine/Engine.hpp"
 #include "Input/InputSystem.hpp"
-#include "ObjectSystem/Camera/FPSCamera.hpp"
+#include "ObjectSystem/Camera/FollowCamera.hpp"
 #include "ObjectSystem/MovementComponent.hpp"
 
 #include <iostream>
@@ -11,7 +11,7 @@
 Player::Player(Engine* e) : Actor(e)
 {
 	SetActorPosition(Vector3(-50, 0, 0));
-	camera = new FPSCamera(this);
+	camera = new FollowCamera(this);
 	moveComp = new MovementComponent(this);
 	//SetActorScale(Vector3(.5f, .5f, 1));
 	//auto sprite = new SpriteRendererComponent(Utils::ContructPath("player.png"), this);
