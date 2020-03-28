@@ -3,7 +3,7 @@
 
 class Shader;
 class Texture;
-class Font;
+class Text;
 class Engine;
 
 class Canvas {
@@ -20,6 +20,5 @@ protected:
 	Engine* engine;
 
 private:
-	Font* font;
-	Texture* text;
+	Text* text;
 };
