@@ -15,7 +15,7 @@ public:
 	bool Load(const std::string& fileName);
 	void Unload();
 
-	Texture* RenderText(const std::string& textKey, const Vector3& color = Color::White, int pointSize = 30);
+	Texture* RenderText(const std::string& textKey, const Vector3& color = Color::White, int pointSize = 30) const;
 
 private:
 	std::unordered_map<int, TTF_Font*> fontData;

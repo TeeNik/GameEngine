@@ -33,7 +33,7 @@ void Font::Unload()
 	}
 }
 
-Texture* Font::RenderText(const std::string& text, const Vector3& color, int pointSize)
+Texture* Font::RenderText(const std::string& text, const Vector3& color, int pointSize) const
 {
 	Texture* texture = nullptr;
 
