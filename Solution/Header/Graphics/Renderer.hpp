@@ -30,7 +30,6 @@ public:
 
 	bool Initialize(int sw, int sh);
 	void Shutdown();
-	void UnloadData();
 
 	void Draw();
 
@@ -68,6 +67,7 @@ private:
 	Shader* spriteShader;
 	VertexArray* spriteVerts;
 	std::unordered_map<std::string, Font*> fonts;
+	std::vector<Canvas*> canvases;
 
 	Shader* meshShader;
 
@@ -82,6 +82,4 @@ private:
 
 	SDL_Window* window;
 	SDL_GLContext context;
-
-	Canvas* canvas;
 };

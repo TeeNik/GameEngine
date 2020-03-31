@@ -68,23 +68,12 @@ bool Renderer::Initialize(int sw, int sh)
 	}
 	CreateSpriteVerts();
 
-	canvas = new Canvas(engine);
+	canvases.emplace_back(new Canvas(engine));
 
 	return true;
 }
 
 void Renderer::Shutdown()
-{
-	delete spriteVerts;
-	spriteShader->Unload();
-	delete spriteShader;
-	meshShader->Unload();
-	delete meshShader;
-	SDL_GL_DeleteContext(context);
-	SDL_DestroyWindow(window);
-}
-
-void Renderer::UnloadData()
 {
 	for (auto texture : textures)
 	{
@@ -105,6 +94,19 @@ void Renderer::UnloadData()
 		delete font.second;
 	}
 	fonts.clear();
+
+	for (auto canvas : canvases) {
+		delete canvas;
+	}
+	canvases.clear();
+
+	delete spriteVerts;
+	spriteShader->Unload();
+	delete spriteShader;
+	meshShader->Unload();
+	delete meshShader;
+	SDL_GL_DeleteContext(context);
+	SDL_DestroyWindow(window);
 }
 
 void Renderer::Draw()
@@ -137,7 +139,9 @@ void Renderer::Draw()
 		sprite->Draw(spriteShader);
 	}
 
-	canvas->Draw(spriteShader);
+	for (auto canvas : canvases) {
+		canvas->Draw(spriteShader);
+	}
 
 	SDL_GL_SwapWindow(window);
 }

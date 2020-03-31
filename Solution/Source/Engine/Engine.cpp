@@ -2,6 +2,7 @@
 #include <vector>
 #include "SDL.h"
 #include "SDL_image.h"
+#include "SDL_ttf.h"
 #include "Engine/Engine.hpp"
 #include "ObjectSystem/Actor.hpp"
 #include "ObjectSystem/AnimSpriteComponent.hpp"
@@ -35,6 +36,12 @@ void Engine::Init()
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		printf("Unable to initialize SDL: %s", SDL_GetError());
+		return;
+	}
+
+	if (TTF_Init() != 0) {
+		printf("Failed to initialize SDL_ttf");
+		return;
 	}
 
 	renderer = new Renderer(this);
@@ -42,6 +49,7 @@ void Engine::Init()
 		printf("Failed to initialize renderer");
 		delete renderer;
 		renderer = nullptr;
+		return;
 	}
 	/*if (!audioSystem->Initialize()) {
 		printf("Failed to initialize audioSystem");
