@@ -13,7 +13,6 @@ public:
 	~Text();
 
 	void SetText(const std::string& text, const Vector3& color = Color::White, int pointSize = 30);
-	void SetText(const std::string& text);
 	void SetColor(const Vector3& color);
 	void SetPointSize(int size);
 

@@ -26,14 +26,6 @@ void Text::SetText(const std::string& t, const Vector3& c, int s)
 	}
 }
 
-void Text::SetText(const std::string& t)
-{
-	if (text != t) {
-		text = t;
-		texture = font->RenderText(text, color, pointSize);
-	}
-}
-
 void Text::SetColor(const Vector3& c)
 {
 	if (color != c) {
