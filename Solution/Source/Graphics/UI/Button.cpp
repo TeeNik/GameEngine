@@ -3,18 +3,17 @@
 #include "Graphics/UI/Text.hpp"
 #include "Graphics/UI/Font.hpp"
 
-Button::Button(const std::string& buttonText, const std::string imageName, Font* font, std::function<void()> onClick,
-	const Vector2& pos, const Vector2& dims) : mOnClick(onClick),
-	mPosition(pos),
-	dimensions(dims),
-	mHighlighted(false)
+Button::Button(const std::string& buttonText, const std::string& imageName, 
+		const Font* font, std::function<void()> onClick,
+		const Vector2& pos, const Vector2& dims) : onClick(onClick),
+		position(pos), dimensions(dims), highlighted(false)
 {
 	text = new Text(font);
 	text->SetText(buttonText, Color::White, 30);
 
 	image = new Texture();
-	image->Load(imageName);
-	dimensions = Vector2()
+	//image->Load(imageName);
+	dimensions = dims;
 }
 
 Button::~Button()
@@ -29,17 +28,17 @@ void Button::SetText(const std::string& buttonText)
 
 bool Button::ContainsPoint(const Vector2& pt) const
 {
-	bool no = pt.x < (mPosition.x - dimensions.x / 2.0f) ||
-		pt.x >(mPosition.x + dimensions.x / 2.0f) ||
-		pt.y < (mPosition.y - dimensions.y / 2.0f) ||
-		pt.y >(mPosition.y + dimensions.y / 2.0f);
+	bool no = pt.x < (position.x - dimensions.x / 2.0f) ||
+		pt.x >(position.x + dimensions.x / 2.0f) ||
+		pt.y < (position.y - dimensions.y / 2.0f) ||
+		pt.y >(position.y + dimensions.y / 2.0f);
 	return !no;
 }
 
 void Button::OnClick()
 {
-	if (mOnClick)
+	if (onClick)
 	{
-		mOnClick();
+		onClick();
 	}
 }
