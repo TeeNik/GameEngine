@@ -10,12 +10,10 @@ class Texture;
 class SpriteRendererComponent : public Component {
 	
 public:
-	SpriteRendererComponent(std::string, Actor* o, int drawOrder = 100);
-
+	SpriteRendererComponent(Actor* o);
 	~SpriteRendererComponent();
 
-	virtual void BeginPlay() override;
-	virtual void SetTexture(std::string path);
+	virtual void SetTexture(std::string path, int drawOrder = 100);
 	virtual void SetTexture(Texture* texture);
 	virtual void Draw(class Shader* renderer);
 

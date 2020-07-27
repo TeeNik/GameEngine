@@ -5,7 +5,8 @@ class Actor;
 class Component
 {
 public:
-	Component(Actor* o, int updateOrd = 100);
+
+	Component(Actor* o);
 	Actor* GetOwner() { return owner; }
 
 	virtual void BeginPlay() {}

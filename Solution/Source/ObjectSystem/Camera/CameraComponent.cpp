@@ -10,6 +10,5 @@ CameraComponent::CameraComponent(Actor* o) : Component(o)
 
 void CameraComponent::SetViewMatrix(const Matrix4& view)
 {
-	auto engine = owner->GetEngine();
-	engine->GetRenderer()->SetViewMatrix(view);
+	owner->GetEngine()->GetRenderer()->SetViewMatrix(view);
 }

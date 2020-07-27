@@ -1,7 +1,9 @@
 #include "ObjectSystem\AnimSpriteComponent.hpp"
 
-AnimSpriteComponent::AnimSpriteComponent(const char* path, int col, int row, Actor* o, int drawOrder) : SpriteRendererComponent(path, o, drawOrder)
+void AnimSpriteComponent::SetSourceImage(const char* path, int col, int row, int drawOrder)
 {
+	SetTexture(path, drawOrder);
+
 	columns = col;
 	rows = row;
 

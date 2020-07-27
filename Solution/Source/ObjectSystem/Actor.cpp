@@ -46,6 +46,7 @@ void Actor::Destroy()
 	isActive = false;
 }
 
+/*
 void Actor::AddComponent(Component * component)
 {
 	int myOrder = component->GetUpdateOrder();
@@ -59,6 +60,7 @@ void Actor::AddComponent(Component * component)
 	}
 	components.insert(iter, component);
 }
+*/
 
 void Actor::RemoveComponent(Component * component)
 {

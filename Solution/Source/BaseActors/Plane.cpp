@@ -8,6 +8,6 @@
 Plane::Plane(Engine* e) : Actor(e)
 {
 	SetActorScale(InitialScale);
-	mc = new MeshComponent(this);
+	mc = AddComponent<MeshComponent>();
 	mc->SetMesh(GetEngine()->GetRenderer()->GetMesh("Assets/Plane.gpmesh"));
 }

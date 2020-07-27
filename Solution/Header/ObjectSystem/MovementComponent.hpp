@@ -4,7 +4,7 @@
 class MovementComponent : public Component {
 
 public:
-	MovementComponent(Actor* o, int updateOrder = 10);
+	MovementComponent(Actor* o);
 	virtual void Update(float deltaTime) override;
 
 	float GetAngularSpeed() const { return angularSpeed; }

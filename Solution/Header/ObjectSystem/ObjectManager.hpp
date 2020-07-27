@@ -11,15 +11,15 @@ class ObjectManager {
 private:
 	std::queue<Actor*> pendingList;
 	std::vector<Actor*> objects;
+
 	Engine* engine;
 
 public:
-	ObjectManager(Engine* e);
+	ObjectManager(Engine * raw_e);
 	~ObjectManager();
 
 	void Update(float deltaTime);
 	void Refresh();
-	//Actor* CreateActor();
 
 	template<typename T>
 	T* SpawnActor() {

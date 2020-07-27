@@ -5,11 +5,12 @@
 #include "Engine/Engine.hpp"
 #include "Input/InputSystem.hpp"
 
-MovementComponent::MovementComponent(Actor* o, int updateOrder) : 
-	Component(o, updateOrder),
+MovementComponent::MovementComponent(Actor* o) : 
+	Component(o),
 	angularSpeed(0),
 	forwardSpeed(0)
 {
+	updateOrder = 10;
 	o->GetEngine()->GetInput()->SetRelativeMouseMode(true);
 }
 

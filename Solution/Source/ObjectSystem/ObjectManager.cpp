@@ -37,10 +37,3 @@ void ObjectManager::Refresh()
 		return !object->IsActive();
 	}), std::end(objects));
 }
- 
-/*Actor* ObjectManager::CreateActor()
-{
-	auto actor = new Actor(engine);
-	pendingList.push(actor);
-	return actor;
-}*/

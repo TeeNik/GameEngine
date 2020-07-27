@@ -6,14 +6,10 @@
 #include "Graphics/Shader.hpp"
 #include "Graphics/Texture.hpp"
 
-SpriteRendererComponent::SpriteRendererComponent(std::string path, Actor* o, int drawOrder) : Component(o), drawOrder(drawOrder)
+SpriteRendererComponent::SpriteRendererComponent(Actor* o) : Component(o)
 {
+	updateOrder = 100;
 	actorTransform = &owner->GetActorTransform();
-	auto renderer = owner->GetEngine()->GetRenderer();
-	renderer->AddSprite(this);
-	texture = renderer->GetTexture(path);
-	textureWidth = texture->GetWidth();
-	textureHeight = texture->GetHeight();
 }
 
 SpriteRendererComponent::~SpriteRendererComponent()
@@ -23,15 +19,16 @@ SpriteRendererComponent::~SpriteRendererComponent()
 		texture->Unload();
 	}
 }
-
-void SpriteRendererComponent::BeginPlay()
+void SpriteRendererComponent::SetTexture(std::string path, int drawOrder)
 {
+	auto renderer = owner->GetEngine()->GetRenderer();
+	renderer->AddSprite(this);
+	texture = renderer->GetTexture(path);
+	textureWidth = texture->GetWidth();
+	textureHeight = texture->GetHeight();
 }
 
-void SpriteRendererComponent::SetTexture(std::string path)
-{
-}
-
+//not finished
 void SpriteRendererComponent::SetTexture(Texture* tex)
 {
 	texture = tex;

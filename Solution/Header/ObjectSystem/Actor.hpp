@@ -21,7 +21,23 @@ public:
 	const bool IsActive();
 	void Destroy();
 
-	void AddComponent(Component* component);
+	template<typename T>
+	T* AddComponent() {
+		T* component = new T(this);
+		int order = component->GetUpdateOrder();
+		auto iter = components.begin();
+		for (; iter != components.end(); ++iter)
+		{
+			if (order < (*iter)->GetUpdateOrder())
+			{
+				break;
+			}
+		}
+		components.insert(iter, component);
+		return component;
+	}
+
+	//void AddComponent(Component* component);
 	void RemoveComponent(Component* component);
 	
 	inline Engine * GetEngine() { return engine; }

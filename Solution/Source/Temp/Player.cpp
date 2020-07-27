@@ -11,8 +11,8 @@
 Player::Player(Engine* e) : Actor(e)
 {
 	SetActorPosition(Vector3(-50, 0, 0));
-	camera = new FollowCamera(this);
-	moveComp = new MovementComponent(this);
+	camera = AddComponent<FollowCamera>();
+	moveComp = AddComponent<MovementComponent>();
 	//SetActorScale(Vector3(.5f, .5f, 1));
 	//auto sprite = new SpriteRendererComponent(Utils::ContructPath("player.png"), this);
 	//SetActorLocation(Vector3(sprite->GetTextureWidth() / 2, sprite->GetTextureHeight() / 2, 0));

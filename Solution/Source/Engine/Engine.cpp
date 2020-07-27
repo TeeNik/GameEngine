@@ -65,21 +65,19 @@ void Engine::Init()
 
 void Engine::Run()
 {
-	//auto player = ECS->SpawnActor<Player>();
-
 	Actor* a = ECS->SpawnActor<Actor>();
 	a->SetActorPosition(Vector3(200.0f, 75.0f, 0.0f));
 	a->SetActorScale(Vector3(100,100,100));
 	Quaternion q(Vector3::UnitY, -Math::PiOver2);
 	q = Quaternion::Concatenate(q, Quaternion(Vector3::UnitZ, Math::Pi + Math::Pi / 4.0f));
 	a->SetActorRotation(q);
-	MeshComponent* mc = new MeshComponent(a);
+	MeshComponent* mc = a->AddComponent<MeshComponent>();
 	mc->SetMesh(renderer->GetMesh(Utils::ContructPath("Cube.gpmesh")));
 
 	a = ECS->SpawnActor<Actor>();
 	a->SetActorPosition(Vector3(200.0f, -75.0f, 0.0f));
 	a->SetActorScale(Vector3(3,3,3));
-	mc = new MeshComponent(a);
+	mc = a->AddComponent<MeshComponent>();
 	mc->SetMesh(renderer->GetMesh(Utils::ContructPath("Sphere.gpmesh")));
 
 	// Setup floor
@@ -133,12 +131,14 @@ void Engine::Run()
 	// UI elements
 	a = ECS->SpawnActor<Actor>();
 	a->SetActorPosition(Vector3(-350.0f, -350.0f, 0.0f));
-	SpriteRendererComponent* sc = new SpriteRendererComponent("../Solution/Assets/HealthBar.png", a);
+	SpriteRendererComponent* sc = a->AddComponent<SpriteRendererComponent>();
+	sc->SetTexture("../Solution/Assets/HealthBar.png");
 
 	a = ECS->SpawnActor<Actor>();
 	a->SetActorPosition(Vector3(375.0f, -275.0f, 0.0f));
 	a->SetActorScale(Vector3(0.75f, 0.75f, 0.75f));
-	sc = new SpriteRendererComponent("../Solution/Assets/Radar.png", a);
+	sc = a->AddComponent<SpriteRendererComponent>();
+	sc->SetTexture("../Solution/Assets/Radar.png");
 
 }
 

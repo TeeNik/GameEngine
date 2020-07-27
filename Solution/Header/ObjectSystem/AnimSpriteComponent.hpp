@@ -6,8 +6,9 @@ class AnimSpriteComponent : public SpriteRendererComponent {
 
 public:
 
-	AnimSpriteComponent(const char* path, int col, int row, Actor* o, int drawOrder = 100);
+	AnimSpriteComponent(Actor* o) : SpriteRendererComponent(o) {};
 
+	void SetSourceImage(const char* path, int col, int row, int drawOrder = 100);
 	void Update(float deltaTime) override;
 	//void Draw(SDL_Renderer* renderer) override;
 	

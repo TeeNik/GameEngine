@@ -8,10 +8,11 @@
 #include "Graphics/VertexArray.hpp"
 
 MeshComponent::MeshComponent(Actor* owner)
-	:Component(owner)
-	, mesh(nullptr)
-	, textureIndex(0)
+	: Component(owner),
+	mesh(nullptr),
+	textureIndex(0)
 {
+	updateOrder = 0;
 	owner->GetEngine()->GetRenderer()->AddMeshComp(this);
 }
 
