@@ -30,6 +30,10 @@
     <ClCompile Include="Source\Graphics\Renderer.cpp" />
     <ClCompile Include="Source\Graphics\Shader.cpp" />
     <ClCompile Include="Source\Graphics\Texture.cpp" />
+    <ClCompile Include="Source\Graphics\UI\Button.cpp" />
+    <ClCompile Include="Source\Graphics\UI\Canvas.cpp" />
+    <ClCompile Include="Source\Graphics\UI\Font.cpp" />
+    <ClCompile Include="Source\Graphics\UI\Text.cpp" />
     <ClCompile Include="Source\Graphics\VertexArray.cpp" />
     <ClCompile Include="Source\Input\ControllerState.cpp" />
     <ClCompile Include="Source\Input\InputSystem.cpp" />
@@ -38,6 +42,7 @@
     <ClCompile Include="Source\Math\Math.cpp" />
     <ClCompile Include="Source\ObjectSystem\AnimSpriteComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\Camera\CameraComponent.cpp" />
+    <ClCompile Include="Source\ObjectSystem\Camera\FollowCamera.cpp" />
     <ClCompile Include="Source\ObjectSystem\Camera\FPSCamera.cpp" />
     <ClCompile Include="Source\ObjectSystem\InputComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\MeshComponent.cpp" />
@@ -48,6 +53,7 @@
     <ClCompile Include="Source\ObjectSystem\Actor.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
     <ClCompile Include="Source\ObjectSystem\SpriteRendererComponent.cpp" />
+    <ClCompile Include="Source\Physics\Collision.cpp" />
     <ClCompile Include="Source\Temp\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +68,10 @@
     <ClInclude Include="Header\Graphics\Renderer.hpp" />
     <ClInclude Include="Header\Graphics\Shader.hpp" />
     <ClInclude Include="Header\Graphics\Texture.hpp" />
+    <ClInclude Include="Header\Graphics\UI\Button.hpp" />
+    <ClInclude Include="Header\Graphics\UI\Canvas.hpp" />
+    <ClInclude Include="Header\Graphics\UI\Font.hpp" />
+    <ClInclude Include="Header\Graphics\UI\Text.hpp" />
     <ClInclude Include="Header\Graphics\VertexArray.hpp" />
     <ClInclude Include="Header\Input\ControllerState.hpp" />
     <ClInclude Include="Header\Input\Input.hpp" />
@@ -72,6 +82,7 @@
     <ClInclude Include="Header\Math\Math.h" />
     <ClInclude Include="Header\ObjectSystem\AnimSpriteComponent.hpp" />
     <ClInclude Include="Header\ObjectSystem\Camera\CameraComponent.hpp" />
+    <ClInclude Include="Header\ObjectSystem\Camera\FollowCamera.hpp" />
     <ClInclude Include="Header\ObjectSystem\Camera\FPSCamera.hpp" />
     <ClInclude Include="Header\ObjectSystem\Component.hpp" />
     <ClInclude Include="Header\Engine\Engine.hpp" />
@@ -81,6 +92,7 @@
     <ClInclude Include="Header\ObjectSystem\MovementComponent.hpp" />
     <ClInclude Include="Header\ObjectSystem\ObjectManager.hpp" />
     <ClInclude Include="Header\ObjectSystem\SpriteRendererComponent.hpp" />
+    <ClInclude Include="Header\Physics\Collision.hpp" />
     <ClInclude Include="Header\Temp\Player.hpp" />
     <ClInclude Include="Header\Utils\Utils.hpp" />
   </ItemGroup>
@@ -171,8 +183,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\Plugins\SDL\lib\win64;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\lib\x64;C:\Program Files (x86)\Visual Leak Detector\lib\Win64;$(SolutionDir)\..\Plugins\GLEW\lib\Release\x64;$(SolutionDir)\..\Plugins\SOIL\lib\win\x64;$(SolutionDir)\..\Plugins\FMOD\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;SOIL.lib;fmod64_vc.lib;fmodL64_vc.lib;fmodstudio_vc.lib;fmodstudioL_vc.lib;fsbank_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\Plugins\SDL\lib\win64;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\lib\x64;C:\Program Files (x86)\Visual Leak Detector\lib\Win64;$(SolutionDir)\..\Plugins\GLEW\lib\Release\x64;$(SolutionDir)\..\Plugins\SOIL\lib\win\x64;$(SolutionDir)\..\Plugins\FMOD\lib\x64;$(SolutionDir)\..\Plugins\VLD\lib\Win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;SOIL.lib;fmod64_vc.lib;fmodL64_vc.lib;fmodstudio_vc.lib;fmodstudioL_vc.lib;fsbank_vc.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
