@@ -27,6 +27,8 @@ void ObjectManager::Update(float deltaTime)
 	for (auto obj : objects) {
 		obj->Update(deltaTime);
 	}
+
+	Refresh();
 }
 
 void ObjectManager::Refresh()
@@ -34,6 +36,6 @@ void ObjectManager::Refresh()
 	objects.erase(std::remove_if(std::begin(objects), std::end(objects), 
 		[](Actor* &object)
 	{
-		return !object->IsActive();
+		return object->IsActive();
 	}), std::end(objects));
 }
