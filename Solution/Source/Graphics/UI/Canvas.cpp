@@ -5,38 +5,55 @@
 #include "Graphics/Shader.hpp"
 #include "Utils/Utils.hpp"
 #include "Graphics/UI/Text.hpp"
+#include "Graphics/UI/Button.hpp"
+#include "Input/InputSystem.hpp"
 
 Canvas::Canvas(Engine* e) : engine(e)
 {
-	text = new Text(e->GetRenderer()->GetFont(Utils::ContructPath("Fonts/Ubuntu-Bold.ttf")));
+	auto font = e->GetRenderer()->GetFont(Utils::ContructPath("Fonts/Ubuntu-Bold.ttf"));
+	text = new Text(font);
 	text->SetText("Some text", Color::LightPink);
+
+	button = new Button("Button", "default.png", font, [](){
+		printf("On Click\n");
+	}, Vector2(0, 0), Vector2(100,50));
+
+	uiElements.push_back(text);
+	uiElements.push_back(button);
 }
 
 Canvas::~Canvas()
 {
-	delete text;
+	for(auto element : uiElements)
+	{
+		delete element;
+	}
+}
+
+void Canvas::ProcessInput()
+{
+	auto inputState = engine->GetInput()->GetState();
+	auto mousePos = inputState.Mouse.GetPosition();
+
+	mousePos.x -= engine->GetRenderer()->GetScreenWidth() / 2;
+	mousePos.y = engine->GetRenderer()->GetScreenHeight() / 2 - mousePos.y;
+
+	if (button->ContainsPoint(mousePos)) {
+		if (inputState.Mouse.GetButtonState(1) == ButtonState::Pressed) {
+			button->OnClick();
+		}
+	}
 }
 
 void Canvas::Update(float deltaTime)
 {
+
 }
 
 void Canvas::Draw(Shader* shader)
 {
-	DrawTexture(shader, text->GetTexture(), Vector2(0, 0), 1);
-}
-
-void Canvas::DrawTexture(Shader* shader, Texture* texture, const Vector2& offset, float scale)
-{
-	if (texture != nullptr) {
-		Matrix4 scaleMat = Matrix4::CreateScale(
-			static_cast<float>(texture->GetWidth()) * scale,
-			static_cast<float>(texture->GetHeight()) * scale,
-			1.0f);
-		Matrix4 transMat = Matrix4::CreateTranslation(Vector3(offset.x, offset.y, 0));
-		Matrix4 world = scaleMat * transMat;
-		shader->SetMatrixUniform("uWorldTransform", world);
-		texture->SetActive();
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+	for (auto element : uiElements)
+	{
+		element->Draw(shader);
 	}
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Math/Math.h"
 
 struct SDL_Surface;
 
@@ -14,6 +15,7 @@ public:
 	void SetActive();
 	void CreateFromSurface(SDL_Surface* surface);
 
+	inline const Vector2 GetSize() const { return size; }
 	inline const int GetWidth() const { return width; }
 	inline const int GetHeight() const { return height; }
 
@@ -21,4 +23,5 @@ private:
 	unsigned int textureID;
 	int width;
 	int height;
+	Vector2 size;
 };

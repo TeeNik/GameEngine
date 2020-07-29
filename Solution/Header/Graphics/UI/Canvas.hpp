@@ -4,21 +4,23 @@
 class Shader;
 class Texture;
 class Text;
+class Button;
 class Engine;
+class UIElement;
 
 class Canvas {
 public:
 	Canvas(Engine* e);
 	virtual ~Canvas();
 
+	virtual void ProcessInput();
 	virtual void Update(float deltaTime);
 	virtual void Draw(Shader* shader);
 
-protected:
-	void DrawTexture(Shader* shader, Texture* texture, const Vector2& offset = Vector2::Zero, float scale = 1.0f);
-
-	Engine* engine;
-
 private:
+	Engine* engine;
 	Text* text;
+	Button* button;
+
+	std::vector<UIElement*> uiElements;
 };

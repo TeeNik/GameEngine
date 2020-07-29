@@ -15,6 +15,9 @@ bool Texture::Load(const std::string& fileName)
 {
 	int channels = 0;
 	unsigned char* image = SOIL_load_image(fileName.c_str(), &width, &height, &channels, SOIL_LOAD_AUTO);
+	
+	size.x = width;
+	size.y = height;
 
 	if (image == nullptr) {
 		printf("SOIL failed to load image %s: %s", fileName.c_str(), SOIL_last_result());
@@ -45,6 +48,9 @@ void Texture::CreateFromSurface(SDL_Surface* surface)
 {
 	width = surface->w;
 	height = surface->h;
+
+	size.x = width;
+	size.y = height;
 
 	glGenTextures(1, &textureID);
 	glBindTexture(GL_TEXTURE_2D, textureID);

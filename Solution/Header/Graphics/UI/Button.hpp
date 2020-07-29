@@ -2,12 +2,13 @@
 #include <string>
 #include <functional>
 #include "Math/Math.h"
+#include "Graphics/UI/UIElement.hpp"
 
 class Texture;
 class Text;
 class Font;
 
-class Button
+class Button : public UIElement
 {
 public:
 	Button(const std::string& buttonText, const std::string& imageName, const Font* font,
@@ -24,6 +25,8 @@ public:
 
 	bool ContainsPoint(const Vector2& pt) const;
 	void OnClick();
+
+	virtual void Draw(Shader* shader) override;
 private:
 	std::function<void()> onClick;
 	Texture* image;

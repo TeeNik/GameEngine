@@ -41,3 +41,8 @@ void Text::SetPointSize(int s)
 		texture = font->RenderText(text, color, pointSize);
 	}
 }
+
+void Text::Draw(Shader* shader)
+{
+	DrawTexture(shader, texture, texture->GetSize(), position, 1);
+}

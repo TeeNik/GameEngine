@@ -32,6 +32,7 @@ public:
 	void Shutdown();
 
 	void Draw();
+	void ProcessCanvasInput();
 
 	void AddSprite(SpriteRendererComponent* sprite);
 	void RemoveSprite(SpriteRendererComponent* sprite);

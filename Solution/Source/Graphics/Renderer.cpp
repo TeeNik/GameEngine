@@ -146,6 +146,14 @@ void Renderer::Draw()
 	SDL_GL_SwapWindow(window);
 }
 
+void Renderer::ProcessCanvasInput()
+{
+	for (auto canvas : canvases)
+	{
+		canvas->ProcessInput();
+	}
+}
+
 void Renderer::AddSprite(SpriteRendererComponent* sprite)
 {
 	int myDrawOrder = sprite->GetDrawOrder();

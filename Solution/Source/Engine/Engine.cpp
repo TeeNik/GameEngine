@@ -126,7 +126,7 @@ void Engine::Run()
 	dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
 	
 	// Camera actor
-	Player* playerCamera = ECS->SpawnActor<Player>();
+	//Player* playerCamera = ECS->SpawnActor<Player>();
 
 	// UI elements
 	a = ECS->SpawnActor<Actor>();
@@ -162,6 +162,8 @@ void Engine::HandleEvents()
 		}
 	}
 	inputSystem->Update();
+
+	renderer->ProcessCanvasInput();
 }
 
 void Engine::Update()

@@ -34,6 +34,7 @@
     <ClCompile Include="Source\Graphics\UI\Canvas.cpp" />
     <ClCompile Include="Source\Graphics\UI\Font.cpp" />
     <ClCompile Include="Source\Graphics\UI\Text.cpp" />
+    <ClCompile Include="Source\Graphics\UI\UIElement.cpp" />
     <ClCompile Include="Source\Graphics\VertexArray.cpp" />
     <ClCompile Include="Source\Input\ControllerState.cpp" />
     <ClCompile Include="Source\Input\InputSystem.cpp" />
@@ -72,6 +73,7 @@
     <ClInclude Include="Header\Graphics\UI\Canvas.hpp" />
     <ClInclude Include="Header\Graphics\UI\Font.hpp" />
     <ClInclude Include="Header\Graphics\UI\Text.hpp" />
+    <ClInclude Include="Header\Graphics\UI\UIElement.hpp" />
     <ClInclude Include="Header\Graphics\VertexArray.hpp" />
     <ClInclude Include="Header\Input\ControllerState.hpp" />
     <ClInclude Include="Header\Input\Input.hpp" />

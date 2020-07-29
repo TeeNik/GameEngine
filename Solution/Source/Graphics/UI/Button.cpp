@@ -2,6 +2,7 @@
 #include "Graphics/Texture.hpp"
 #include "Graphics/UI/Text.hpp"
 #include "Graphics/UI/Font.hpp"
+#include "Utils/Utils.hpp"
 
 Button::Button(const std::string& buttonText, const std::string& imageName, 
 		const Font* font, std::function<void()> onClick,
@@ -12,13 +13,14 @@ Button::Button(const std::string& buttonText, const std::string& imageName,
 	text->SetText(buttonText, Color::White, 30);
 
 	image = new Texture();
-	//image->Load(imageName);
+	image->Load(Utils::ContructPath(imageName));
 	dimensions = dims;
 }
 
 Button::~Button()
 {
 	delete text;
+	delete image;
 }
 
 void Button::SetText(const std::string& buttonText)
@@ -41,4 +43,10 @@ void Button::OnClick()
 	{
 		onClick();
 	}
+}
+
+void Button::Draw(Shader* shader)
+{
+	DrawTexture(shader, image, dimensions, position, 1);
+	DrawTexture(shader, text->GetTexture(), dimensions, position, 1);
 }
