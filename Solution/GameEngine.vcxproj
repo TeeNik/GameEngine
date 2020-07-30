@@ -45,6 +45,7 @@
     <ClCompile Include="Source\ObjectSystem\Camera\CameraComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\Camera\FollowCamera.cpp" />
     <ClCompile Include="Source\ObjectSystem\Camera\FPSCamera.cpp" />
+    <ClCompile Include="Source\ObjectSystem\Collision\BoxComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\InputComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\MeshComponent.cpp" />
     <ClCompile Include="Source\ObjectSystem\MovementComponent.cpp" />
@@ -94,6 +95,7 @@
     <ClInclude Include="Header\ObjectSystem\MovementComponent.hpp" />
     <ClInclude Include="Header\ObjectSystem\ObjectManager.hpp" />
     <ClInclude Include="Header\ObjectSystem\SpriteRendererComponent.hpp" />
+    <ClInclude Include="Header\ObjectSystem\Collision\BoxComponent.hpp" />
     <ClInclude Include="Header\Physics\Collision.hpp" />
     <ClInclude Include="Header\Temp\Player.hpp" />
     <ClInclude Include="Header\Utils\Utils.hpp" />

@@ -48,8 +48,8 @@ public:
 	inline void SetAmbientLight(const Vector3& ambient) { ambientLight = ambient; }
 	inline DirectionalLight& GetDirectionalLight() { return dirLight; }
 
-	inline float GetScreenWidth() const { return screenWidth; }
-	inline float GetScreenHeight() const { return screenHeight; }
+	inline float GetScreenWidth() const { return static_cast<float>(screenWidth); }
+	inline float GetScreenHeight() const { return static_cast<float>(screenHeight); }
 
 	Font* GetFont(const std::string& fileName);
 private:
