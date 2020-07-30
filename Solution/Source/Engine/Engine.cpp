@@ -177,9 +177,7 @@ void Engine::Update()
 	}
 	ticksCount = SDL_GetTicks();
 	
-	
 	ECS->Update(deltaTime);
-
 }
 
 void Engine::Render()
@@ -204,11 +202,7 @@ void Engine::Clean()
 	std::cout << "Window Cleaned.\n";
 }
 
-
-
 bool Engine::IsRunning()
 {
 	return isRunning;
 }
-
-
