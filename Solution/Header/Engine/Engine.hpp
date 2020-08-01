@@ -7,6 +7,7 @@ class ObjectManager;
 class InputSubscriber;
 class Renderer;
 class AudioSystem;
+class Physics;
 
 class Engine {
 
@@ -27,6 +28,7 @@ public:
 	//inline Graphics2D* GetGraphics2D() { return Graphics2DSystem; }
 	inline InputSystem* GetInput() const { return inputSystem; }
 	inline Renderer* GetRenderer() const { return renderer; }
+	inline Physics* GetPhysics() const { return physics; }
 
 private:
 	ObjectManager* ECS;
@@ -34,6 +36,7 @@ private:
 	Renderer* renderer;
 	AudioSystem* audioSystem;
 	InputSystem* inputSystem;
+	Physics* physics;
 
 	bool isRunning;
 	int frameCounter = 0;
