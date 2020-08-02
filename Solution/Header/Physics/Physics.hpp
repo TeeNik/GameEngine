@@ -24,6 +24,7 @@ public:
 
 	void AddBox(BoxComponent* box);
 	void RemoveBox(BoxComponent* box);
+	void Update(float deltaTime);
 
 	bool SegmentCast(const LineSegment& l, CollisionInfo& outCol);
 	void TestPairwise(std::function<void(Actor*, Actor*)> func);

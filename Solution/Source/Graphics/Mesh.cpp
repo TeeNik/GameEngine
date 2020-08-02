@@ -7,7 +7,10 @@
 #include "../../Plugins/rapidjson/document.h"
 #include "Math/Math.h"
 
-Mesh::Mesh() : vertexArray(nullptr), radius(0.0f), specPower(100.0f)
+Mesh::Mesh() : vertexArray(nullptr), 
+radius(0.0f), 
+specPower(100.0f),
+box(Vector3::Infinity, Vector3::NegInfinity)
 {
 }
 
@@ -90,6 +93,7 @@ bool Mesh::Load(const std::string& fileName, Renderer* renderer)
 
 		Vector3 pos(vert[0].GetDouble(), vert[1].GetDouble(), vert[2].GetDouble());
 		radius = Math::Max(radius, pos.LengthSq());
+		box.UpdateMinMax(pos);
 
 		for (rapidjson::SizeType i = 0; i < vert.Size(); i++)
 		{

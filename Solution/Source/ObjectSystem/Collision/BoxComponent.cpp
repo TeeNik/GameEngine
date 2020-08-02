@@ -1,6 +1,7 @@
 #include "ObjectSystem/Collision/BoxComponent.hpp"
 #include "ObjectSystem/Actor.hpp"
 #include "Engine/Engine.hpp"
+#include "Physics/Physics.hpp"
 
 
 BoxComponent::BoxComponent(Actor* o) : Component(o),
@@ -9,8 +10,12 @@ objectBox(Vector3::Zero, Vector3::Zero),
 shouldRotate(true)
 {
 	updateOrder = 120;
+	owner->GetEngine()->GetPhysics()->AddBox(this);
+}
 
-	//owner->GetEngine().get
+BoxComponent::~BoxComponent()
+{
+	owner->GetEngine()->GetPhysics()->RemoveBox(this);
 }
 
 void BoxComponent::Update(float deltaTime)

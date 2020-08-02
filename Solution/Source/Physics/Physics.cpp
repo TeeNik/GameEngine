@@ -41,7 +41,7 @@ bool Physics::SegmentCast(const LineSegment& l, CollisionInfo& outColl)
 		{
 			if (t < closestT) 
 			{
-				outColl.point = l.PointOnSegment();
+				outColl.point = l.PointOnSegment(t);
 				outColl.normal = normal;
 				outColl.box = box;
 				outColl.actor = box->GetOwner();

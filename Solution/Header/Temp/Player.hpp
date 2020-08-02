@@ -4,6 +4,7 @@
 class Engine;
 class CameraComponent;
 class MovementComponent;
+class BoxComponent;
 
 class Player : public Actor {
 
@@ -15,5 +16,5 @@ public:
 protected:
 	CameraComponent* camera;
 	MovementComponent* moveComp;
-
+	BoxComponent* box;
 };

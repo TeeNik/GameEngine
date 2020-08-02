@@ -17,8 +17,9 @@
 #include "ObjectSystem/MeshComponent.hpp"
 #include "Utils/Utils.hpp"
 #include "Audio/AudioSystem.hpp"
+#include "Physics/Physics.hpp"
 
-#include "BaseActors/Plane.hpp"
+#include "BaseActors/PlaneActor.hpp"
 #include "BaseActors/Camera.hpp"
 
 #include "Temp/Player.hpp"
@@ -51,6 +52,7 @@ void Engine::Init()
 		renderer = nullptr;
 		return;
 	}
+
 	/*if (!audioSystem->Initialize()) {
 		printf("Failed to initialize audioSystem");
 		Clean();
@@ -59,6 +61,7 @@ void Engine::Init()
 	ECS = new ObjectManager(this);
 	//Graphics2DSystem = new Graphics2D(spriteShader, renderer);
 	inputSystem = new InputSystem();
+	physics = new Physics(this);
 	isRunning = true;
 	Run();
 }
@@ -198,6 +201,7 @@ void Engine::Clean()
 		//audioSystem->Shutdown();
 	}
 	delete audioSystem;
+	delete physics;
 	SDL_Quit();
 	std::cout << "Window Cleaned.\n";
 }

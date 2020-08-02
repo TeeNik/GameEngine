@@ -10,10 +10,12 @@ SpriteRendererComponent::SpriteRendererComponent(Actor* o) : Component(o)
 {
 	updateOrder = 100;
 	actorTransform = &owner->GetActorTransform();
+	owner->GetEngine()->GetRenderer()->AddSprite(this);
 }
 
 SpriteRendererComponent::~SpriteRendererComponent()
 {
+	owner->GetEngine()->GetRenderer()->RemoveSprite(this);
 	if (!texture)
 	{
 		texture->Unload();
@@ -22,7 +24,6 @@ SpriteRendererComponent::~SpriteRendererComponent()
 void SpriteRendererComponent::SetTexture(std::string path, int drawOrder)
 {
 	auto renderer = owner->GetEngine()->GetRenderer();
-	renderer->AddSprite(this);
 	texture = renderer->GetTexture(path);
 	textureWidth = texture->GetWidth();
 	textureHeight = texture->GetHeight();
