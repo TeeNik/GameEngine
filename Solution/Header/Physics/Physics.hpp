@@ -28,7 +28,10 @@ public:
 
 	bool SegmentCast(const LineSegment& l, CollisionInfo& outCol);
 	void TestPairwise(std::function<void(Actor*, Actor*)> func);
-	void TestSweepAndPrune(std::function<void(Actor*, Actor*)> func);
+	//void TestSweepAndPrune(std::function<void(Actor*, Actor*)> func);
+	void TestSweepAndPrune();
+
+	void FixCollision(BoxComponent* a, BoxComponent* b);
 
 private:
 	std::vector<BoxComponent*> boxes;

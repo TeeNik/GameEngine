@@ -29,6 +29,7 @@ public:
 	inline InputSystem* GetInput() const { return inputSystem; }
 	inline Renderer* GetRenderer() const { return renderer; }
 	inline Physics* GetPhysics() const { return physics; }
+	inline ObjectManager* GetObjectManager() const { return ECS; }
 
 private:
 	ObjectManager* ECS;
