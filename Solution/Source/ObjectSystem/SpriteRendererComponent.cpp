@@ -40,6 +40,10 @@ void SpriteRendererComponent::Draw(Shader* shader)
 	Matrix4 scaleMat = Matrix4::CreateScale(textureWidth, textureHeight, 1);
 	Matrix4 world = scaleMat * owner->GetWorldTransform();
 	shader->SetMatrixUniform("uWorldTransform", world);
+	
+	shader->SetVectorUniform("uFrameMin", Vector3::Zero);
+	shader->SetVectorUniform("uFrameMax", Vector3::One);
+
 	texture->SetActive();
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }

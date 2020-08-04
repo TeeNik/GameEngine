@@ -25,6 +25,7 @@
     <ClCompile Include="Source\BaseActors\PlaneActor.cpp" />
     <ClCompile Include="Source\BaseStructs\Transform.cpp" />
     <ClCompile Include="Source\BaseStructs\Vector.cpp" />
+    <ClCompile Include="Source\Engine\Level.cpp" />
     <ClCompile Include="Source\Graphics\Graphics2D.cpp" />
     <ClCompile Include="Source\Graphics\Mesh.cpp" />
     <ClCompile Include="Source\Graphics\Renderer.cpp" />
@@ -57,7 +58,10 @@
     <ClCompile Include="Source\ObjectSystem\SpriteRendererComponent.cpp" />
     <ClCompile Include="Source\Physics\Collision.cpp" />
     <ClCompile Include="Source\Physics\Physics.cpp" />
+    <ClCompile Include="Source\Temp\D2Level.cpp" />
+    <ClCompile Include="Source\Temp\D3Level.cpp" />
     <ClCompile Include="Source\Temp\Player.cpp" />
+    <ClCompile Include="Source\Temp\Player2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Audio\AudioSystem.hpp" />
@@ -66,6 +70,7 @@
     <ClInclude Include="Header\BaseActors\PlaneActor.hpp" />
     <ClInclude Include="Header\BaseStructs\Transform.hpp" />
     <ClInclude Include="Header\BaseStructs\Vector.hpp" />
+    <ClInclude Include="Header\Engine\Level.hpp" />
     <ClInclude Include="Header\Graphics\Graphics2D.hpp" />
     <ClInclude Include="Header\Graphics\Mesh.hpp" />
     <ClInclude Include="Header\Graphics\Renderer.hpp" />
@@ -98,7 +103,10 @@
     <ClInclude Include="Header\ObjectSystem\SpriteRendererComponent.hpp" />
     <ClInclude Include="Header\ObjectSystem\Collision\BoxComponent.hpp" />
     <ClInclude Include="Header\Physics\Collision.hpp" />
+    <ClInclude Include="Header\Temp\D2Level.hpp" />
+    <ClInclude Include="Header\Temp\D3Level.hpp" />
     <ClInclude Include="Header\Temp\Player.hpp" />
+    <ClInclude Include="Header\Temp\Player2D.hpp" />
     <ClInclude Include="Header\Utils\Utils.hpp" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,8 @@
 #include "ObjectSystem\AnimSpriteComponent.hpp"
+#include "Graphics/Shader.hpp"
+#include "Graphics/Texture.hpp"
 
-void AnimSpriteComponent::SetSourceImage(const char* path, int col, int row, int drawOrder)
+void AnimSpriteComponent::SetSourceImage(const std::string path, int col, int row, int drawOrder)
 {
 	SetTexture(path, drawOrder);
 
@@ -16,26 +18,29 @@ void AnimSpriteComponent::Update(float deltaTime)
 	SpriteRendererComponent::Update(deltaTime);
 
 	currentFrame += (animFPS * deltaTime);
-	while (currentFrame >= frames.size()) {
-		currentFrame -= frames.size();
+	while (currentFrame > rows * columns) {
+		currentFrame = 0;
 	}
 	//currentFrame = static_cast<int>(currentFrame) % frames.size();
 }
 
-/*void AnimSpriteComponent::Draw(SDL_Renderer* renderer)
+void AnimSpriteComponent::Draw(Shader* shader)
 {
-	if (texture) {
-		auto& scale = actorTransform->scale;
-		destRect.w = srcRect.w * scale.x;
-		destRect.h = srcRect.h * scale.y;
-		auto& pos = actorTransform->position;
-		destRect.x = pos.x - destRect.w / 2;
-		destRect.y = pos.y - destRect.h / 2;
+	Matrix4 scaleMat = Matrix4::CreateScale(textureWidth/columns, textureHeight/rows, 1);
+	Matrix4 world = scaleMat * owner->GetWorldTransform();
+	shader->SetMatrixUniform("uWorldTransform", world);
 
-		int frame = frames[static_cast<int>(currentFrame)];
-		srcRect.x = (frame % columns) * srcRect.w;
-		srcRect.y = (frame / rows) * srcRect.h;
+	int frame = static_cast<float>(currentFrame);
 
-		SDL_RenderCopyEx(renderer, texture, &srcRect, &destRect, 0, nullptr, SDL_FLIP_NONE);
-	}
-}*/
+	float xMin = (frame % columns) / (float)columns;
+	float xMax = Math::Min(1.0f, xMin + (1.0f/columns));
+
+	float yMin = frame / columns / (float)rows;
+	float yMax = Math::Min(1.0f, yMin + (1.0f / rows));
+	
+	shader->SetVectorUniform("uFrameMin", Vector3(xMin, yMin, 0));
+	shader->SetVectorUniform("uFrameMax", Vector3(xMax, yMax, 0));
+
+	texture->SetActive();
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+}
