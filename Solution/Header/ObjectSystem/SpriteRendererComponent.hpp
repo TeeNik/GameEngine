@@ -4,6 +4,7 @@
 #include "BaseStructs/Transform.hpp"
 #include "ObjectSystem/Actor.hpp"
 #include <string>
+#include "Math/Math.h"
 
 class Texture;
 
@@ -22,13 +23,10 @@ public:
 	inline const int GetTextureHeight() const { return textureHeight; };
 
 protected:
+	Vector2 size;
 	Texture* texture;
 	int drawOrder;
 	int textureWidth;
 	int textureHeight;
 	const Transform* actorTransform;
-
-	//SDL_Texture* texture;
-	SDL_Rect srcRect, destRect;
-
 };

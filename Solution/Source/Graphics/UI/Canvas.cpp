@@ -10,7 +10,7 @@
 
 Canvas::Canvas(Engine* e) : engine(e)
 {
-	auto font = e->GetRenderer()->GetFont(Utils::ContructPath("Fonts/Ubuntu-Bold.ttf"));
+	/*auto font = e->GetRenderer()->GetFont(Utils::ContructPath("Fonts/Ubuntu-Bold.ttf"));
 	text = new Text(font);
 	text->SetText("Some text", Color::LightPink);
 
@@ -19,7 +19,7 @@ Canvas::Canvas(Engine* e) : engine(e)
 	}, Vector2(0, 0), Vector2(100,50));
 
 	uiElements.push_back(text);
-	uiElements.push_back(button);
+	uiElements.push_back(button);*/
 }
 
 Canvas::~Canvas()
@@ -38,11 +38,11 @@ void Canvas::ProcessInput()
 	mousePos.x -= engine->GetRenderer()->GetScreenWidth() / 2;
 	mousePos.y = engine->GetRenderer()->GetScreenHeight() / 2 - mousePos.y;
 
-	if (button->ContainsPoint(mousePos)) {
-		if (inputState.Mouse.GetButtonState(1) == ButtonState::Pressed) {
-			button->OnClick();
-		}
-	}
+	//if (button->ContainsPoint(mousePos)) {
+	//	if (inputState.Mouse.GetButtonState(1) == ButtonState::Pressed) {
+	//		button->OnClick();
+	//	}
+	//}
 }
 
 void Canvas::Update(float deltaTime)

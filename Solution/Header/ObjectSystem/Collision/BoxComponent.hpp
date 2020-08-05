@@ -19,6 +19,8 @@ public:
 
 	inline void SetObjectBox(const AABB& model) { objectBox = model; }
 	inline const AABB& GetWorldBox() const { return worldBox; }
+
+	inline const CollisionObjectType GetObjectType() const { return objectType; }
 	inline void SetObjectType(const CollisionObjectType type) { objectType = type; }
 
 private:
