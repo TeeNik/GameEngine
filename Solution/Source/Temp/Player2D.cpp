@@ -5,7 +5,8 @@
 
 Player2D::Player2D(Engine * e) : Actor(e)
 {
-	auto anim = AddComponent<SpriteRendererComponent>();
-	anim->SetTexture(Utils::ContructPath("player.png"));
-	//anim->SetSourceImage(Utils::ContructPath("girl.png"), 9, 5);
+	auto anim = AddComponent<AnimSpriteComponent>();
+	//anim->SetTexture(Utils::ContructPath("player.png"));
+	anim->SetSourceImage(Utils::ContructPath("girl.png"), 9, 5);
+	anim->SetSize(anim->GetSize() * .1f);
 }

@@ -25,8 +25,10 @@ void SpriteRendererComponent::SetTexture(std::string path, int drawOrder)
 {
 	auto renderer = owner->GetEngine()->GetRenderer();
 	texture = renderer->GetTexture(path);
-	textureWidth = texture->GetWidth();
-	textureHeight = texture->GetHeight();
+	size = Vector2(texture->GetWidth(), texture->GetHeight());
+	textureSize = size;
+	//textureWidth = texture->GetWidth();
+	//textureHeight = texture->GetHeight();
 }
 
 //not finished
@@ -37,7 +39,7 @@ void SpriteRendererComponent::SetTexture(Texture* tex)
 
 void SpriteRendererComponent::Draw(Shader* shader)
 {
-	Matrix4 scaleMat = Matrix4::CreateScale(textureWidth, textureHeight, 1);
+	Matrix4 scaleMat = Matrix4::CreateScale(size.x, size.y, 1);
 	Matrix4 world = scaleMat * owner->GetWorldTransform();
 	shader->SetMatrixUniform("uWorldTransform", world);
 	

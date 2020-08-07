@@ -8,9 +8,6 @@ void AnimSpriteComponent::SetSourceImage(const std::string path, int col, int ro
 
 	columns = col;
 	rows = row;
-
-	srcRect.w = textureWidth / columns;
-	srcRect.h = textureHeight / rows;
 }
 
 void AnimSpriteComponent::Update(float deltaTime)
@@ -26,7 +23,7 @@ void AnimSpriteComponent::Update(float deltaTime)
 
 void AnimSpriteComponent::Draw(Shader* shader)
 {
-	Matrix4 scaleMat = Matrix4::CreateScale(textureWidth/columns, textureHeight/rows, 1);
+	Matrix4 scaleMat = Matrix4::CreateScale(textureSize.x / columns, textureSize.y / rows, 1);
 	Matrix4 world = scaleMat * owner->GetWorldTransform();
 	shader->SetMatrixUniform("uWorldTransform", world);
 
