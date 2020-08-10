@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <SDL.h>
 #include <Math\Math.h>
-
+#include "Graphics/Model.hpp"
 
 class SpriteRendererComponent;
 class MeshComponent;
@@ -64,6 +64,7 @@ private:
 	std::vector<MeshComponent*> meshComps;
 
 	Engine* engine;
+	MeshExporter meshExporter;
 
 	Shader* spriteShader;
 	VertexArray* spriteVerts;

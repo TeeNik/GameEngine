@@ -28,6 +28,7 @@
     <ClCompile Include="Source\Engine\Level.cpp" />
     <ClCompile Include="Source\Graphics\Graphics2D.cpp" />
     <ClCompile Include="Source\Graphics\Mesh.cpp" />
+    <ClCompile Include="Source\Graphics\Model.cpp" />
     <ClCompile Include="Source\Graphics\Renderer.cpp" />
     <ClCompile Include="Source\Graphics\Shader.cpp" />
     <ClCompile Include="Source\Graphics\Texture.cpp" />
@@ -73,6 +74,7 @@
     <ClInclude Include="Header\Engine\Level.hpp" />
     <ClInclude Include="Header\Graphics\Graphics2D.hpp" />
     <ClInclude Include="Header\Graphics\Mesh.hpp" />
+    <ClInclude Include="Header\Graphics\Model.hpp" />
     <ClInclude Include="Header\Graphics\Renderer.hpp" />
     <ClInclude Include="Header\Graphics\Shader.hpp" />
     <ClInclude Include="Header\Graphics\Texture.hpp" />
@@ -192,12 +194,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Header;$(SolutionDir)\..\Plugins\SDL\include;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\include;C:\Program Files (x86)\Visual Leak Detector\include;$(SolutionDir)\..\Plugins\GLEW\include\GL;$(SolutionDir)\..\Plugins\SOIL\include\SOIL;$(SolutionDir)\..\Plugins\SOIL\include\rapidjson;$(SolutionDir)\..\Plugins\FMOD\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Header;$(SolutionDir)\..\Plugins\SDL\include;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\include;C:\Program Files (x86)\Visual Leak Detector\include;$(SolutionDir)\..\Plugins\GLEW\include\GL;$(SolutionDir)\..\Plugins\SOIL\include\SOIL;$(SolutionDir)\..\Plugins\SOIL\include\rapidjson;$(SolutionDir)\..\Plugins\FMOD\inc;$(SolutionDir)\..\Plugins\Assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\Plugins\SDL\lib\win64;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\lib\x64;C:\Program Files (x86)\Visual Leak Detector\lib\Win64;$(SolutionDir)\..\Plugins\GLEW\lib\Release\x64;$(SolutionDir)\..\Plugins\SOIL\lib\win\x64;$(SolutionDir)\..\Plugins\FMOD\lib\x64;$(SolutionDir)\..\Plugins\VLD\lib\Win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;SOIL.lib;fmod64_vc.lib;fmodL64_vc.lib;fmodstudio_vc.lib;fmodstudioL_vc.lib;fsbank_vc.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\Plugins\SDL\lib\win64;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\lib\x64;C:\Program Files (x86)\Visual Leak Detector\lib\Win64;$(SolutionDir)\..\Plugins\GLEW\lib\Release\x64;$(SolutionDir)\..\Plugins\SOIL\lib\win\x64;$(SolutionDir)\..\Plugins\FMOD\lib\x64;$(SolutionDir)\..\Plugins\VLD\lib\Win64;$(SolutionDir)\..\Plugins\Assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;SOIL.lib;fmod64_vc.lib;fmodL64_vc.lib;fmodstudio_vc.lib;fmodstudioL_vc.lib;fsbank_vc.lib;SDL2_ttf.lib;assimp-vc141-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

@@ -16,7 +16,8 @@
 Renderer::Renderer(Engine* engine) :
 	engine(engine),
 	spriteShader(nullptr),
-	meshShader(nullptr)
+	meshShader(nullptr),
+	meshExporter(engine)
 {
 }
 
@@ -220,7 +221,7 @@ Mesh* Renderer::GetMesh(const std::string& fileName)
 	}
 	else
 	{
-		m = new Mesh();
+		m = meshExporter.LoadMesh(fileName);
 		if (m->Load(fileName, this))
 		{
 			meshes.emplace(fileName, m);
@@ -272,7 +273,8 @@ bool Renderer::LoadShaders()
 	spriteShader->SetMatrixUniform("uViewProj", viewProj);
 
 	meshShader = new Shader();
-	if (!meshShader->Load(Utils::ContructPath("Shaders/Phong.vert"), Utils::ContructPath("Shaders/Phong.frag")))
+	//if (!meshShader->Load(Utils::ContructPath("Shaders/Phong.vert"), Utils::ContructPath("Shaders/Phong.frag")))
+	if (!meshShader->Load(Utils::ContructPath("Shaders/BasicMesh.vert"), Utils::ContructPath("Shaders/BasicMesh.frag")))
 	{
 		return false;
 	}

@@ -7,6 +7,14 @@ class Renderer;
 class VertexArray;
 class Texture;
 struct AABB;
+class Shader;
+
+struct Vertex
+{
+	Vector3 position;
+	Vector3 normal;
+	Vector2 texCoords;
+};
 
 class Mesh
 {
@@ -16,8 +24,9 @@ public:
 	
 	bool Load(const std::string& fileName, class Renderer* renderer);
 	void Unload();
+
+	void SetData(Renderer* renderer);
 	
-	VertexArray* GetVertexArray() { return vertexArray; }
 	Texture* GetTexture(size_t index);
 	
 	inline const std::string& GetShaderName() const { return shaderName; }
@@ -25,10 +34,19 @@ public:
 	inline float GetSpecPower() const { return specPower; }
 	inline const AABB& GetBox() { return box; }
 
+	void Draw(Shader* shader);
+	void SetupMesh(const std::vector<Vertex>& v, const std::vector<unsigned int>& ind);
+
 private:
+	void CalculateBox(const std::vector<Vertex>& v);
+
 	AABB box;
+
+	std::vector<Vertex> vertices;
+	std::vector<unsigned int> indices;
+	unsigned int VAO, VBO, EBO;
+
 	std::vector<Texture*> textures;
-	class VertexArray* vertexArray;
 	std::string shaderName;
 	float radius;
 	float specPower;

@@ -5,6 +5,7 @@
 class Actor;
 class Mesh;
 class Shader;
+class Model;
 
 class MeshComponent : public Component
 {

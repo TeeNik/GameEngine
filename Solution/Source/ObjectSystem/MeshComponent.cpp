@@ -35,9 +35,11 @@ void MeshComponent::Draw(Shader* shader)
 			t->SetActive();
 		}
 		
-		VertexArray* va = mesh->GetVertexArray();
-		va->SetActive();
-		
-		glDrawElements(GL_TRIANGLES, va->GetNumIndices(), GL_UNSIGNED_INT, nullptr);
+		//VertexArray* va = mesh->GetVertexArray();
+		//va->SetActive();
+		//
+		//glDrawElements(GL_TRIANGLES, va->GetNumIndices(), GL_UNSIGNED_INT, nullptr);
+	
+		mesh->Draw(shader);
 	}
 }
