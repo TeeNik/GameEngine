@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <SDL.h>
 #include <Math\Math.h>
-#include "Graphics/Model.hpp"
+#include "Graphics/MeshExporter.hpp"
 
 class SpriteRendererComponent;
 class MeshComponent;

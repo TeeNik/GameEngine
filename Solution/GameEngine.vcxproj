@@ -28,7 +28,7 @@
     <ClCompile Include="Source\Engine\Level.cpp" />
     <ClCompile Include="Source\Graphics\Graphics2D.cpp" />
     <ClCompile Include="Source\Graphics\Mesh.cpp" />
-    <ClCompile Include="Source\Graphics\Model.cpp" />
+    <ClCompile Include="Source\Graphics\MeshExporter.cpp" />
     <ClCompile Include="Source\Graphics\Renderer.cpp" />
     <ClCompile Include="Source\Graphics\Shader.cpp" />
     <ClCompile Include="Source\Graphics\Texture.cpp" />
@@ -74,7 +74,7 @@
     <ClInclude Include="Header\Engine\Level.hpp" />
     <ClInclude Include="Header\Graphics\Graphics2D.hpp" />
     <ClInclude Include="Header\Graphics\Mesh.hpp" />
-    <ClInclude Include="Header\Graphics\Model.hpp" />
+    <ClInclude Include="Header\Graphics\MeshExporter.hpp" />
     <ClInclude Include="Header\Graphics\Renderer.hpp" />
     <ClInclude Include="Header\Graphics\Shader.hpp" />
     <ClInclude Include="Header\Graphics\Texture.hpp" />

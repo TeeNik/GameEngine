@@ -1,4 +1,4 @@
-#include "Graphics/Model.hpp"
+#include "Graphics/MeshExporter.hpp"
 #include "Graphics/Mesh.hpp"
 #include "Graphics/VertexArray.hpp"
 
@@ -62,8 +62,6 @@ void MeshExporter::ProcessNode(aiNode * node, const aiScene * scene)
 
 Mesh * MeshExporter::ProcessMesh(aiMesh * m, const aiScene * scene)
 {
-	Mesh* mesh = new Mesh();
-
 	const int vectorSize = 3;
 	std::vector<Vertex> vertices;
 	for (int i = 0; i < m->mNumVertices; ++i)
@@ -105,8 +103,5 @@ Mesh * MeshExporter::ProcessMesh(aiMesh * m, const aiScene * scene)
 			indeces.emplace_back(face.mIndices[j]);
 		}
 	}
-	mesh->SetData(engine->GetRenderer());
-	mesh->SetupMesh(vertices, indeces);
-
-	return mesh;
+	return new Mesh(vertices, indeces);
 }

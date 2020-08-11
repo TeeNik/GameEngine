@@ -22,17 +22,20 @@ void MovementComponent::Update(float deltaTime)
 
 	float forwardSpeed = 0.0f;
 	float strafeSpeed = 0.0f;
+
+	const float speed = 100;
+
 	if (keyboard.GetKeyState(SDL_Scancode::SDL_SCANCODE_W) == ButtonState::Held) {
-		forwardSpeed += 400.0f;
+		forwardSpeed += speed;
 	}
 	if (keyboard.GetKeyState(SDL_Scancode::SDL_SCANCODE_S) == ButtonState::Held) {
-		forwardSpeed -= 400.0f;
+		forwardSpeed -= speed;
 	}
 	if (keyboard.GetKeyState(SDL_Scancode::SDL_SCANCODE_D) == ButtonState::Held) {
-		strafeSpeed += 400.0f;
+		strafeSpeed += speed;
 	}
 	if (keyboard.GetKeyState(SDL_Scancode::SDL_SCANCODE_A) == ButtonState::Held) {
-		strafeSpeed -= 400.0f;
+		strafeSpeed -= speed;
 	}
 
 	auto mousePos = mouse.GetPosition();

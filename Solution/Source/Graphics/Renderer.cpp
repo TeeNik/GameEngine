@@ -85,7 +85,6 @@ void Renderer::Shutdown()
 
 	for (auto mesh : meshes)
 	{
-		mesh.second->Unload();
 		delete mesh.second;
 	}
 	meshes.clear();
@@ -222,14 +221,9 @@ Mesh* Renderer::GetMesh(const std::string& fileName)
 	else
 	{
 		m = meshExporter.LoadMesh(fileName);
-		if (m->Load(fileName, this))
+		if (m != nullptr)
 		{
 			meshes.emplace(fileName, m);
-		}
-		else
-		{
-			delete m;
-			m = nullptr;
 		}
 	}
 	return m;

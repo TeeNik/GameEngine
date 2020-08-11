@@ -19,13 +19,10 @@ struct Vertex
 class Mesh
 {
 public:
-	Mesh();
+	Mesh(const std::vector<Vertex>& v, const std::vector<unsigned int>& ind);
 	~Mesh();
 	
-	bool Load(const std::string& fileName, class Renderer* renderer);
-	void Unload();
-
-	void SetData(Renderer* renderer);
+	void SetTexture(Renderer* renderer, const std::string& path);
 	
 	Texture* GetTexture(size_t index);
 	
@@ -35,7 +32,6 @@ public:
 	inline const AABB& GetBox() { return box; }
 
 	void Draw(Shader* shader);
-	void SetupMesh(const std::vector<Vertex>& v, const std::vector<unsigned int>& ind);
 
 private:
 	void CalculateBox(const std::vector<Vertex>& v);
