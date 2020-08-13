@@ -2,9 +2,6 @@
 #include "Graphics/Renderer.hpp"
 #include "Graphics/Texture.hpp"
 #include "Graphics/VertexArray.hpp"
-#include <fstream>
-#include <sstream>
-#include "../../Plugins/rapidjson/document.h"
 #include "Math/Math.h"
 #include "Engine/Engine.hpp"
 #include "Graphics/Shader.hpp"
@@ -15,7 +12,6 @@
 Mesh::Mesh(const std::vector<Vertex>& v, const std::vector<unsigned int>& ind) :
 	radius(0.0f), 
 	specPower(100.0f),
-	shaderName("BasicMesh"),
 	box(Vector3::Infinity, Vector3::NegInfinity)
 {
 	vertices = v;

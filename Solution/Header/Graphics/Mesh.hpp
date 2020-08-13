@@ -25,8 +25,7 @@ public:
 	void SetTexture(Renderer* renderer, const std::string& path);
 	
 	Texture* GetTexture(size_t index);
-	
-	inline const std::string& GetShaderName() const { return shaderName; }
+
 	inline float GetRadius() const { return radius; }
 	inline float GetSpecPower() const { return specPower; }
 	inline const AABB& GetBox() { return box; }
@@ -43,7 +42,6 @@ private:
 	unsigned int VAO, VBO, EBO;
 
 	std::vector<Texture*> textures;
-	std::string shaderName;
 	float radius;
 	float specPower;
 };

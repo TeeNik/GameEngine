@@ -27,6 +27,9 @@
     <ClCompile Include="Source\BaseStructs\Vector.cpp" />
     <ClCompile Include="Source\Engine\Level.cpp" />
     <ClCompile Include="Source\Graphics\Graphics2D.cpp" />
+    <ClCompile Include="Source\Graphics\Material\BaseColorMaterial.cpp" />
+    <ClCompile Include="Source\Graphics\Material\LightMaterial.cpp" />
+    <ClCompile Include="Source\Graphics\Material\Material.cpp" />
     <ClCompile Include="Source\Graphics\Mesh.cpp" />
     <ClCompile Include="Source\Graphics\MeshExporter.cpp" />
     <ClCompile Include="Source\Graphics\Renderer.cpp" />
@@ -73,6 +76,8 @@
     <ClInclude Include="Header\BaseStructs\Vector.hpp" />
     <ClInclude Include="Header\Engine\Level.hpp" />
     <ClInclude Include="Header\Graphics\Graphics2D.hpp" />
+    <ClInclude Include="Header\Graphics\Materials\LightMaterial.hpp" />
+    <ClInclude Include="Header\Graphics\Materials\Material.hpp" />
     <ClInclude Include="Header\Graphics\Mesh.hpp" />
     <ClInclude Include="Header\Graphics\MeshExporter.hpp" />
     <ClInclude Include="Header\Graphics\Renderer.hpp" />
@@ -110,20 +115,20 @@
     <ClInclude Include="Header\Temp\Player.hpp" />
     <ClInclude Include="Header\Temp\Player2D.hpp" />
     <ClInclude Include="Header\Utils\Utils.hpp" />
+    <ClInclude Include="Header\Graphics\Materials\BaseColorMaterial.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\player.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Shaders\Basic.frag" />
-    <None Include="Assets\Shaders\Basic.vert" />
     <None Include="Assets\Shaders\BasicMesh.frag" />
     <None Include="Assets\Shaders\BasicMesh.vert" />
+    <None Include="Assets\Shaders\Light.frag" />
     <None Include="Assets\Shaders\Phong.frag" />
     <None Include="Assets\Shaders\Phong.vert" />
+    <None Include="Assets\Shaders\SolidColor.frag" />
     <None Include="Assets\Shaders\Sprite.frag" />
     <None Include="Assets\Shaders\Sprite.vert" />
-    <None Include="Assets\Shaders\Transform.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

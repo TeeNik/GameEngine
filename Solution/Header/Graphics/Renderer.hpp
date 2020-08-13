@@ -71,7 +71,10 @@ private:
 	std::unordered_map<std::string, Font*> fonts;
 	std::vector<Canvas*> canvases;
 
+	void DrawMeshes();
 	Shader* meshShader;
+	std::unordered_map <std::string, Shader*> shaders;
+	Shader* GetShader(std::string name);
 
 	Matrix4 view;
 	Matrix4 projection;

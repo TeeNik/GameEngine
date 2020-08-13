@@ -7,6 +7,9 @@
 #include "Graphics/Renderer.hpp"
 #include "Graphics/Mesh.hpp"
 
+#include "Graphics/Materials/LightMaterial.hpp"
+#include "Graphics/Materials/BaseColorMaterial.hpp"
+
 #include "Utils/Utils.hpp"
 #include "Graphics/MeshExporter.hpp"
 
@@ -18,9 +21,29 @@ void D2Level::Load()
 {
 	auto ECS = engine->GetObjectManager();
 	auto renderer = engine->GetRenderer();
-	//Player2D* player = ECS->SpawnActor<Player2D>();
+
+	auto light = ECS->SpawnActor<Actor>();
+	auto mesh = renderer->GetMesh(Utils::ContructPath("models/cube/cube.obj"));
+	auto baseColor = new BaseColorMaterial();
+	baseColor->SetColor(Vector3(0, 1, 1));
+	auto mc = light->AddComponent<MeshComponent>();
+	mc->SetShaderName("BasicMesh|SolidColor");
+	mc->SetMesh(mesh);
+	mc->SetMaterial(baseColor);
+	light->SetActorScale(Vector3(10, 10, 10));
+
+	auto cube = ECS->SpawnActor<Actor>();
+	cube->SetActorScale(Vector3(4, 4, 4));
+	cube->SetActorPosition(Vector3(-20, -20, 0));
+	mc = cube->AddComponent<MeshComponent>();
+	mc->SetMesh(mesh);
+	mc->SetShaderName("BasicMesh|Light");
+	mc->SetMaterial(new LightMaterial());
 
 	Player* player = ECS->SpawnActor<Player>();
+	//Player2D* player = ECS->SpawnActor<Player2D>();
+
+	/*
 	auto path = Utils::ContructPath("models/lighthouse/lighthouse.obj");
 
 	Actor* actor = ECS->SpawnActor<Actor>();
@@ -31,9 +54,8 @@ void D2Level::Load()
 	auto box = mesh->GetBox();
 	mc->SetMesh(mesh);
 
-	return;
-
 	actor = ECS->SpawnActor<Actor>();
+	actor->SetActorRotation(Quaternion(Vector3::UnitX, Math::PiOver2));
 	path = Utils::ContructPath("models/cube/cube.obj");
 	mc = actor->AddComponent<MeshComponent>();
 	mesh = engine->GetRenderer()->GetMesh(path);
@@ -44,7 +66,9 @@ void D2Level::Load()
 	scale.x = Math::Abs(box.max.x - box.min.x);
 	scale.y = Math::Abs(box.max.y - box.min.y);
 	scale.z = Math::Abs(box.max.z - box.min.z);
-	actor->SetActorScale(scale * 0.5f);
+	actor->SetActorScale(scale);
+	*/
+	
 }
 
 void D2Level::Unload()

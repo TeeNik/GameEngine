@@ -147,6 +147,15 @@
     <ClCompile Include="Source\Graphics\MeshExporter.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Graphics\Material\Material.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Material\BaseColorMaterial.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Material\LightMaterial.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Engine\Engine.hpp">
@@ -284,6 +293,15 @@
     <ClInclude Include="Header\Graphics\MeshExporter.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Graphics\Materials\Material.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\Materials\BaseColorMaterial.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\Materials\LightMaterial.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\player.png">
@@ -291,14 +309,13 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Shaders\Basic.vert" />
-    <None Include="Assets\Shaders\Basic.frag" />
-    <None Include="Assets\Shaders\Transform.vert" />
     <None Include="Assets\Shaders\Sprite.frag" />
     <None Include="Assets\Shaders\Sprite.vert" />
     <None Include="Assets\Shaders\Phong.vert" />
     <None Include="Assets\Shaders\BasicMesh.frag" />
     <None Include="Assets\Shaders\BasicMesh.vert" />
     <None Include="Assets\Shaders\Phong.frag" />
+    <None Include="Assets\Shaders\SolidColor.frag" />
+    <None Include="Assets\Shaders\Light.frag" />
   </ItemGroup>
 </Project>

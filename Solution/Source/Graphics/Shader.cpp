@@ -11,7 +11,7 @@ Shader::~Shader()
 {
 }
 
-bool Shader::Load(const std::string vertName, const std::string fragName)
+bool Shader::Load(const std::string& name, const std::string& vertName, const std::string& fragName)
 {
 	bool isVertCompiled = CompileShader(vertName, GL_VERTEX_SHADER, vertexShader);
 	bool isFragCompiled = CompileShader(fragName, GL_FRAGMENT_SHADER, fragShader);
@@ -19,6 +19,7 @@ bool Shader::Load(const std::string vertName, const std::string fragName)
 		return false;
 	}
 
+	shaderName = name;
 	shaderProgram = glCreateProgram();
 	glAttachShader(shaderProgram, vertexShader);
 	glAttachShader(shaderProgram, fragShader);

@@ -101,10 +101,13 @@ void Renderer::Shutdown()
 	canvases.clear();
 
 	delete spriteVerts;
-	spriteShader->Unload();
-	delete spriteShader;
-	meshShader->Unload();
-	delete meshShader;
+
+	for (auto shader : shaders)
+	{
+		shader.second->Unload();
+		delete shader.second;
+	}
+
 	SDL_GL_DeleteContext(context);
 	SDL_DestroyWindow(window);
 }
@@ -117,14 +120,7 @@ void Renderer::Draw()
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
 	
-	meshShader->SetActive();
-	meshShader->SetMatrixUniform("uViewProj", view * projection);
-	
-	SetLightUniforms(meshShader);
-	for (auto mc : meshComps)
-	{
-		mc->Draw(meshShader);
-	}
+	DrawMeshes();
 
 	glDisable(GL_DEPTH_TEST);
 	
@@ -255,8 +251,8 @@ Font* Renderer::GetFont(const std::string& fileName)
 
 bool Renderer::LoadShaders()
 {
-	spriteShader = new Shader();
-	if (!spriteShader->Load(Utils::ContructPath("Shaders/Sprite.vert"), Utils::ContructPath("Shaders/Sprite.frag")))
+	spriteShader = GetShader("Sprite|Sprite");
+	if (spriteShader == nullptr)
 	{
 		return false;
 	}
@@ -266,19 +262,63 @@ bool Renderer::LoadShaders()
 	Matrix4 viewProj = Matrix4::CreateSimpleViewProj(screenWidth, screenHeight);
 	spriteShader->SetMatrixUniform("uViewProj", viewProj);
 
-	meshShader = new Shader();
-	//if (!meshShader->Load(Utils::ContructPath("Shaders/Phong.vert"), Utils::ContructPath("Shaders/Phong.frag")))
-	if (!meshShader->Load(Utils::ContructPath("Shaders/BasicMesh.vert"), Utils::ContructPath("Shaders/BasicMesh.frag")))
+	meshShader = GetShader("BasicMesh|BasicMesh");
+	if (meshShader == nullptr)
 	{
 		return false;
 	}
-
 	meshShader->SetActive();
 
 	view = Matrix4::CreateLookAt(Vector3::Zero, Vector3::UnitX, Vector3::UnitZ);
 	projection = Matrix4::CreatePerspectiveFOV(Math::ToRadians(70.0f), screenWidth, screenHeight, 25.0f, 10000.0f);
 	meshShader->SetMatrixUniform("uViewProj", view * projection);
 	return true;
+}
+
+void Renderer::DrawMeshes()
+{
+	for (auto mc : meshComps)
+	{
+		auto shaderName = mc->GetShaderName();
+		if (shaderName != meshShader->GetName())
+		{
+			meshShader = GetShader(shaderName);
+		}
+		meshShader->SetActive();
+		meshShader->SetMatrixUniform("uViewProj", view * projection);
+		SetLightUniforms(meshShader);
+		mc->Draw(meshShader);
+	}
+}
+
+Shader* Renderer::GetShader(std::string name)
+{
+	auto iter = shaders.find(name);
+	if (iter != shaders.end())
+	{
+		return iter->second;
+	}
+	else
+	{
+		Shader* shader = new Shader();
+
+		std::string path = Utils::ContructPath("Shaders/");
+		auto found = name.find_first_of('|');
+		auto vert = path + name.substr(0, found) + ".vert";
+		auto frag = path + name.substr(found+1, name.size()) + ".frag";
+
+		if (shader->Load(name, vert, frag))
+		{
+			shaders.emplace(name, shader);
+		}
+		else
+		{
+			shader->Unload();
+			delete shader;
+			shader = nullptr;
+		}
+		return shader;
+	}
 }
 
 void Renderer::CreateSpriteVerts()
