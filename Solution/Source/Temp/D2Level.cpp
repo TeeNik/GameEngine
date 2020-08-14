@@ -6,6 +6,7 @@
 #include "Temp/Player.hpp"
 #include "Graphics/Renderer.hpp"
 #include "Graphics/Mesh.hpp"
+#include "Temp/RotateAroundComponent.hpp"
 
 #include "Graphics/Materials/LightMaterial.hpp"
 #include "Graphics/Materials/BaseColorMaterial.hpp"
@@ -22,25 +23,30 @@ void D2Level::Load()
 	auto ECS = engine->GetObjectManager();
 	auto renderer = engine->GetRenderer();
 
+	Player* player = ECS->SpawnActor<Player>();
+
 	auto light = ECS->SpawnActor<Actor>();
 	auto mesh = renderer->GetMesh(Utils::ContructPath("models/cube/cube.obj"));
 	auto baseColor = new BaseColorMaterial();
-	baseColor->SetColor(Vector3(0, 1, 1));
+	baseColor->SetColor(Vector3(1, 1, 1));
 	auto mc = light->AddComponent<MeshComponent>();
-	mc->SetShaderName("BasicMesh|SolidColor");
+	mc->SetShaderName("Phong|SolidColor");
 	mc->SetMesh(mesh);
 	mc->SetMaterial(baseColor);
-	light->SetActorScale(Vector3(10, 10, 10));
+	light->SetActorScale(Vector3(4, 4, 4));
 
 	auto cube = ECS->SpawnActor<Actor>();
-	cube->SetActorScale(Vector3(4, 4, 4));
+	cube->SetActorScale(Vector3(10, 10, 10));
 	cube->SetActorPosition(Vector3(-20, -20, 0));
 	mc = cube->AddComponent<MeshComponent>();
 	mc->SetMesh(mesh);
-	mc->SetShaderName("BasicMesh|Light");
-	mc->SetMaterial(new LightMaterial());
+	mc->SetShaderName("Phong|Light");
+	auto lightMat = new LightMaterial();
+	lightMat->SetData(light, player);
+	mc->SetMaterial(lightMat);
+	auto rc = cube->AddComponent<RotateAroundComponent>();
+	rc->SetRotation(Vector3::Zero, 2);
 
-	Player* player = ECS->SpawnActor<Player>();
 	//Player2D* player = ECS->SpawnActor<Player2D>();
 
 	/*

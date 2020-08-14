@@ -66,6 +66,7 @@
     <ClCompile Include="Source\Temp\D3Level.cpp" />
     <ClCompile Include="Source\Temp\Player.cpp" />
     <ClCompile Include="Source\Temp\Player2D.cpp" />
+    <ClCompile Include="Source\Temp\RotateAroundComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Audio\AudioSystem.hpp" />
@@ -114,6 +115,7 @@
     <ClInclude Include="Header\Temp\D3Level.hpp" />
     <ClInclude Include="Header\Temp\Player.hpp" />
     <ClInclude Include="Header\Temp\Player2D.hpp" />
+    <ClInclude Include="Header\Temp\RotateAroundComponent.hpp" />
     <ClInclude Include="Header\Utils\Utils.hpp" />
     <ClInclude Include="Header\Graphics\Materials\BaseColorMaterial.hpp" />
   </ItemGroup>
