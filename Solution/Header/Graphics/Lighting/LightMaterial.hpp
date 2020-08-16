@@ -1,5 +1,5 @@
 #pragma once
-#include "Graphics/Materials/Material.hpp"
+#include "Graphics/Lighting/Material.hpp"
 
 class Actor;
 

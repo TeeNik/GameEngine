@@ -3,9 +3,7 @@
 
 struct Light
 {
-	Vector3 position;
-
 	Vector3 ambient;
 	Vector3 diffuse;
-	Vector3 specilar;
+	Vector3 specular;
 };
