@@ -14,6 +14,7 @@ public:
 	void SetMatrixUniform(const char* name, const Matrix4& matrix);
 	void SetVectorUniform(const char* name, const Vector3& vector);
 	void SetFloatUniform(const char* name, const float value);
+	void SetIntUniform(const char* name, const int value);
 	inline std::string GetName() { return shaderName; }
 
 private:

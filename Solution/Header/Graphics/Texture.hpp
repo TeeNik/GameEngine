@@ -13,6 +13,7 @@ public:
 	bool Load(const std::string& fileName);
 	void Unload();
 	void SetActive();
+	void SetActive(int bindIndex);
 	void CreateFromSurface(SDL_Surface* surface);
 
 	inline const Vector2 GetSize() const { return size; }

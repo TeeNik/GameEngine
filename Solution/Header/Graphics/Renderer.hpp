@@ -15,6 +15,7 @@ class Engine;
 class VertexArray;
 class Font;
 class Canvas;
+class LightingSystem;
 
 struct DirectionalLight
 {
@@ -50,6 +51,7 @@ public:
 
 	inline float GetScreenWidth() const { return static_cast<float>(screenWidth); }
 	inline float GetScreenHeight() const { return static_cast<float>(screenHeight); }
+	inline LightingSystem* GetLighting() const { return lighting; }
 
 	Font* GetFont(const std::string& fileName);
 private:
@@ -81,6 +83,8 @@ private:
 	
 	int screenWidth;
 	int screenHeight;
+
+	LightingSystem* lighting;
 
 	Vector3 ambientLight;
 	DirectionalLight dirLight;
