@@ -44,6 +44,12 @@ void Texture::SetActive()
 	glBindTexture(GL_TEXTURE_2D, textureID);
 }
 
+void Texture::SetActive(int bindIndex)
+{
+	glActiveTexture(bindIndex);
+	glBindTexture(GL_TEXTURE_2D, textureID);
+}
+
 void Texture::CreateFromSurface(SDL_Surface* surface)
 {
 	width = surface->w;

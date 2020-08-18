@@ -147,16 +147,16 @@
     <ClCompile Include="Source\Graphics\MeshExporter.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\Material\Material.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\Material\BaseColorMaterial.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\Material\LightMaterial.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Temp\RotateAroundComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Lighting\BaseColorMaterial.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Lighting\LightMaterial.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Lighting\Material.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -323,5 +323,35 @@
     <None Include="Assets\Shaders\Phong.frag" />
     <None Include="Assets\Shaders\SolidColor.frag" />
     <None Include="Assets\Shaders\Light.frag" />
+    <None Include="Header\Graphics\Lighting\Material.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </None>
+    <None Include="Header\Graphics\Lighting\BaseColorMaterial.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </None>
+    <None Include="Header\Graphics\Lighting\Light.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </None>
+    <None Include="Header\Graphics\Lighting\LightMaterial.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </None>
+    <None Include="Header\Graphics\Lighting\LightingSystem.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </None>
+    <None Include="Source\Graphics\Lighting\LightingSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="Header\ObjectSystem\LightComponent.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </None>
+    <None Include="Source\Graphics\LightComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="Header\Graphics\Lighting\PointLight.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </None>
+    <None Include="Source\Graphics\Lighting\PointLight.cpp">
+      <Filter>Исходные файлы</Filter>
+    </None>
   </ItemGroup>
 </Project>

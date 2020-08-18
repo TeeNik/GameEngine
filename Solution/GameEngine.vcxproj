@@ -27,9 +27,9 @@
     <ClCompile Include="Source\BaseStructs\Vector.cpp" />
     <ClCompile Include="Source\Engine\Level.cpp" />
     <ClCompile Include="Source\Graphics\Graphics2D.cpp" />
-    <ClCompile Include="Source\Graphics\Material\BaseColorMaterial.cpp" />
-    <ClCompile Include="Source\Graphics\Material\LightMaterial.cpp" />
-    <ClCompile Include="Source\Graphics\Material\Material.cpp" />
+    <ClCompile Include="Source\Graphics\Lighting\BaseColorMaterial.cpp" />
+    <ClCompile Include="Source\Graphics\Lighting\LightMaterial.cpp" />
+    <ClCompile Include="Source\Graphics\Lighting\Material.cpp" />
     <ClCompile Include="Source\Graphics\Mesh.cpp" />
     <ClCompile Include="Source\Graphics\MeshExporter.cpp" />
     <ClCompile Include="Source\Graphics\Renderer.cpp" />
@@ -131,6 +131,16 @@
     <None Include="Assets\Shaders\SolidColor.frag" />
     <None Include="Assets\Shaders\Sprite.frag" />
     <None Include="Assets\Shaders\Sprite.vert" />
+    <None Include="Header\Graphics\Lighting\BaseColorMaterial.hpp" />
+    <None Include="Header\Graphics\Lighting\Light.hpp" />
+    <None Include="Header\Graphics\Lighting\LightingSystem.hpp" />
+    <None Include="Header\Graphics\Lighting\LightMaterial.hpp" />
+    <None Include="Header\Graphics\Lighting\Material.hpp" />
+    <None Include="Header\Graphics\Lighting\PointLight.hpp" />
+    <None Include="Header\ObjectSystem\LightComponent.hpp" />
+    <None Include="Source\Graphics\LightComponent.cpp" />
+    <None Include="Source\Graphics\Lighting\LightingSystem.cpp" />
+    <None Include="Source\Graphics\Lighting\PointLight.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

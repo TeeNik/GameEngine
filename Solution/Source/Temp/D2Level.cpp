@@ -8,8 +8,8 @@
 #include "Graphics/Mesh.hpp"
 #include "Temp/RotateAroundComponent.hpp"
 
-#include "Graphics/Materials/LightMaterial.hpp"
-#include "Graphics/Materials/BaseColorMaterial.hpp"
+#include "Graphics/Lighting/LightMaterial.hpp"
+#include "Graphics/Lighting/BaseColorMaterial.hpp"
 
 #include "Utils/Utils.hpp"
 #include "Graphics/MeshExporter.hpp"
@@ -27,25 +27,30 @@ void D2Level::Load()
 
 	auto light = ECS->SpawnActor<Actor>();
 	auto mesh = renderer->GetMesh(Utils::ContructPath("models/cube/cube.obj"));
-	auto baseColor = new BaseColorMaterial();
-	baseColor->SetColor(Vector3(1, 1, 1));
+	//auto baseColor = new BaseColorMaterial();
+	//baseColor->SetColor(Vector3(1, 1, 1));
+	auto material = new Material();
+	auto texture = renderer->GetTexture(Utils::ContructPath("container.png"));
+	mesh->SetTexture(renderer, Utils::ContructPath("container.png"));
+	//material->diffuse = texture;
+	material->baseColor = Vector3(.5f, .5f, 0);
 	auto mc = light->AddComponent<MeshComponent>();
-	mc->SetShaderName("Phong|SolidColor");
+	mc->SetShaderName("Phong|BasicMesh");
 	mc->SetMesh(mesh);
-	mc->SetMaterial(baseColor);
-	light->SetActorScale(Vector3(4, 4, 4));
+	//mc->SetMaterial(material);
+	light->SetActorScale(Vector3(10, 10, 10));
 
-	auto cube = ECS->SpawnActor<Actor>();
-	cube->SetActorScale(Vector3(10, 10, 10));
-	cube->SetActorPosition(Vector3(-20, -20, 0));
-	mc = cube->AddComponent<MeshComponent>();
-	mc->SetMesh(mesh);
-	mc->SetShaderName("Phong|Light");
-	auto lightMat = new LightMaterial();
-	lightMat->SetData(light, player);
-	mc->SetMaterial(lightMat);
-	auto rc = cube->AddComponent<RotateAroundComponent>();
-	rc->SetRotation(Vector3::Zero, 2);
+	//auto cube = ECS->SpawnActor<Actor>();
+	//cube->SetActorScale(Vector3(10, 10, 10));
+	//cube->SetActorPosition(Vector3(-20, -20, 0));
+	//mc = cube->AddComponent<MeshComponent>();
+	//mc->SetMesh(mesh);
+	//mc->SetShaderName("Phong|Light");
+	//auto lightMat = new LightMaterial();
+	//lightMat->SetData(light, player);
+	//mc->SetMaterial(lightMat);
+	//auto rc = cube->AddComponent<RotateAroundComponent>();
+	//rc->SetRotation(Vector3::Zero, 2);
 
 	//Player2D* player = ECS->SpawnActor<Player2D>();
 

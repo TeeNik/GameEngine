@@ -6,7 +6,7 @@
 #include "Graphics/Renderer.hpp"
 #include "Graphics/Texture.hpp"
 #include "Graphics/VertexArray.hpp"
-#include "Graphics/Materials/Material.hpp"
+#include "Graphics/Lighting/Material.hpp"
 
 MeshComponent::MeshComponent(Actor* owner)
 	: Component(owner),
@@ -36,12 +36,14 @@ void MeshComponent::Draw(Shader* shader)
 		{
 			material->Use(shader);
 		}
-
-		Texture* t = mesh->GetTexture(textureIndex);
-		if (t)
-		{
-			t->SetActive();
+		else {
+			Texture* t = mesh->GetTexture(textureIndex);
+			if (t)
+			{
+				t->SetActive();
+			}
 		}
+		
 		mesh->Draw(shader);
 	}
 }

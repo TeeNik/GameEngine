@@ -10,6 +10,7 @@
 #include <glew.h>
 #include "Utils/Utils.hpp"
 #include "Graphics/UI/Font.hpp"
+#include "Graphics/Lighting/LightingSystem.hpp"
 
 #include "Graphics/UI/Canvas.hpp"
 
@@ -52,6 +53,7 @@ bool Renderer::Initialize(int sw, int sh)
 	}
 
 	context = SDL_GL_CreateContext(window);
+	lighting = new LightingSystem();
 
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK)
@@ -76,6 +78,8 @@ bool Renderer::Initialize(int sw, int sh)
 
 void Renderer::Shutdown()
 {
+	delete lighting;
+
 	for (auto texture : textures)
 	{
 		texture.second->Unload();
