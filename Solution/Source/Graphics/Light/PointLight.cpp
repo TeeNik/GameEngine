@@ -1,10 +1,26 @@
-#include "Graphics/Lighting/PointLight.hpp"
+#include "Graphics/Light/PointLight.hpp"
 #include "Graphics/Shader.hpp"
 #include <string>
+#include "Engine/Engine.hpp"
+#include "Graphics/Renderer.hpp"
+#include "Graphics/Light/LightingSystem.hpp"
+#include "Utils/Utils.hpp"
+#include "ObjectSystem/MeshComponent.hpp"
+#include "Graphics/Light/Material.hpp"
 
 PointLight::PointLight(Engine* e) : Actor(e)
 {
-	AddComponent<PointLightComponent>();
+	auto renderer = e->GetRenderer();
+	renderer->GetLighting()->RegisterLight(this);
+
+	auto mesh = renderer->GetMesh(Utils::ContructPath("models/cube/cube.obj"));
+	auto mc = AddComponent<MeshComponent>();
+	mc->SetShaderName("Phong|BasicMesh");
+	mc->SetMesh(mesh);
+
+	auto material = new Material();
+	material->baseColor = Vector3(.5f, .5f, 0);
+	mc->SetMaterial(material);
 }
 
 void PointLight::AddLightToShader(Shader* shader, const int index)

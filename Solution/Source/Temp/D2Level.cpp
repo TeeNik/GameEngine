@@ -8,8 +8,8 @@
 #include "Graphics/Mesh.hpp"
 #include "Temp/RotateAroundComponent.hpp"
 
-#include "Graphics/Lighting/LightMaterial.hpp"
-#include "Graphics/Lighting/BaseColorMaterial.hpp"
+#include "Graphics/Light/PointLight.hpp"
+#include "Temp/Coop.hpp"
 
 #include "Utils/Utils.hpp"
 #include "Graphics/MeshExporter.hpp"
@@ -25,20 +25,7 @@ void D2Level::Load()
 
 	Player* player = ECS->SpawnActor<Player>();
 
-	auto light = ECS->SpawnActor<Actor>();
-	auto mesh = renderer->GetMesh(Utils::ContructPath("models/cube/cube.obj"));
-	//auto baseColor = new BaseColorMaterial();
-	//baseColor->SetColor(Vector3(1, 1, 1));
-	auto material = new Material();
-	auto texture = renderer->GetTexture(Utils::ContructPath("container.png"));
-	mesh->SetTexture(renderer, Utils::ContructPath("container.png"));
-	//material->diffuse = texture;
-	material->baseColor = Vector3(.5f, .5f, 0);
-	auto mc = light->AddComponent<MeshComponent>();
-	mc->SetShaderName("Phong|BasicMesh");
-	mc->SetMesh(mesh);
-	//mc->SetMaterial(material);
-	light->SetActorScale(Vector3(10, 10, 10));
+	PointLight* light = ECS->SpawnActor<PointLight>();
 
 	//auto cube = ECS->SpawnActor<Actor>();
 	//cube->SetActorScale(Vector3(10, 10, 10));

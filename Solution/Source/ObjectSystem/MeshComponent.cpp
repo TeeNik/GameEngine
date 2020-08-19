@@ -6,7 +6,7 @@
 #include "Graphics/Renderer.hpp"
 #include "Graphics/Texture.hpp"
 #include "Graphics/VertexArray.hpp"
-#include "Graphics/Lighting/Material.hpp"
+#include "Graphics/Light/Material.hpp"
 
 MeshComponent::MeshComponent(Actor* owner)
 	: Component(owner),

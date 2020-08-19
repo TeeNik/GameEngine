@@ -1,19 +1,11 @@
 #pragma once
 #include "ObjectSystem/Actor.hpp"
-#include "ObjectSystem/LightComponent.hpp"
-#include "Graphics/Lighting/Light.hpp"
+#include "Graphics/Light/Light.hpp"
+
+class Shader;
 
 class PointLight : public Actor
 {
-
-	class PointLightComponent : public LightComponent
-	{
-	public:
-		PointLightComponent(Actor* a) : LightComponent(a) {}
-
-		virtual void ProcessLight() override;
-	};
-
 public:
 	PointLight(Engine* e);
 
@@ -25,7 +17,7 @@ public:
 
 private:
 	Light light;
-	float constant;
-	float linear;
-	float quadratic;
+	float constant = 0;
+	float linear = 0;
+	float quadratic = 0;
 };

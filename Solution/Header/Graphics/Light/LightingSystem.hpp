@@ -12,7 +12,7 @@ public:
 	void RegisterLight(PointLight* light);
 
 private:
-	std::vector<PointLight> pointLights;
+	std::vector<PointLight*> pointLights;
 
 	void ProcessPointLights(Shader* shader);
 };

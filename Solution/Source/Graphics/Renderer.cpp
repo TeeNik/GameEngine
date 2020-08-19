@@ -10,7 +10,7 @@
 #include <glew.h>
 #include "Utils/Utils.hpp"
 #include "Graphics/UI/Font.hpp"
-#include "Graphics/Lighting/LightingSystem.hpp"
+#include "Graphics/Light/LightingSystem.hpp"
 
 #include "Graphics/UI/Canvas.hpp"
 
