@@ -18,133 +18,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Source\Audio\AudioSystem.cpp" />
-    <ClCompile Include="Source\Audio\SoundEvent.cpp" />
-    <ClCompile Include="Source\BaseActors\Camera.cpp" />
-    <ClCompile Include="Source\BaseActors\PlaneActor.cpp" />
-    <ClCompile Include="Source\BaseStructs\Transform.cpp" />
-    <ClCompile Include="Source\BaseStructs\Vector.cpp" />
-    <ClCompile Include="Source\Engine\Level.cpp" />
-    <ClCompile Include="Source\Graphics\Graphics2D.cpp" />
-    <ClCompile Include="Source\Graphics\Mesh.cpp" />
-    <ClCompile Include="Source\Graphics\MeshExporter.cpp" />
-    <ClCompile Include="Source\Graphics\Renderer.cpp" />
-    <ClCompile Include="Source\Graphics\Shader.cpp" />
-    <ClCompile Include="Source\Graphics\Texture.cpp" />
-    <ClCompile Include="Source\Graphics\UI\Button.cpp" />
-    <ClCompile Include="Source\Graphics\UI\Canvas.cpp" />
-    <ClCompile Include="Source\Graphics\UI\Font.cpp" />
-    <ClCompile Include="Source\Graphics\UI\Text.cpp" />
-    <ClCompile Include="Source\Graphics\UI\UIElement.cpp" />
-    <ClCompile Include="Source\Graphics\VertexArray.cpp" />
-    <ClCompile Include="Source\Input\ControllerState.cpp" />
-    <ClCompile Include="Source\Input\InputSystem.cpp" />
-    <ClCompile Include="Source\Input\KeyboardState.cpp" />
-    <ClCompile Include="Source\Input\MouseState.cpp" />
-    <ClCompile Include="Source\Math\Math.cpp" />
-    <ClCompile Include="Source\ObjectSystem\AnimSpriteComponent.cpp" />
-    <ClCompile Include="Source\ObjectSystem\Camera\CameraComponent.cpp" />
-    <ClCompile Include="Source\ObjectSystem\Camera\FollowCamera.cpp" />
-    <ClCompile Include="Source\ObjectSystem\Camera\FPSCamera.cpp" />
-    <ClCompile Include="Source\ObjectSystem\Collision\BoxComponent.cpp" />
-    <ClCompile Include="Source\ObjectSystem\InputComponent.cpp" />
-    <ClCompile Include="Source\ObjectSystem\MeshComponent.cpp" />
-    <ClCompile Include="Source\ObjectSystem\MovementComponent.cpp" />
-    <ClCompile Include="Source\ObjectSystem\ObjectManager.cpp" />
-    <ClCompile Include="Source\ObjectSystem\Component.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Source\ObjectSystem\Actor.cpp" />
-    <ClCompile Include="Source\Engine\Engine.cpp" />
-    <ClCompile Include="Source\ObjectSystem\SpriteRendererComponent.cpp" />
-    <ClCompile Include="Source\Physics\Collision.cpp" />
-    <ClCompile Include="Source\Physics\Physics.cpp" />
-    <ClCompile Include="Source\Temp\D2Level.cpp" />
-    <ClCompile Include="Source\Temp\D3Level.cpp" />
-    <ClCompile Include="Source\Temp\Player.cpp" />
-    <ClCompile Include="Source\Temp\Player2D.cpp" />
-    <ClCompile Include="Source\Temp\RotateAroundComponent.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Header\Audio\AudioSystem.hpp" />
-    <ClInclude Include="Header\Audio\SoundEvent.hpp" />
-    <ClInclude Include="Header\BaseActors\Camera.hpp" />
-    <ClInclude Include="Header\BaseActors\PlaneActor.hpp" />
-    <ClInclude Include="Header\BaseStructs\Transform.hpp" />
-    <ClInclude Include="Header\BaseStructs\Vector.hpp" />
-    <ClInclude Include="Header\Engine\Level.hpp" />
-    <ClInclude Include="Header\Graphics\Graphics2D.hpp" />
-    <ClInclude Include="Header\Graphics\Materials\LightMaterial.hpp" />
-    <ClInclude Include="Header\Graphics\Materials\Material.hpp" />
-    <ClInclude Include="Header\Graphics\Mesh.hpp" />
-    <ClInclude Include="Header\Graphics\MeshExporter.hpp" />
-    <ClInclude Include="Header\Graphics\Renderer.hpp" />
-    <ClInclude Include="Header\Graphics\Shader.hpp" />
-    <ClInclude Include="Header\Graphics\Texture.hpp" />
-    <ClInclude Include="Header\Graphics\UI\Button.hpp" />
-    <ClInclude Include="Header\Graphics\UI\Canvas.hpp" />
-    <ClInclude Include="Header\Graphics\UI\Font.hpp" />
-    <ClInclude Include="Header\Graphics\UI\Text.hpp" />
-    <ClInclude Include="Header\Graphics\UI\UIElement.hpp" />
-    <ClInclude Include="Header\Graphics\VertexArray.hpp" />
-    <ClInclude Include="Header\Input\ControllerState.hpp" />
-    <ClInclude Include="Header\Input\Input.hpp" />
-    <ClInclude Include="Header\Input\InputSubscriber.hpp" />
-    <ClInclude Include="Header\Input\InputSystem.hpp" />
-    <ClInclude Include="Header\Input\KeyboardState.hpp" />
-    <ClInclude Include="Header\Input\MouseState.hpp" />
-    <ClInclude Include="Header\Math\Math.h" />
-    <ClInclude Include="Header\ObjectSystem\AnimSpriteComponent.hpp" />
-    <ClInclude Include="Header\ObjectSystem\Camera\CameraComponent.hpp" />
-    <ClInclude Include="Header\ObjectSystem\Camera\FollowCamera.hpp" />
-    <ClInclude Include="Header\ObjectSystem\Camera\FPSCamera.hpp" />
-    <ClInclude Include="Header\ObjectSystem\Component.hpp" />
-    <ClInclude Include="Header\Engine\Engine.hpp" />
-    <ClInclude Include="Header\ObjectSystem\Actor.hpp" />
-    <ClInclude Include="Header\ObjectSystem\InputComponent.hpp" />
-    <ClInclude Include="Header\ObjectSystem\MeshComponent.hpp" />
-    <ClInclude Include="Header\ObjectSystem\MovementComponent.hpp" />
-    <ClInclude Include="Header\ObjectSystem\ObjectManager.hpp" />
-    <ClInclude Include="Header\ObjectSystem\SpriteRendererComponent.hpp" />
-    <ClInclude Include="Header\ObjectSystem\Collision\BoxComponent.hpp" />
-    <ClInclude Include="Header\Physics\Collision.hpp" />
-    <ClInclude Include="Header\Temp\D2Level.hpp" />
-    <ClInclude Include="Header\Temp\D3Level.hpp" />
-    <ClInclude Include="Header\Temp\Player.hpp" />
-    <ClInclude Include="Header\Temp\Player2D.hpp" />
-    <ClInclude Include="Header\Temp\RotateAroundComponent.hpp" />
-    <ClInclude Include="Header\Utils\Utils.hpp" />
-    <ClInclude Include="Header\Graphics\Materials\BaseColorMaterial.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Assets\player.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\Shaders\BasicMesh.frag" />
-    <None Include="Assets\Shaders\BasicMesh.vert" />
-    <None Include="Assets\Shaders\Light.frag" />
-    <None Include="Assets\Shaders\Phong.frag" />
-    <None Include="Assets\Shaders\Phong.vert" />
-    <None Include="Assets\Shaders\SolidColor.frag" />
-    <None Include="Assets\Shaders\Sprite.frag" />
-    <None Include="Assets\Shaders\Sprite.vert" />
-    <None Include="Header\Graphics\Light\Light.hpp" />
-    <None Include="Header\Graphics\Light\LightingSystem.hpp" />
-    <None Include="Header\Graphics\Light\Material.hpp" />
-    <None Include="Header\Graphics\Light\PointLight.hpp" />
-    <None Include="Header\Graphics\PointLight.hpp" />
-    <None Include="Header\ObjectSystem\LightComponent.hpp" />
-    <None Include="Header\Temp\Coop.hpp" />
-    <None Include="Source\Graphics\LightComponent.cpp" />
-    <None Include="Source\Graphics\Light\LightingSystem.cpp" />
-    <None Include="Source\Graphics\Light\Material.cpp" />
-    <None Include="Source\Graphics\PointLight.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{5AFCC713-FDD5-4663-8DEC-18D65A0B2DD3}</ProjectGuid>
+    <ProjectGuid>{B5325A14-4304-4DAC-BC4D-6548205143C9}</ProjectGuid>
     <RootNamespace>GameEngine</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -163,7 +41,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -191,16 +69,21 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(SolutionDir)\Header;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Header;$(SolutionDir)\..\Plugins\SDL\include;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\include;C:\Program Files (x86)\Visual Leak Detector\include;$(SolutionDir)\..\Plugins\GLEW\include\GL;$(SolutionDir)\..\Plugins\SOIL\include\SOIL;$(SolutionDir)\..\Plugins\SOIL\include\rapidjson;$(SolutionDir)\..\Plugins\FMOD\inc;$(SolutionDir)\..\Plugins\Assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\Plugins\SDL\lib\win64;$(SolutionDir)\..\Plugins\SDL2_image-2.0.5\lib\x64;C:\Program Files (x86)\Visual Leak Detector\lib\Win64;$(SolutionDir)\..\Plugins\GLEW\lib\Release\x64;$(SolutionDir)\..\Plugins\SOIL\lib\win\x64;$(SolutionDir)\..\Plugins\FMOD\lib\x64;$(SolutionDir)\..\Plugins\VLD\lib\Win64;$(SolutionDir)\..\Plugins\Assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;SOIL.lib;fmod64_vc.lib;fmodL64_vc.lib;fmodstudio_vc.lib;fmodstudioL_vc.lib;fsbank_vc.lib;SDL2_ttf.lib;assimp-vc141-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -247,6 +130,128 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Header\Audio\AudioSystem.hpp" />
+    <ClInclude Include="Header\Audio\SoundEvent.hpp" />
+    <ClInclude Include="Header\BaseActors\Camera.hpp" />
+    <ClInclude Include="Header\BaseActors\PlaneActor.hpp" />
+    <ClInclude Include="Header\BaseStructs\Transform.hpp" />
+    <ClInclude Include="Header\BaseStructs\Vector.hpp" />
+    <ClInclude Include="Header\Engine\Engine.hpp" />
+    <ClInclude Include="Header\Engine\Level.hpp" />
+    <ClInclude Include="Header\Graphics\Graphics2D.hpp" />
+    <ClInclude Include="Header\Graphics\Light\Light.hpp" />
+    <ClInclude Include="Header\Graphics\Light\LightingSystem.hpp" />
+    <ClInclude Include="Header\Graphics\Light\Material.hpp" />
+    <ClInclude Include="Header\Graphics\Light\PointLight.hpp" />
+    <ClInclude Include="Header\Graphics\Mesh.hpp" />
+    <ClInclude Include="Header\Graphics\MeshExporter.hpp" />
+    <ClInclude Include="Header\Graphics\Renderer.hpp" />
+    <ClInclude Include="Header\Graphics\Shader.hpp" />
+    <ClInclude Include="Header\Graphics\Texture.hpp" />
+    <ClInclude Include="Header\Graphics\UI\Button.hpp" />
+    <ClInclude Include="Header\Graphics\UI\Canvas.hpp" />
+    <ClInclude Include="Header\Graphics\UI\Font.hpp" />
+    <ClInclude Include="Header\Graphics\UI\Text.hpp" />
+    <ClInclude Include="Header\Graphics\UI\UIElement.hpp" />
+    <ClInclude Include="Header\Graphics\VertexArray.hpp" />
+    <ClInclude Include="Header\Input\ControllerState.hpp" />
+    <ClInclude Include="Header\Input\InputSubscriber.hpp" />
+    <ClInclude Include="Header\Input\InputSystem.hpp" />
+    <ClInclude Include="Header\Input\KeyboardState.hpp" />
+    <ClInclude Include="Header\Input\MouseState.hpp" />
+    <ClInclude Include="Header\Math\Math.h" />
+    <ClInclude Include="Header\ObjectSystem\Actor.hpp" />
+    <ClInclude Include="Header\ObjectSystem\AnimSpriteComponent.hpp" />
+    <ClInclude Include="Header\ObjectSystem\Camera\CameraComponent.hpp" />
+    <ClInclude Include="Header\ObjectSystem\Camera\FollowCamera.hpp" />
+    <ClInclude Include="Header\ObjectSystem\Camera\FPSCamera.hpp" />
+    <ClInclude Include="Header\ObjectSystem\Collision\BoxComponent.hpp" />
+    <ClInclude Include="Header\ObjectSystem\Component.hpp" />
+    <ClInclude Include="Header\ObjectSystem\InputComponent.hpp" />
+    <ClInclude Include="Header\ObjectSystem\LightComponent.hpp" />
+    <ClInclude Include="Header\ObjectSystem\MeshComponent.hpp" />
+    <ClInclude Include="Header\ObjectSystem\MovementComponent.hpp" />
+    <ClInclude Include="Header\ObjectSystem\ObjectManager.hpp" />
+    <ClInclude Include="Header\ObjectSystem\SpriteRendererComponent.hpp" />
+    <ClInclude Include="Header\Physics\Collision.hpp" />
+    <ClInclude Include="Header\Physics\Physics.hpp" />
+    <ClInclude Include="Header\Temp\D2Level.hpp" />
+    <ClInclude Include="Header\Temp\D3Level.hpp" />
+    <ClInclude Include="Header\Temp\Player.hpp" />
+    <ClInclude Include="Header\Temp\Player2D.hpp" />
+    <ClInclude Include="Header\Temp\RotateAroundComponent.hpp" />
+    <ClInclude Include="Header\Utils\Utils.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Source\Audio\AudioSystem.cpp" />
+    <ClCompile Include="Source\Audio\SoundEvent.cpp" />
+    <ClCompile Include="Source\BaseActors\Camera.cpp" />
+    <ClCompile Include="Source\BaseActors\PlaneActor.cpp" />
+    <ClCompile Include="Source\BaseStructs\Transform.cpp" />
+    <ClCompile Include="Source\BaseStructs\Vector.cpp" />
+    <ClCompile Include="Source\Engine\Engine.cpp" />
+    <ClCompile Include="Source\Engine\Level.cpp" />
+    <ClCompile Include="Source\Graphics\Graphics2D.cpp" />
+    <ClCompile Include="Source\Graphics\LightComponent.cpp" />
+    <ClCompile Include="Source\Graphics\Light\LightingSystem.cpp" />
+    <ClCompile Include="Source\Graphics\Light\Material.cpp" />
+    <ClCompile Include="Source\Graphics\Light\PointLight.cpp" />
+    <ClCompile Include="Source\Graphics\Mesh.cpp" />
+    <ClCompile Include="Source\Graphics\MeshExporter.cpp" />
+    <ClCompile Include="Source\Graphics\Renderer.cpp" />
+    <ClCompile Include="Source\Graphics\Shader.cpp" />
+    <ClCompile Include="Source\Graphics\Texture.cpp" />
+    <ClCompile Include="Source\Graphics\UI\Button.cpp" />
+    <ClCompile Include="Source\Graphics\UI\Canvas.cpp" />
+    <ClCompile Include="Source\Graphics\UI\Font.cpp" />
+    <ClCompile Include="Source\Graphics\UI\Text.cpp" />
+    <ClCompile Include="Source\Graphics\UI\UIElement.cpp" />
+    <ClCompile Include="Source\Graphics\VertexArray.cpp" />
+    <ClCompile Include="Source\Input\ControllerState.cpp" />
+    <ClCompile Include="Source\Input\InputSystem.cpp" />
+    <ClCompile Include="Source\Input\KeyboardState.cpp" />
+    <ClCompile Include="Source\Input\MouseState.cpp" />
+    <ClCompile Include="Source\Math\Math.cpp" />
+    <ClCompile Include="Source\ObjectSystem\Actor.cpp" />
+    <ClCompile Include="Source\ObjectSystem\AnimSpriteComponent.cpp" />
+    <ClCompile Include="Source\ObjectSystem\Camera\CameraComponent.cpp" />
+    <ClCompile Include="Source\ObjectSystem\Camera\FollowCamera.cpp" />
+    <ClCompile Include="Source\ObjectSystem\Camera\FPSCamera.cpp" />
+    <ClCompile Include="Source\ObjectSystem\Collision\BoxComponent.cpp" />
+    <ClCompile Include="Source\ObjectSystem\Component.cpp" />
+    <ClCompile Include="Source\ObjectSystem\InputComponent.cpp" />
+    <ClCompile Include="Source\ObjectSystem\MeshComponent.cpp" />
+    <ClCompile Include="Source\ObjectSystem\MovementComponent.cpp" />
+    <ClCompile Include="Source\ObjectSystem\ObjectManager.cpp" />
+    <ClCompile Include="Source\ObjectSystem\SpriteRendererComponent.cpp" />
+    <ClCompile Include="Source\Physics\Collision.cpp" />
+    <ClCompile Include="Source\Physics\Physics.cpp" />
+    <ClCompile Include="Source\Temp\D2Level.cpp" />
+    <ClCompile Include="Source\Temp\D3Level.cpp" />
+    <ClCompile Include="Source\Temp\Player.cpp" />
+    <ClCompile Include="Source\Temp\Player2D.cpp" />
+    <ClCompile Include="Source\Temp\RotateAroundComponent.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assimp-vc141-mtd.dll" />
+    <None Include="assimp-vc141-mtd.exp" />
+    <None Include="dbghelp.dll" />
+    <None Include="fmodL64.dll" />
+    <None Include="fmodstudioL64.dll" />
+    <None Include="glew32.dll" />
+    <None Include="libfreetype-6.dll" />
+    <None Include="libpng16-16.dll" />
+    <None Include="SDL2.dll" />
+    <None Include="SDL2_image.dll" />
+    <None Include="SDL2_ttf.dll" />
+    <None Include="vld_x64.dll" />
+    <None Include="vld_x64.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="Microsoft.DTfW.DHL.manifest" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

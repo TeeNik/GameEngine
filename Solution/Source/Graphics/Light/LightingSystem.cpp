@@ -1,6 +1,6 @@
-#include "Graphics/Lighting/LightingSystem.hpp"
+#include "Graphics/Light/LightingSystem.hpp"
 #include "ObjectSystem/LightComponent.hpp"
-#include "Graphics/Lighting/PointLight.hpp"
+#include "Graphics/Light/PointLight.hpp"
 #include "Graphics/Shader.hpp"
 
 void LightingSystem::Update(Shader* shader)
@@ -18,6 +18,6 @@ void LightingSystem::ProcessPointLights(Shader* shader)
 
 	for (int i = 0; i < pointLights.size(); ++i)
 	{
-		pointLights[i].AddLightToShader(shader, i);
+		pointLights[i]->AddLightToShader(shader, i);
 	}
 }

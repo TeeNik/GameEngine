@@ -9,7 +9,7 @@
 #include "Temp/RotateAroundComponent.hpp"
 
 #include "Graphics/Light/PointLight.hpp"
-#include "Temp/Coop.hpp"
+#include "Graphics/Light/LightingSystem.hpp"
 
 #include "Utils/Utils.hpp"
 #include "Graphics/MeshExporter.hpp"

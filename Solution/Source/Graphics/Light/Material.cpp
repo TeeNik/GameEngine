@@ -1,4 +1,4 @@
-#include "Graphics\Lighting\Material.hpp"
+#include "Graphics\Light\Material.hpp"
 #include "glew.h"
 
 void Material::Use(Shader * shader)
