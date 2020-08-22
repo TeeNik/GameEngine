@@ -5,6 +5,7 @@ void Material::Use(Shader * shader)
 {
 	shader->SetIntUniform("material.diffuse", 0);
 	shader->SetIntUniform("material.specular", 1);
+	shader->SetFloatUniform("material.shininess", shininess);
 
 	if (diffuse != nullptr) {
 		diffuse->SetActive(GL_TEXTURE0);

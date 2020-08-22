@@ -25,7 +25,7 @@ struct PointLight
     vec3 ambient;
     vec3 diffuse;
     vec3 specular;
-}
+};
 
 struct Material
 {
@@ -39,7 +39,7 @@ struct Material
 
 #define MAX_POINT_LIGHTS 16
 uniform int numOfPointLights;
-uniform PointLight pointLights[NR_POINT_LIGHTS];
+uniform PointLight pointLights[MAX_POINT_LIGHTS];
 
 uniform vec3 uLightColor;
 uniform vec3 uObjectColor;
@@ -52,23 +52,10 @@ uniform DirectionalLight uDirLight;
 
 uniform Material material;
 
-void main()
-{
-	vec3 result;
-
-	vec3 norm = normalize(fragNormal);
-	vec3 viewDir = normalize(uCameraPos - fragWorldPos);
-
-	for(int i = 0; i < numOfPointLights; ++i)
-		result += CalcPointLight(pointLights[i], norm, fragTexCoord, viewDir);
-
-	outColor = vec4(result, 1.0f);
-}
-
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 {
 	vec3 diffuseColor = texture(material.diffuse, fragTexCoord).rgb * material.hasDiffuse + (1-material.hasDiffuse) * material.baseColor;
-	vec3 specularColor = texture(material.specular, fragTexCoord).rgb * material.hasSpecular;
+	vec3 specularColor = texture(material.specular, fragTexCoord).rgb * material.hasSpecular + (1-material.hasDiffuse) * vec3(1,1,1);
 
     vec3 lightDir = normalize(light.position - fragPos);
     // diffuse shading
@@ -86,5 +73,19 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
     ambient *= attenuation;
     diffuse *= attenuation;
     specular *= attenuation;
-    return (ambient + diffuse + specular);
+    
+	return (ambient + diffuse + specular);
+}
+
+void main()
+{
+	vec3 result;
+
+	vec3 norm = normalize(fragNormal);
+	vec3 viewDir = normalize(uCameraPos - fragWorldPos);
+
+	for(int i = 0; i < numOfPointLights; ++i)
+		result += CalcPointLight(pointLights[i], norm, fragWorldPos, viewDir);
+
+	outColor = vec4(result, 1.0f);
 }

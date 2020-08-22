@@ -10,6 +10,8 @@
 
 PointLight::PointLight(Engine* e) : Actor(e)
 {
+	SetActorScale(Vector3::One * 4);
+
 	auto renderer = e->GetRenderer();
 	renderer->GetLighting()->RegisterLight(this);
 
@@ -21,11 +23,20 @@ PointLight::PointLight(Engine* e) : Actor(e)
 	auto material = new Material();
 	material->baseColor = Vector3(1, 1, 1);
 	mc->SetMaterial(material);
+
+	light.ambient = Vector3(.2, .2, .2);
+	light.diffuse = Vector3(.5, .5, .5);
+	light.specular = Vector3(1, 1, 1);
+
+	linear = 0.027f;
+	quadratic = .0028f;
+
+	renderer->GetLighting()->RegisterLight(this);
 }
 
 void PointLight::AddLightToShader(Shader* shader, const int index)
 {
-	std::string str = "pointLights[" + index + std::string("]");
+	std::string str = "pointLights[" + std::to_string(index) + std::string("]");
 	shader->SetVectorUniform((str + ".position").c_str(), GetActorPosition());
 	shader->SetVectorUniform((str + ".ambient").c_str(), light.ambient);
 	shader->SetVectorUniform((str + ".diffuse").c_str(), light.diffuse);

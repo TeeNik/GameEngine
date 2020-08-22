@@ -10,6 +10,7 @@
 
 #include "Graphics/Light/PointLight.hpp"
 #include "Graphics/Light/LightingSystem.hpp"
+#include "Graphics/Light/Material.hpp"
 
 #include "Utils/Utils.hpp"
 #include "Graphics/MeshExporter.hpp"
@@ -27,15 +28,17 @@ void D2Level::Load()
 
 	PointLight* light = ECS->SpawnActor<PointLight>();
 
-	//auto cube = ECS->SpawnActor<Actor>();
-	//cube->SetActorScale(Vector3(10, 10, 10));
-	//cube->SetActorPosition(Vector3(-20, -20, 0));
-	//mc = cube->AddComponent<MeshComponent>();
-	//mc->SetMesh(mesh);
-	//mc->SetShaderName("Phong|Light");
-	//auto lightMat = new LightMaterial();
-	//lightMat->SetData(light, player);
-	//mc->SetMaterial(lightMat);
+	auto cube = ECS->SpawnActor<Actor>();
+	cube->SetActorScale(Vector3(10, 10, 10));
+	cube->SetActorPosition(Vector3(-20, -20, 0));
+	auto mc = cube->AddComponent<MeshComponent>();
+	auto mesh = renderer->GetMesh(Utils::ContructPath("models/cube/cube.obj"));
+	mc->SetMesh(mesh);
+	mc->SetShaderName("Phong|Light");
+	auto mat = new Material();
+	mat->baseColor = Vector3(1, 1, 0);
+	mat->shininess = 32;
+	mc->SetMaterial(mat);
 	//auto rc = cube->AddComponent<RotateAroundComponent>();
 	//rc->SetRotation(Vector3::Zero, 2);
 

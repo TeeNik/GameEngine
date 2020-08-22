@@ -10,6 +10,7 @@ void LightingSystem::Update(Shader* shader)
 
 void LightingSystem::RegisterLight(PointLight* light)
 {
+	pointLights.emplace_back(light);
 }
 
 void LightingSystem::ProcessPointLights(Shader* shader)

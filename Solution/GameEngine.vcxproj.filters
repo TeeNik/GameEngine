@@ -332,6 +332,14 @@
     <None Include="SDL2_ttf.dll" />
     <None Include="vld_x64.dll" />
     <None Include="vld_x64.pdb" />
+    <None Include="Assets\Shaders\BasicMesh.frag" />
+    <None Include="Assets\Shaders\BasicMesh.vert" />
+    <None Include="Assets\Shaders\Light.frag" />
+    <None Include="Assets\Shaders\Phong.frag" />
+    <None Include="Assets\Shaders\Phong.vert" />
+    <None Include="Assets\Shaders\SolidColor.frag" />
+    <None Include="Assets\Shaders\Sprite.frag" />
+    <None Include="Assets\Shaders\Sprite.vert" />
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="Microsoft.DTfW.DHL.manifest" />

@@ -235,6 +235,14 @@
     <ClCompile Include="Source\Temp\RotateAroundComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Shaders\BasicMesh.frag" />
+    <None Include="Assets\Shaders\BasicMesh.vert" />
+    <None Include="Assets\Shaders\Light.frag" />
+    <None Include="Assets\Shaders\Phong.frag" />
+    <None Include="Assets\Shaders\Phong.vert" />
+    <None Include="Assets\Shaders\SolidColor.frag" />
+    <None Include="Assets\Shaders\Sprite.frag" />
+    <None Include="Assets\Shaders\Sprite.vert" />
     <None Include="assimp-vc141-mtd.dll" />
     <None Include="assimp-vc141-mtd.exp" />
     <None Include="dbghelp.dll" />

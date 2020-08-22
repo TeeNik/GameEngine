@@ -17,7 +17,7 @@ public:
 
 private:
 	Light light;
-	float constant = 0;
+	float constant = 1;
 	float linear = 0;
 	float quadratic = 0;
 };

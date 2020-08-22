@@ -118,12 +118,12 @@ void Renderer::Shutdown()
 
 void Renderer::Draw()
 {
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
-	
+
 	DrawMeshes();
 
 	glDisable(GL_DEPTH_TEST);
@@ -347,10 +347,11 @@ void Renderer::SetLightUniforms(Shader* shader)
 	Matrix4 invView = view;
 	invView.Invert();
 	shader->SetVectorUniform("uCameraPos", invView.GetTranslation());
+	lighting->Update(shader);
 	
-	shader->SetVectorUniform("uAmbientLight", ambientLight);
-	
-	shader->SetVectorUniform("uDirLight.direction", dirLight.direction);
-	shader->SetVectorUniform("uDirLight.diffuseColor", dirLight.diffuseColor);
-	shader->SetVectorUniform("uDirLight.specColor", dirLight.specColor);
+	//shader->SetVectorUniform("uAmbientLight", ambientLight);
+	//
+	//shader->SetVectorUniform("uDirLight.direction", dirLight.direction);
+	//shader->SetVectorUniform("uDirLight.diffuseColor", dirLight.diffuseColor);
+	//shader->SetVectorUniform("uDirLight.specColor", dirLight.specColor);
 }
