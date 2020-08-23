@@ -6,13 +6,13 @@ in vec3 fragWorldPos;
 
 out vec4 outColor;
 
-uniform sampler2D uTexture;
-
 struct DirectionalLight
 {
 	vec3 direction;
-	vec3 diffuseColor;
-	vec3 specColor;
+	
+	vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
 };
 
 struct PointLight
@@ -37,25 +37,50 @@ struct Material
 	float shininess;
 };
 
-#define MAX_POINT_LIGHTS 16
+#define MAX_LIGHTS 16
+
 uniform int numOfPointLights;
-uniform PointLight pointLights[MAX_POINT_LIGHTS];
+uniform PointLight pointLights[MAX_LIGHTS];
 
-uniform vec3 uLightColor;
-uniform vec3 uObjectColor;
-uniform vec3 uLightPos;
+uniform int numOfDirectionalLights;
+uniform DirectionalLight directionalLights[MAX_LIGHTS];
+
 uniform vec3 uCameraPos;
-
-uniform float uSpecPower;
-uniform vec3 uAmbientLight;
-uniform DirectionalLight uDirLight;
 
 uniform Material material;
 
+vec3 GetDiffuseColor()
+{
+	return texture(material.diffuse, fragTexCoord).rgb * material.hasDiffuse + (1-material.hasDiffuse) * material.baseColor;
+}
+
+vec3 GetSpecularColor()
+{
+	return texture(material.specular, fragTexCoord).rgb * material.hasSpecular + (1-material.hasDiffuse) * vec3(1,1,1);
+}
+
+vec3 CalcDirLight(DirectionalLight light, vec3 normal, vec3 viewDir)
+{
+	vec3 diffuseColor = GetDiffuseColor();
+	vec3 specularColor = GetSpecularColor();
+
+    vec3 lightDir = normalize(-light.direction);
+    // diffuse shading
+    float diff = max(dot(normal, lightDir), 0.0);
+    // specular shading
+    vec3 reflectDir = reflect(-lightDir, normal);
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
+    // combine results
+    vec3 ambient = light.ambient * diffuseColor;
+    vec3 diffuse = light.diffuse * diff * diffuseColor;
+    vec3 specular = light.specular * spec * specularColor;
+    return (ambient + diffuse + specular);
+}
+
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 {
-	vec3 diffuseColor = texture(material.diffuse, fragTexCoord).rgb * material.hasDiffuse + (1-material.hasDiffuse) * material.baseColor;
-	vec3 specularColor = texture(material.specular, fragTexCoord).rgb * material.hasSpecular + (1-material.hasDiffuse) * vec3(1,1,1);
+	vec3 diffuseColor = GetDiffuseColor();
+	vec3 specularColor = GetSpecularColor();
 
     vec3 lightDir = normalize(light.position - fragPos);
     // diffuse shading
@@ -83,6 +108,9 @@ void main()
 
 	vec3 norm = normalize(fragNormal);
 	vec3 viewDir = normalize(uCameraPos - fragWorldPos);
+
+	for(int i = 0; i < numOfPointLights; ++i)
+		result += CalcDirLight(directionalLights[i], norm, viewDir);
 
 	for(int i = 0; i < numOfPointLights; ++i)
 		result += CalcPointLight(pointLights[i], norm, fragWorldPos, viewDir);
