@@ -237,6 +237,7 @@
   <ItemGroup>
     <None Include="Assets\Shaders\BasicMesh.frag" />
     <None Include="Assets\Shaders\BasicMesh.vert" />
+    <None Include="Assets\Shaders\Blending.frag" />
     <None Include="Assets\Shaders\Light.frag" />
     <None Include="Assets\Shaders\Phong.frag" />
     <None Include="Assets\Shaders\Phong.vert" />

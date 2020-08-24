@@ -39,7 +39,7 @@ Mesh * MeshExporter::LoadMesh(const std::string & path)
 	}
 	if (scene->mNumMeshes > 1)
 	{
-		printf("ERROR NumMeshes > 1");
+		printf("ERROR NumMeshes > 1\n");
 		return nullptr;
 	}
 

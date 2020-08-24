@@ -340,6 +340,7 @@
     <None Include="Assets\Shaders\SolidColor.frag" />
     <None Include="Assets\Shaders\Sprite.frag" />
     <None Include="Assets\Shaders\Sprite.vert" />
+    <None Include="Assets\Shaders\Blending.frag" />
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="Microsoft.DTfW.DHL.manifest" />
