@@ -29,4 +29,8 @@ void BoxComponent::Update(float deltaTime)
 	{
 		worldBox.Rotate(owner->GetActorRotation());
 	}
+
+	auto pos = owner->GetActorPosition();
+	worldBox.min += pos;
+	worldBox.max += pos;
 }

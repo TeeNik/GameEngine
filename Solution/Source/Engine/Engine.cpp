@@ -105,7 +105,7 @@ void Engine::Update()
 	ticksCount = SDL_GetTicks();
 	
 	ECS->Update(deltaTime);
-	//physics->Update(deltaTime);
+	physics->Update(deltaTime);
 }
 
 void Engine::Render()
