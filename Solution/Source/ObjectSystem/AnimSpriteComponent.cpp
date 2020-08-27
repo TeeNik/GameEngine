@@ -21,7 +21,6 @@ void AnimSpriteComponent::Update(float deltaTime)
 	while (currentFrame > rows * columns) {
 		currentFrame = 0;
 	}
-	//currentFrame = static_cast<int>(currentFrame) % frames.size();
 }
 
 void AnimSpriteComponent::Draw(Shader* shader)
