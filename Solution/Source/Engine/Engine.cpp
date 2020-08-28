@@ -95,7 +95,7 @@ void Engine::HandleEvents()
 
 void Engine::Update()
 {
-	while (!SDL_TICKS_PASSED(SDL_GetTicks(), ticksCount + 16))
+	while (!SDL_TICKS_PASSED(SDL_GetTicks(), ticksCount + FrameDelay))
 		;
 
 	float deltaTime = (SDL_GetTicks() - ticksCount) / 1000.0f;

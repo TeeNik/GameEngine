@@ -43,7 +43,7 @@ private:
 	int frameCounter = 0;
 
 	const int FPS = 60;
-	const int FrameDelay = 1000 / 60;
+	const int FrameDelay = 1000 / FPS;
 	int ticksCount;
 	const float deltaTimeLimit = 0.05f;
 
