@@ -9,19 +9,26 @@
 
 Player2D::Player2D(Engine * e) : Actor(e)
 {
-	auto anim = AddComponent<AnimSpriteComponent>();
-	//anim->SetTexture(Utils::ContructPath("player.png"));
-	anim->SetSourceImage(Utils::ContructPath("girl.png"), 9, 5);
-	auto size = anim->GetSize();
+	//auto anim = AddComponent<AnimSpriteComponent>();
+	//anim->SetSourceImage(Utils::ContructPath("girl.png"), 9, 5);
+	//auto size = anim->GetSize();
+
+	auto player = AddComponent<SpriteRendererComponent>();
+	player->SetTexture(Utils::ContructPath("player.png"));
+	auto size = Vector2(100,200);
+	player->SetSize(size);
+	SetActorPosition(Vector3(0, -200, 0));
 
 	auto border = AddComponent<SpriteRendererComponent>();
 	border->SetTexture(Utils::ContructPath("border.png"));
 	border->SetSize(size);
 
 	auto halfSize = Vector3(size.x, size.y, 0) * .5f;
-	auto box = AddComponent<BoxComponent>();
+	box = AddComponent<BoxComponent>();
 	AABB aabb(halfSize * -1, halfSize);
 	box->SetObjectBox(aabb);
+	box->SetObjectType(CollisionObjectType::Dynamic);
+	box->NextPos = GetActorPosition();
 }
 
 void Player2D::Update(float deltaTime)
@@ -52,7 +59,8 @@ void Player2D::Update(float deltaTime)
 		Vector3 pos = GetActorPosition();
 		pos.x += horizontal * deltaTime;
 		pos.y += vertical * deltaTime;
-		SetActorPosition(pos);
+		box->NextPos = pos;
+		//SetActorPosition(pos);
 	}
 
 	Actor::Update(deltaTime);

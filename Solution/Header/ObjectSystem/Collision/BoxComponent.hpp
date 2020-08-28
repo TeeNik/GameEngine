@@ -23,6 +23,14 @@ public:
 	inline const CollisionObjectType GetObjectType() const { return objectType; }
 	inline void SetObjectType(const CollisionObjectType type) { objectType = type; }
 
+	Vector3 NextPos;
+	AABB GetNextBox() {
+		AABB next = objectBox;
+		next.min += NextPos;
+		next.max += NextPos;
+		return next;
+	};
+
 private:
 	CollisionObjectType objectType;
 	AABB objectBox;

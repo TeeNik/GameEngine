@@ -79,6 +79,50 @@ void Physics::TestSweepAndPrune()
 {
 	std::sort(boxes.begin(), boxes.end(),
 		[](BoxComponent* a, BoxComponent* b) {
+			return a->GetNextBox().min.x < b->GetNextBox().min.x;
+		});
+
+	for (size_t i = 0; i < boxes.size(); ++i)
+	{
+		BoxComponent* a = boxes[i];
+		float max = a->GetNextBox().max.x;
+		for (size_t j = i + 1; j < boxes.size(); ++j)
+		{
+			BoxComponent* b = boxes[j];
+			if (b->GetNextBox().min.x > max)
+			{
+				break;
+			}
+
+			auto aType = a->GetObjectType();
+			auto bType = b->GetObjectType();
+			if (aType == Static && bType == Dynamic || aType == Dynamic && bType == Static)
+			{
+				if (!Intersect(a->GetNextBox(), b->GetNextBox()))
+				{
+					if (aType == Dynamic) {
+						a->GetOwner()->SetActorPosition(a->NextPos);
+						printf("Apply pos x %f y %f\n", a->NextPos.x, a->NextPos.y);
+						//FixCollision(b, a);
+					}
+					else {
+						b->GetOwner()->SetActorPosition(b->NextPos);
+						//FixCollision(a, b);
+					}
+				}
+				else {
+					printf("hit\n");
+				}
+			}
+		}
+	}
+}
+
+/*
+void Physics::TestSweepAndPrune()
+{
+	std::sort(boxes.begin(), boxes.end(),
+		[](BoxComponent* a, BoxComponent* b) {
 		return a->GetWorldBox().min.x < b->GetWorldBox().min.x;
 	});
 
@@ -111,6 +155,7 @@ void Physics::TestSweepAndPrune()
 		}
 	}
 }
+*/
 
 /*void Physics::TestSweepAndPrune(std::function<void(Actor*, Actor*)> func)
 {
@@ -163,11 +208,11 @@ void Physics::FixCollision(BoxComponent * staticBox, BoxComponent * dynamicBox)
 	auto pos = dynamicBox->GetOwner()->GetActorPosition();
 
 	// Whichever is closest, adjust x/y position
-	if (Math::Abs(dx) <= Math::Abs(dy) && Math::Abs(dx) <= Math::Abs(dz))
+	if (Math::Abs(dx) <= Math::Abs(dy) && (Math::Abs(dx) <= Math::Abs(dz) || dz == 0))
 	{
 		pos.x += dx;
 	}
-	else if (Math::Abs(dy) <= Math::Abs(dx) && Math::Abs(dy) <= Math::Abs(dz))
+	else if (Math::Abs(dy) <= Math::Abs(dx) && (Math::Abs(dy) <= Math::Abs(dz) || dz == 0))
 	{
 		pos.y += dy;
 	}
@@ -177,6 +222,7 @@ void Physics::FixCollision(BoxComponent * staticBox, BoxComponent * dynamicBox)
 	}
 
 	// Need to set position and update box component
+	printf("dx %f dy %f\n x %f y %f\n", dx, dy, pos.x, pos.y);
 	dynamicBox->GetOwner()->SetActorPosition(pos);
 	dynamicBox->Update(0);
 }
