@@ -3,6 +3,7 @@
 #include "Math/Math.h"
 
 struct SDL_Surface;
+struct aiScene;
 
 class Texture {
 
@@ -11,6 +12,7 @@ public:
 	~Texture();
 
 	bool Load(const std::string& fileName);
+	bool Load(const aiScene* scene);
 	void Unload();
 	void SetActive();
 	void SetActive(int bindIndex);
