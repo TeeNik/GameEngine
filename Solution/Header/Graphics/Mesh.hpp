@@ -22,8 +22,9 @@ public:
 	Mesh(const std::vector<Vertex>& v, const std::vector<unsigned int>& ind);
 	~Mesh();
 	
-	void SetTexture(Renderer* renderer, const std::string& path);
+	//void SetTexture(Renderer* renderer, const std::string& path);
 	
+	void SetTexture(Texture* t);
 	Texture* GetTexture(size_t index);
 
 	inline float GetRadius() const { return radius; }
@@ -36,7 +37,6 @@ private:
 	void CalculateBox(const std::vector<Vertex>& v);
 
 	AABB box;
-
 	std::vector<Vertex> vertices;
 	std::vector<unsigned int> indices;
 	unsigned int VAO, VBO, EBO;

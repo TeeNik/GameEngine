@@ -52,9 +52,16 @@ Mesh::~Mesh()
 	glDeleteVertexArrays(1, &VAO);
 }
 
+/*
 void Mesh::SetTexture(Renderer* renderer, const std::string& path)
 {
 	textures.emplace_back(renderer->GetTexture(path));
+}
+*/
+
+void Mesh::SetTexture(Texture* t)
+{
+	textures.emplace_back(t);
 }
 
 Texture* Mesh::GetTexture(size_t index)
