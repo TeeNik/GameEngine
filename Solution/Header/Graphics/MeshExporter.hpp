@@ -12,7 +12,6 @@ class Engine;
 class MeshExporter {
 public:
 	MeshExporter(Engine* engine);
-	void Draw(Shader* shader);
 
 	//refactor later
 	std::vector<Mesh*>& LoadMeshes(const std::string& path);

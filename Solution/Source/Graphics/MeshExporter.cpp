@@ -7,6 +7,8 @@
 #include "assimp/postprocess.h"
 
 #include "Engine/Engine.hpp"
+#include "Graphics/Renderer.hpp"
+#include "Graphics/Texture.hpp"
 
 MeshExporter::MeshExporter(Engine* e)
 {
@@ -42,7 +44,6 @@ Mesh * MeshExporter::LoadMesh(const std::string & path)
 		printf("ERROR NumMeshes > 1\n");
 		return nullptr;
 	}
-
 	return ProcessMesh(scene->mMeshes[0], scene);
 }
 
@@ -103,5 +104,10 @@ Mesh * MeshExporter::ProcessMesh(aiMesh * m, const aiScene * scene)
 			indeces.emplace_back(face.mIndices[j]);
 		}
 	}
-	return new Mesh(vertices, indeces);
+
+	Mesh* mesh = new Mesh(vertices, indeces);
+	if (scene->mTextures > 0) {
+		mesh->SetTexture(engine->GetRenderer()->GetTexture(scene, m));
+	}
+	return mesh;
 }
