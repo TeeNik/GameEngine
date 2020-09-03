@@ -13,6 +13,7 @@
 #include "Graphics/Light/LightingSystem.hpp"
 
 #include "Graphics/UI/Canvas.hpp"
+#include "assimp/scene.h"
 
 Renderer::Renderer(Engine* engine) :
 	engine(engine),
@@ -203,6 +204,36 @@ Texture* Renderer::GetTexture(const std::string& fileName)
 	{
 		tex = new Texture();
 		if (tex->Load(fileName))
+		{
+			textures.emplace(fileName, tex);
+		}
+		else
+		{
+			delete tex;
+			tex = nullptr;
+		}
+	}
+	return tex;
+}
+
+Texture* Renderer::GetTexture(const aiScene* scene, const aiMesh* mesh)
+{
+	Texture* tex = nullptr;
+
+	aiMaterial* mat = scene->mMaterials[mesh->mMaterialIndex];
+	aiString name;
+	mat->GetTexture(aiTextureType_DIFFUSE, 0, &name);
+	std::string fileName = name.C_Str();
+
+	auto iter = textures.find(name.C_Str());
+	if (iter != textures.end())
+	{
+		tex = iter->second;
+	}
+	else
+	{
+		tex = new Texture();
+		if (tex->Load(scene, fileName))
 		{
 			textures.emplace(fileName, tex);
 		}

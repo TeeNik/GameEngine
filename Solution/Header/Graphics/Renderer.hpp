@@ -17,6 +17,9 @@ class Font;
 class Canvas;
 class LightingSystem;
 
+struct aiScene;
+struct aiMesh;
+
 struct DirectionalLight
 {
 	Vector3 direction;
@@ -41,8 +44,9 @@ public:
 	void AddMeshComp(MeshComponent* mesh);
 	void RemoveMeshComp(MeshComponent* mesh);
 
-	class Texture* GetTexture(const std::string& fileName);
-	class Mesh* GetMesh(const std::string& fileName);
+	Texture* GetTexture(const std::string& fileName);
+	Texture* GetTexture(const aiScene* scene, const aiMesh* mesh);
+	Mesh* GetMesh(const std::string& fileName);
 
 	inline void SetViewMatrix(const Matrix4& v) { view = v; }
 
