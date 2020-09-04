@@ -12,7 +12,7 @@ public:
 	~Texture();
 
 	bool Load(const std::string& fileName);
-	bool Load(const aiScene* scene);
+	bool Load(const aiScene* scene, std::string& textureName);
 	void Unload();
 	void SetActive();
 	void SetActive(int bindIndex);
@@ -27,4 +27,6 @@ private:
 	int width;
 	int height;
 	Vector2 size;
+
+	bool CreateFromImage(unsigned char* image, int channels, const std::string& filename);
 };
