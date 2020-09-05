@@ -12,7 +12,7 @@
 
 Player::Player(Engine* e) : Actor(e)
 {
-	SetActorPosition(Vector3(-50, 0, 0));
+	SetActorPosition(Vector3(-50, 0, 50));
 	camera = AddComponent<FPSCamera>();
 	moveComp = AddComponent<MovementComponent>();
 	box = AddComponent<BoxComponent>();

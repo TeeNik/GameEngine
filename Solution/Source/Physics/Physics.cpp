@@ -102,7 +102,7 @@ void Physics::TestSweepAndPrune()
 				{
 					if (aType == Dynamic) {
 						a->GetOwner()->SetActorPosition(a->NextPos);
-						printf("Apply pos x %f y %f\n", a->NextPos.x, a->NextPos.y);
+						//printf("Apply pos x %f y %f\n", a->NextPos.x, a->NextPos.y);
 						//FixCollision(b, a);
 					}
 					else {
