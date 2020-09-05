@@ -37,7 +37,7 @@ bool Texture::Load(const aiScene* scene, std::string& textureName)
 
 	if (aiTex == nullptr)
 	{
-		printf("aiTexure is not found in %s", textureName);
+		printf("aiTexure is not found in %s", textureName.c_str());
 		return false;
 	}
 
@@ -52,7 +52,7 @@ bool Texture::CreateFromImage(unsigned char* image, int channels, const std::str
 	size.y = height;
 
 	if (image == nullptr) {
-		printf("SOIL failed to load image %s: %s", filename, SOIL_last_result());
+		printf("SOIL failed to load image %s: %s", filename.c_str(), SOIL_last_result());
 		return false;
 	}
 
