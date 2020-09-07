@@ -168,6 +168,9 @@
     <ClInclude Include="Header\Graphics\Light\PointLight.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Graphics\SkeletalMesh.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Audio\AudioSystem.cpp">
@@ -315,6 +318,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\Light\PointLight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\SkeletalMesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
