@@ -46,7 +46,7 @@ void D2Level::Load()
 	Player* player = ECS->SpawnActor<Player>();
 	auto character = ECS->SpawnActor<Actor>();
 	auto mc = character->AddComponent<MeshComponent>();
-	auto mesh = renderer->GetMesh(Utils::ContructPath("models/char/char.fbx"));
+	auto mesh = renderer->GetMesh(Utils::ContructPath("models/char/Walking.fbx"));
 	character->SetActorScale(Vector3(.5f, .5f, .5f));
 	character->SetActorRotation(Quaternion(Vector3::UnitX, Math::PiOver2));
 	mc->SetMesh(mesh);
