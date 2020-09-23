@@ -7,6 +7,9 @@
 #include <assimp\matrix4x4.h>
 #include <glew.h>
 
+struct aiScene;
+struct aiMesh;
+
 struct BoneMatrix
 {
 	aiMatrix4x4 offset_matrix;
@@ -42,8 +45,12 @@ struct VertexBoneData
 
 class SkeletalMesh : public Mesh
 {
-public:
 	static const unsigned int MAX_BONES = 100;
+
+public:
+	SkeletalMesh(const std::vector<Vertex>& v, const std::vector<unsigned int>& ind);
+
+	void LoadAnimation(const aiScene* scene, aiMesh* m);
 
 private:
 	std::unordered_map<std::string, int> boneMapping;

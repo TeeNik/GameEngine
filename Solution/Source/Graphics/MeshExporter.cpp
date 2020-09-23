@@ -1,6 +1,5 @@
 #include "Graphics/MeshExporter.hpp"
 #include "Graphics/Mesh.hpp"
-#include "Graphics/VertexArray.hpp"
 
 #include "assimp/Importer.hpp"
 #include "assimp/scene.h"
@@ -8,7 +7,8 @@
 
 #include "Engine/Engine.hpp"
 #include "Graphics/Renderer.hpp"
-#include "Graphics/Texture.hpp"
+
+#include "Graphics/SkeletalMesh.hpp"
 
 MeshExporter::MeshExporter(Engine* e)
 {
@@ -105,9 +105,13 @@ Mesh * MeshExporter::ProcessMesh(aiMesh * m, const aiScene * scene)
 		}
 	}
 
-	Mesh* mesh = new Mesh(vertices, indeces);
+	SkeletalMesh* mesh = new SkeletalMesh(vertices, indeces);
 	if (scene->mTextures > 0) {
 		mesh->SetTexture(engine->GetRenderer()->GetTexture(scene, m));
+	}
+	if(scene->mAnimations > 0)
+	{
+		mesh->LoadAnimation(scene, m);
 	}
 	return mesh;
 }
