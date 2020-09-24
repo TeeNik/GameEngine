@@ -6,9 +6,11 @@
 #include "Math/Math.h"
 #include <assimp\matrix4x4.h>
 #include <glew.h>
+#include <assimp/quaternion.h>
 
-struct aiScene;
-struct aiMesh;
+
+struct aiNode;
+struct aiAnimation;
 
 struct BoneMatrix
 {
@@ -43,6 +45,10 @@ struct VertexBoneData
 	}
 };
 
+struct aiNodeAnim;
+struct aiScene;
+struct aiMesh;
+
 class SkeletalMesh : public Mesh
 {
 	static const unsigned int MAX_BONES = 100;
@@ -60,4 +66,19 @@ private:
 
 	GLuint boneLocation[MAX_BONES];
 	float ticksPerSecond = 0.0f;
+
+	int FindPosition(float animationTime, const aiNodeAnim* nodeAnim);
+	int FindRotation(float animationTime, const aiNodeAnim* nodeAnim);
+	int FindScaling(float animationTime, const aiNodeAnim* nodeAnim);
+	const aiNodeAnim* FindNodeAnim(const aiAnimation* animation, const std::string nodeName);
+	// calculate transform matrix
+	aiVector3D CalcInterpolatedPosition(float animationTime, const aiNodeAnim* nodeAnim);
+	aiQuaternion CalcInterpolatedRotation(float animationTime, const aiNodeAnim* nodeAnim);
+	aiVector3D CalcInterpolatedScaling(float animationTime, const aiNodeAnim* nodeAnim);
+
+	void ReadNodeHierarchy(float animationTime, const aiNode* node, const aiMatrix4x4 parentTransform);
+	void BoneTransform(double timeInSec, std::vector<aiMatrix4x4>& transforms);
+
+	void ReadNodeHierarchy(float animationTime, const aiNode* node, const aiMatrix4x4 parentTransform);
+	void BoneTransform(double time_timeInSecin_sec, std::vector<aiMatrix4x4>& transforms);
 };
