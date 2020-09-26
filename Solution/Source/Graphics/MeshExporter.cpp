@@ -105,7 +105,7 @@ Mesh * MeshExporter::ProcessMesh(aiMesh * m, const aiScene * scene)
 		}
 	}
 
-	SkeletalMesh* mesh = new SkeletalMesh(vertices, indeces);
+	SkeletalMesh* mesh = new SkeletalMesh(vertices, indeces, scene);
 	if (scene->mTextures > 0) {
 		mesh->SetTexture(engine->GetRenderer()->GetTexture(scene, m));
 	}

@@ -1,9 +1,24 @@
 #include "Graphics/SkeletalMesh.hpp"
 #include "assimp/scene.h"
 #include <cassert>
+#include <SDL.h>
 
-SkeletalMesh::SkeletalMesh(const std::vector<Vertex>& v, const std::vector<unsigned>& ind) : Mesh(v, ind)
+SkeletalMesh::SkeletalMesh(const std::vector<Vertex>& v, const std::vector<unsigned int>& ind, const aiScene* s) : Mesh(v, ind)
 {
+	scene = s;
+	printf("%d\n", scene->mNumAnimations);
+}
+
+void SkeletalMesh::Draw(Shader* shader)
+{
+	std::vector<aiMatrix4x4> transforms;
+	BoneTransform((double)SDL_GetTicks() / 1000.0f, transforms);
+	for (int i = 0; i < transforms.size(); i++) // move all matrices for actual model position to shader
+	{
+		glUniformMatrix4fv(boneLocation[i], 1, GL_TRUE, (const GLfloat*)& transforms[i]);
+	}
+
+	Mesh::Draw(shader);
 }
 
 void SkeletalMesh::LoadAnimation(const aiScene* scene, aiMesh* m)
@@ -17,18 +32,20 @@ void SkeletalMesh::LoadAnimation(const aiScene* scene, aiMesh* m)
 	std::vector<VertexBoneData> bonesIdWeightsForEachVertex;
 	bonesIdWeightsForEachVertex.resize(m->mNumVertices);
 
+	/*
 	printf("scene->HasAnimations() 1: %d\n", scene->HasAnimations());
 	printf("scene->mNumMeshes 1: %d\n", scene->mNumMeshes);
 	printf("scene->mAnimations[0]->mNumChannels 1: %d\n", scene->mAnimations[0]->mNumChannels);
 	printf("scene->mAnimations[0]->mDuration 1: %f\n", scene->mAnimations[0]->mDuration);
 	printf("scene->mAnimations[0]->mTicksPerSecond 1: %f\n", scene->mAnimations[0]->mTicksPerSecond);
+	*/
 
 	for (int i = 0; i < m->mNumBones; i++)
 	{
 		int boneIndex = 0;
 		std::string bone_name(m->mBones[i]->mName.data);
 
-		printf(m->mBones[i]->mName.data);
+		//printf(m->mBones[i]->mName.data);
 
 		if (boneMapping.find(bone_name) == boneMapping.end())
 		{
@@ -198,8 +215,66 @@ aiVector3D SkeletalMesh::CalcInterpolatedScaling(float animationTime, const aiNo
 
 void SkeletalMesh::ReadNodeHierarchy(float animationTime, const aiNode* node, const aiMatrix4x4 parentTransform)
 {
+	std::string nodeName(node->mName.data);
+
+	const aiAnimation* animation = scene->mAnimations[0];
+	aiMatrix4x4 nodeTransform = node->mTransformation;
+
+	const aiNodeAnim* nodeAnim = FindNodeAnim(animation, nodeName);
+
+	if (nodeAnim)
+	{
+
+		aiVector3D scalingVector = CalcInterpolatedScaling(animationTime, nodeAnim);
+		aiMatrix4x4 scalingMatr;
+		aiMatrix4x4::Scaling(scalingVector, scalingMatr);
+
+		aiQuaternion rotateQuat = CalcInterpolatedRotation(animationTime, nodeAnim);
+		aiMatrix4x4 rotateMatr = aiMatrix4x4(rotateQuat.GetMatrix());
+
+		aiVector3D translateVector = CalcInterpolatedPosition(animationTime, nodeAnim);
+		aiMatrix4x4 translateMatr;
+		aiMatrix4x4::Translation(translateVector, translateMatr);
+
+		if (std::string(nodeAnim->mNodeName.data) == std::string("Head"))
+		{
+			aiQuaternion rotateHead = aiQuaternion(rotateHeadXZ.w, rotateHeadXZ.x, rotateHeadXZ.y, rotateHeadXZ.z);
+
+			nodeTransform = translateMatr * (rotateMatr * aiMatrix4x4(rotateHead.GetMatrix())) * scalingMatr;
+		}
+		else
+		{
+			nodeTransform = translateMatr * rotateMatr * scalingMatr;
+		}
+
+	}
+
+	aiMatrix4x4 globalTransform = parentTransform * nodeTransform;
+
+	if (boneMapping.find(nodeName) != boneMapping.end()) // true if node_name exist in bone_mapping
+	{
+		int bone_index = boneMapping[nodeName];
+		boneMatrices[bone_index].final_world_transform = globalInverseTransform * globalTransform * boneMatrices[bone_index].offset_matrix;
+	}
+
+	for (int i = 0; i < node->mNumChildren; i++)
+	{
+		ReadNodeHierarchy(animationTime, node->mChildren[i], globalTransform);
+	}
 }
 
 void SkeletalMesh::BoneTransform(double timeInSec, std::vector<aiMatrix4x4>& transforms)
 {
+	aiMatrix4x4 identity_matrix;
+
+	double timeInTicks = timeInSec * ticksPerSecond;
+	float animationTime = fmod(timeInTicks, scene->mAnimations[0]->mDuration);
+
+	ReadNodeHierarchy(animationTime, scene->mRootNode, identity_matrix);
+	transforms.resize(numOfBones);
+
+	for (int i = 0; i < numOfBones; i++)
+	{
+		transforms[i] = boneMatrices[i].final_world_transform;
+	}
 }

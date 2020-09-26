@@ -50,7 +50,7 @@ void D2Level::Load()
 	character->SetActorScale(Vector3(.5f, .5f, .5f));
 	character->SetActorRotation(Quaternion(Vector3::UnitX, Math::PiOver2));
 	mc->SetMesh(mesh);
-	mc->SetShaderName("Phong|BasicMesh");
+	mc->SetShaderName("AnimatedModel|BasicMesh");
 	//auto mat = new Material();
 	//mat->diffuse = renderer->GetTexture(mesh->GetSceneData(), mesh->GetMeshData());
 	//mc->SetMaterial(mat);

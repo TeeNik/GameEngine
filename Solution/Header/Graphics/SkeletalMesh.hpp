@@ -54,11 +54,14 @@ class SkeletalMesh : public Mesh
 	static const unsigned int MAX_BONES = 100;
 
 public:
-	SkeletalMesh(const std::vector<Vertex>& v, const std::vector<unsigned int>& ind);
+	SkeletalMesh(const std::vector<Vertex>& v, const std::vector<unsigned int>& ind, const aiScene* s);
 
 	void LoadAnimation(const aiScene* scene, aiMesh* m);
+	aiQuaternion NLerp(aiQuaternion a, aiQuaternion b, float blend);
+	virtual void Draw(Shader* shader) override;
 
 private:
+	const aiScene* scene;
 	std::unordered_map<std::string, int> boneMapping;
 	int numOfBones;
 	std::vector<BoneMatrix> boneMatrices;
@@ -79,6 +82,5 @@ private:
 	void ReadNodeHierarchy(float animationTime, const aiNode* node, const aiMatrix4x4 parentTransform);
 	void BoneTransform(double timeInSec, std::vector<aiMatrix4x4>& transforms);
 
-	void ReadNodeHierarchy(float animationTime, const aiNode* node, const aiMatrix4x4 parentTransform);
-	void BoneTransform(double time_timeInSecin_sec, std::vector<aiMatrix4x4>& transforms);
+	Quaternion rotateHeadXZ = Quaternion(sin(Math::ToRadians(0.0f)) * Vector3(1.0f, 0.0f, 0.0f), cos(Math::ToRadians(0.0f)));
 };
