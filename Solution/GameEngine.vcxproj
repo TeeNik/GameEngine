@@ -237,6 +237,8 @@
     <ClCompile Include="Source\Temp\RotateAroundComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Shaders\AnimatedModel.frag" />
+    <None Include="Assets\Shaders\AnimatedModel.vert" />
     <None Include="Assets\Shaders\BasicMesh.frag" />
     <None Include="Assets\Shaders\BasicMesh.vert" />
     <None Include="Assets\Shaders\Blending.frag" />

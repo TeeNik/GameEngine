@@ -31,7 +31,7 @@ public:
 	inline float GetSpecPower() const { return specPower; }
 	inline const AABB& GetBox() { return box; }
 
-	void Draw(Shader* shader);
+	virtual void Draw(Shader* shader);
 
 private:
 	void CalculateBox(const std::vector<Vertex>& v);

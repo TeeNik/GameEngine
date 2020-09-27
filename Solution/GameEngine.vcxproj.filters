@@ -347,6 +347,8 @@
     <None Include="Assets\Shaders\Sprite.frag" />
     <None Include="Assets\Shaders\Sprite.vert" />
     <None Include="Assets\Shaders\Blending.frag" />
+    <None Include="Assets\Shaders\AnimatedModel.frag" />
+    <None Include="Assets\Shaders\AnimatedModel.vert" />
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="Microsoft.DTfW.DHL.manifest" />
