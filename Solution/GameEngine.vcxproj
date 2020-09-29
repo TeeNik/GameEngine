@@ -146,9 +146,9 @@
     <ClInclude Include="Header\Graphics\Light\PointLight.hpp" />
     <ClInclude Include="Header\Graphics\Mesh.hpp" />
     <ClInclude Include="Header\Graphics\MeshExporter.hpp" />
+    <ClInclude Include="Header\Graphics\Model.hpp" />
     <ClInclude Include="Header\Graphics\Renderer.hpp" />
     <ClInclude Include="Header\Graphics\Shader.hpp" />
-    <ClInclude Include="Header\Graphics\SkeletalMesh.hpp" />
     <ClInclude Include="Header\Graphics\Texture.hpp" />
     <ClInclude Include="Header\Graphics\UI\Button.hpp" />
     <ClInclude Include="Header\Graphics\UI\Canvas.hpp" />
@@ -183,6 +183,8 @@
     <ClInclude Include="Header\Temp\Player2D.hpp" />
     <ClInclude Include="Header\Temp\RotateAroundComponent.hpp" />
     <ClInclude Include="Header\Utils\Utils.hpp" />
+    <ClInclude Include="Test\MeshNew.h" />
+    <ClInclude Include="Test\ModelNew.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -201,9 +203,9 @@
     <ClCompile Include="Source\Graphics\Light\PointLight.cpp" />
     <ClCompile Include="Source\Graphics\Mesh.cpp" />
     <ClCompile Include="Source\Graphics\MeshExporter.cpp" />
+    <ClCompile Include="Source\Graphics\Model.cpp" />
     <ClCompile Include="Source\Graphics\Renderer.cpp" />
     <ClCompile Include="Source\Graphics\Shader.cpp" />
-    <ClCompile Include="Source\Graphics\SkeletalMesh.cpp" />
     <ClCompile Include="Source\Graphics\Texture.cpp" />
     <ClCompile Include="Source\Graphics\UI\Button.cpp" />
     <ClCompile Include="Source\Graphics\UI\Canvas.cpp" />
@@ -235,10 +237,10 @@
     <ClCompile Include="Source\Temp\Player.cpp" />
     <ClCompile Include="Source\Temp\Player2D.cpp" />
     <ClCompile Include="Source\Temp\RotateAroundComponent.cpp" />
+    <ClCompile Include="Test\MeshNew.cpp" />
+    <ClCompile Include="Test\ModelNew.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Shaders\AnimatedModel.frag" />
-    <None Include="Assets\Shaders\AnimatedModel.vert" />
     <None Include="Assets\Shaders\BasicMesh.frag" />
     <None Include="Assets\Shaders\BasicMesh.vert" />
     <None Include="Assets\Shaders\Blending.frag" />
