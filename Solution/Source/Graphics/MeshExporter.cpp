@@ -8,8 +8,6 @@
 #include "Engine/Engine.hpp"
 #include "Graphics/Renderer.hpp"
 
-#include "Graphics/SkeletalMesh.hpp"
-
 MeshExporter::MeshExporter(Engine* e)
 {
 	engine = e;
@@ -105,13 +103,9 @@ Mesh * MeshExporter::ProcessMesh(aiMesh * m, const aiScene * scene)
 		}
 	}
 
-	SkeletalMesh* mesh = new SkeletalMesh(vertices, indeces, scene);
+	Mesh* mesh = new Mesh(vertices, indeces);
 	if (scene->mTextures > 0) {
 		mesh->SetTexture(engine->GetRenderer()->GetTexture(scene, m));
-	}
-	if(scene->mAnimations > 0)
-	{
-		mesh->LoadAnimation(scene, m);
 	}
 	return mesh;
 }

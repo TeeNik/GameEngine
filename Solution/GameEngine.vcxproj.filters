@@ -168,15 +168,6 @@
     <ClInclude Include="Header\Graphics\Light\PointLight.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Graphics\Model.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Test\ModelNew.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Test\MeshNew.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Audio\AudioSystem.cpp">
@@ -324,15 +315,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\Light\PointLight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\Model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Test\MeshNew.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Test\ModelNew.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
