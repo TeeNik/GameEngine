@@ -103,6 +103,17 @@ Mesh * MeshExporter::ProcessMesh(aiMesh * m, const aiScene * scene)
 		}
 	}
 
+	for (int i = 0; i < m->mNumBones; ++i)
+	{
+		int num = m->mBones[i]->mNumWeights;
+		printf("bone %s %d \n", m->mBones[i]->mName.C_Str(), num);
+		for(int j = 0; j < num; ++j)
+		{
+			printf("    %d %f\n", m->mBones[i]->mWeights[j].mVertexId, m->mBones[i]->mWeights[j].mWeight);
+		}
+		break;
+	}
+
 	Mesh* mesh = new Mesh(vertices, indeces);
 	if (scene->mTextures > 0) {
 		mesh->SetTexture(engine->GetRenderer()->GetTexture(scene, m));
