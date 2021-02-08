@@ -4,6 +4,7 @@
 
 class Shader;
 class Mesh;
+class SkeletalMesh;
 struct aiScene;
 struct aiMesh;
 struct aiNode;
@@ -23,4 +24,6 @@ private:
 	std::vector<Mesh*> meshes;
 	void ProcessNode(aiNode* node, const aiScene* scene);
 	Mesh* ProcessMesh(aiMesh* mesh, const aiScene* scene);
+
+	SkeletalMesh* ProcessSkeletalMesh(aiMesh* mesh, const aiScene* scene);
 };

@@ -1,5 +1,8 @@
+#pragma once
+
 #include "Graphics/MeshExporter.hpp"
 #include "Graphics/Mesh.hpp"
+#include "Graphics/SkeletalMesh.hpp"
 
 #include "assimp/Importer.hpp"
 #include "assimp/scene.h"
@@ -30,19 +33,25 @@ std::vector<Mesh*>& MeshExporter::LoadMeshes(const std::string& path)
 
 Mesh * MeshExporter::LoadMesh(const std::string & path)
 {
-	Assimp::Importer importer;
-	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
-	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
-	{
-		printf("ERROR::ASSIMP %s\n", importer.GetErrorString());
-		return nullptr;
-	}
-	if (scene->mNumMeshes > 1)
-	{
-		printf("ERROR NumMeshes > 1\n");
-		return nullptr;
-	}
-	return ProcessMesh(scene->mMeshes[0], scene);
+	Mesh* m = new Mesh();
+	m->engine = engine;
+	m->LoadMesh(path);
+	return m;
+
+
+	//Assimp::Importer importer;
+	//const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
+	//if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
+	//{
+	//	printf("ERROR::ASSIMP %s\n", importer.GetErrorString());
+	//	return nullptr;
+	//}
+	//if (scene->mNumMeshes > 1)
+	//{
+	//	printf("ERROR NumMeshes > 1\n");
+	//	return nullptr;
+	//}
+	//return ProcessMesh(scene->mMeshes[0], scene);
 }
 
 void MeshExporter::ProcessNode(aiNode * node, const aiScene * scene)
@@ -103,20 +112,58 @@ Mesh * MeshExporter::ProcessMesh(aiMesh * m, const aiScene * scene)
 		}
 	}
 
+	Mesh* mesh = new Mesh(vertices, indeces);
+
 	for (int i = 0; i < m->mNumBones; ++i)
 	{
-		int num = m->mBones[i]->mNumWeights;
-		printf("bone %s %d \n", m->mBones[i]->mName.C_Str(), num);
-		for(int j = 0; j < num; ++j)
+		int boneIndex = 0;
+		std::string boneName(m->mBones[i]->mName.data);
+		if(mesh->m_BoneMapping.find(boneName) == mesh->m_BoneMapping.end())
 		{
-			printf("    %d %f\n", m->mBones[i]->mWeights[j].mVertexId, m->mBones[i]->mWeights[j].mWeight);
+			boneIndex = mesh->m_NumBones;
+			mesh->m_NumBones++;
+			BoneMatrix bi;
+			mesh->m_BoneInfo.push_back(bi);
 		}
-		break;
+		else
+		{
+			boneIndex = mesh->m_BoneMapping[boneName];
+		}
+
+		mesh->m_BoneMapping[boneName] = boneIndex;
+		mesh->m_BoneInfo[boneIndex].offset_matrix = m->mBones[i]->mOffsetMatrix;
+
+		for(int j = 0; j < m->mBones[i]->mNumWeights; ++j)
+		{
+			int vertexID = m->mBones[i]->mWeights[j].mVertexId;
+			float weight = m->mBones[i]->mWeights[j].mWeight;
+			mesh->Bones[vertexID].addBoneData(boneIndex, weight);
+		}
+
+		//int num = m->mBones[i]->mNumWeights;
+		//printf("bone %s %d \n", m->mBones[i]->mName.C_Str(), num);
+		//for(int j = 0; j < num; ++j)
+		//{
+		//	printf("    %d %f\n", m->mBones[i]->mWeights[j].mVertexId, m->mBones[i]->mWeights[j].mWeight);
+		//}
+		//break;
 	}
 
-	Mesh* mesh = new Mesh(vertices, indeces);
+	mesh->_scene = scene;
 	if (scene->mTextures > 0) {
 		mesh->SetTexture(engine->GetRenderer()->GetTexture(scene, m));
 	}
 	return mesh;
+}
+
+SkeletalMesh* MeshExporter::ProcessSkeletalMesh(aiMesh* mesh, const aiScene* scene)
+{
+	SkeletalMesh* sm = new SkeletalMesh(mesh, scene);
+
+	aiMatrix4x4 globalInverseTransform = scene->mRootNode->mTransformation;
+	globalInverseTransform.Inverse();
+
+	sm->globalInverseTransform = globalInverseTransform;
+
+	return sm;
 }

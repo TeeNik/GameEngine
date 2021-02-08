@@ -44,10 +44,12 @@ void D2Level::Load()
 	//return;
 
 	Player* player = ECS->SpawnActor<Player>();
+	//player->SetActorPosition(Vector3(0, -100, 0));
 	auto character = ECS->SpawnActor<Actor>();
 	auto mc = character->AddComponent<MeshComponent>();
+	//auto mesh = renderer->GetMesh(Utils::ContructPath("models/char/Walking.fbx"));
 	auto mesh = renderer->GetMesh(Utils::ContructPath("models/char/Walking.fbx"));
-	character->SetActorScale(Vector3(.5f, .5f, .5f));
+	//character->SetActorScale(Vector3(10.0f, 10.0f, 10.0f));
 	character->SetActorRotation(Quaternion(Vector3::UnitX, Math::PiOver2));
 	mc->SetMesh(mesh);
 	mc->SetShaderName("Skinned|BasicMesh");
