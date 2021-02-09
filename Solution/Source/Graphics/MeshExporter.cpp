@@ -139,14 +139,6 @@ Mesh * MeshExporter::ProcessMesh(aiMesh * m, const aiScene * scene)
 			float weight = m->mBones[i]->mWeights[j].mWeight;
 			mesh->Bones[vertexID].addBoneData(boneIndex, weight);
 		}
-
-		//int num = m->mBones[i]->mNumWeights;
-		//printf("bone %s %d \n", m->mBones[i]->mName.C_Str(), num);
-		//for(int j = 0; j < num; ++j)
-		//{
-		//	printf("    %d %f\n", m->mBones[i]->mWeights[j].mVertexId, m->mBones[i]->mWeights[j].mWeight);
-		//}
-		//break;
 	}
 
 	mesh->_scene = scene;
@@ -159,11 +151,5 @@ Mesh * MeshExporter::ProcessMesh(aiMesh * m, const aiScene * scene)
 SkeletalMesh* MeshExporter::ProcessSkeletalMesh(aiMesh* mesh, const aiScene* scene)
 {
 	SkeletalMesh* sm = new SkeletalMesh(mesh, scene);
-
-	aiMatrix4x4 globalInverseTransform = scene->mRootNode->mTransformation;
-	globalInverseTransform.Inverse();
-
-	sm->globalInverseTransform = globalInverseTransform;
-
 	return sm;
 }

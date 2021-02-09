@@ -7,7 +7,6 @@
 #include <assimp/anim.h>
 #include <map>
 #include "Math/Math.h"
-#include "Mesh.hpp"
 
 #define NUM_BONES_PER_VERTEX 4
 
@@ -70,10 +69,10 @@ struct Animation
 	std::map<std::string, NodeAnim> nodeAnims;
 };
 
-class SkeletalMesh : public Mesh
+class SkeletalMesh
 {
 public:
-	SkeletalMesh(aiMesh* mesh, const aiScene* scene);
+	SkeletalMesh(const aiMesh* mesh, const aiScene* scene);
 
 	void Draw(Shader* shader);
 

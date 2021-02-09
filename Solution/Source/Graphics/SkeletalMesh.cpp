@@ -2,7 +2,7 @@
 #include <assimp/scene.h>
 #include <cassert>
 
-SkeletalMesh::SkeletalMesh(aiMesh* mesh, const aiScene* scene)
+SkeletalMesh::SkeletalMesh(const aiMesh* mesh, const aiScene* scene)
 {
 	globalInverseTransform = scene->mRootNode->mTransformation;
 	globalInverseTransform.Inverse();
@@ -67,6 +67,13 @@ SkeletalMesh::SkeletalMesh(aiMesh* mesh, const aiScene* scene)
 		}
 		animations.emplace_back(animation);
 	}
+
+}
+
+void SkeletalMesh::Draw(Shader* shader)
+{
+	std::vector<aiMatrix4x4> transforms;
+
 
 }
 

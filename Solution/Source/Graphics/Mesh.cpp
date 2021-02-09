@@ -50,12 +50,49 @@ Mesh::Mesh(const std::vector<Vertex>& v, const std::vector<unsigned int>& ind) :
 	CalculateBox(v);
 }
 
-Mesh::Mesh(const aiMesh* mesh, const aiScene* scene) :
+Mesh::Mesh(const aiMesh* m, const aiScene* scene) :
 	radius(0.0f),
 	specPower(100.0f),
 	box(Vector3::Infinity, Vector3::NegInfinity)
 {
+	for (int i = 0; i < m->mNumVertices; ++i)
+	{
+		Vertex vertex;
 
+		auto pos = m->mVertices[i];
+		vertex.position.x = pos.x;
+		vertex.position.y = pos.y;
+		vertex.position.z = pos.z;
+
+		if (m->HasNormals())
+		{
+			auto normal = m->mNormals[i];
+			vertex.normal.x = normal.x;
+			vertex.normal.y = normal.y;
+			vertex.normal.z = normal.z;
+		}
+
+		if (m->mTextureCoords[0])
+		{
+			auto tex = m->mTextureCoords[0][i];
+			vertex.texCoords.x = tex.x;
+			vertex.texCoords.y = tex.y;
+		}
+		else {
+			vertex.texCoords = Vector2::Zero;
+		}
+
+		vertices.push_back(vertex);
+	}
+
+	for (int i = 0; i < m->mNumFaces; ++i)
+	{
+		auto face = m->mFaces[i];
+		for (int j = 0; j < face.mNumIndices; ++j)
+		{
+			indices.emplace_back(face.mIndices[j]);
+		}
+	}
 }
 
 Mesh::Mesh() : 
