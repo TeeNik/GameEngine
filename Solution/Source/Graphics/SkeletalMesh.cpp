@@ -1,14 +1,16 @@
 #include "Graphics/SkeletalMesh.hpp"
 #include <assimp/scene.h>
 #include <cassert>
+#include <glew.h>
+#include <SDL.h>
+#include "Graphics/Shader.hpp"
 
-SkeletalMesh::SkeletalMesh(const aiMesh* mesh, const aiScene* scene)
+SkeletalMesh::SkeletalMesh(const aiMesh* mesh, const aiScene* scene, Engine* e) : Mesh(mesh, scene, e)
 {
 	globalInverseTransform = scene->mRootNode->mTransformation;
 	globalInverseTransform.Inverse();
 
 	bones.resize(mesh->mNumVertices);
-	int numBones = 0;
 	for (int i = 0; i < mesh->mNumBones; ++i)
 	{
 		int boneIndex = 0;
@@ -45,7 +47,7 @@ SkeletalMesh::SkeletalMesh(const aiMesh* mesh, const aiScene* scene)
 		animation.ticksPerSecond = sourceAnimation->mTicksPerSecond;
 		animation.duration = sourceAnimation->mDuration;
 
-		for (int j = 0; j < sourceAnimation->mNumChannels; ++i)
+		for (int j = 0; j < sourceAnimation->mNumChannels; ++j)
 		{
 			NodeAnim nodeAnim;
 			aiNodeAnim* sourceNodeAnim = sourceAnimation->mChannels[j];
@@ -67,14 +69,66 @@ SkeletalMesh::SkeletalMesh(const aiMesh* mesh, const aiScene* scene)
 		}
 		animations.emplace_back(animation);
 	}
-
+	printf("SkeletalMesh complete");
 }
 
 void SkeletalMesh::Draw(Shader* shader)
 {
 	std::vector<aiMatrix4x4> transforms;
+	BoneTransform((double)SDL_GetTicks() / 1000.0f, transforms);
+	for (int i = 0; i < transforms.size(); i++) // move all matrices for actual model position to shader
+	{
+		std::string name = "uBones[" + std::to_string(i) + "]";
+		shader->SetMatrixUniform(name.c_str(), ToMat4(transforms[i]));
+	}
 
+	Mesh::Draw(shader);
+}
 
+void SkeletalMesh::SetupMesh()
+{
+	//vertices data
+	glGenBuffers(1, &VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vertices[0]), &vertices[0], GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	//bones data
+	glGenBuffers(1, &VBO_bones);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO_bones);
+	glBufferData(GL_ARRAY_BUFFER, bones.size() * sizeof(bones[0]), &bones[0], GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	//numbers for sequence indices
+	glGenBuffers(1, &EBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLuint), &indices[0], GL_STATIC_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+	// create VAO and binding data from buffers to shaders
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	//vertex position
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)0);
+	glEnableVertexAttribArray(1); // offsetof(Vertex, normal) = returns the byte offset of that variable from the start of the struct
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, normal));
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, texCoords));
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	//bones
+	glBindBuffer(GL_ARRAY_BUFFER, VBO_bones);
+	glEnableVertexAttribArray(3);
+	glVertexAttribIPointer(3, 4, GL_INT, sizeof(VertexBoneData), (GLvoid*)0); // for INT Ipointer
+	glEnableVertexAttribArray(4);
+	glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(VertexBoneData), (GLvoid*)offsetof(VertexBoneData, Weights));
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	//indices
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBindVertexArray(0);
+
+	CalculateBox(vertices);
 }
 
 void SkeletalMesh::InitNode(Node& node, aiNode* sourceNode)
@@ -99,8 +153,8 @@ void SkeletalMesh::BoneTransform(float timeInSeconds, std::vector<aiMatrix4x4>& 
 
 	ReadNodeHierarchy(AnimationTime, rootNode, identity);
 
-	transforms.resize(bones.size());
-	for (int i = 0; i < bones.size(); i++) {
+	transforms.resize(numBones);
+	for (int i = 0; i < numBones; i++) {
 		transforms[i] = boneInfo[i].final_world_transform;
 	}
 }
@@ -204,7 +258,7 @@ int SkeletalMesh::FindScaling(float animationTime, const NodeAnim& nodeAnim)
 {
 	for (int i = 0; i < nodeAnim.positionKeys.size() - 1; i++)
 	{
-		if (animationTime < (float)nodeAnim.positionKeys[i + 1].mTime)
+		if (animationTime <= (float)nodeAnim.positionKeys[i + 1].mTime)
 		{
 			return i;
 		}

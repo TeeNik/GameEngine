@@ -7,6 +7,7 @@
 #include <assimp/anim.h>
 #include <map>
 #include "Math/Math.h"
+#include "Graphics/Mesh.hpp"
 
 #define NUM_BONES_PER_VERTEX 4
 
@@ -69,12 +70,13 @@ struct Animation
 	std::map<std::string, NodeAnim> nodeAnims;
 };
 
-class SkeletalMesh
+class SkeletalMesh : public Mesh
 {
 public:
-	SkeletalMesh(const aiMesh* mesh, const aiScene* scene);
+	SkeletalMesh(const aiMesh* mesh, const aiScene* scene, Engine* engine);
 
-	void Draw(Shader* shader);
+	virtual void Draw(Shader* shader) override;
+	virtual void SetupMesh() override;
 
 private:
 	Node rootNode;
@@ -83,6 +85,7 @@ private:
 	std::map<std::string, int> boneMapping;
 	std::vector<VertexBoneData> bones;
 	std::vector<BoneMatrix> boneInfo;
+	int numBones = 0;
 
 	void InitNode(Node& node, aiNode* sourceNode);
 	void BoneTransform(float timeInSeconds, std::vector<aiMatrix4x4>& transforms);
